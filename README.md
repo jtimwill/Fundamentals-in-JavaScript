@@ -43,14 +43,15 @@
      * Post-order
      * Find
      * Insert
+4. Stack
      * Big-O Analysis
      * Code
-     * Class Setup
-     * Push
-     * Pop
-     * Peek
-     * Max
-     * Empty?
+       * Class Setup
+       * Push
+       * Pop
+       * Peek
+       * Max
+       * Empty?
 5. Queue
    * Big-O Analysis
    * Code
