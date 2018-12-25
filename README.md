@@ -46,7 +46,7 @@
 4. Stack
      * Big-O Analysis
      * Code
-       * Class Setup
+       * Setup
        * Push
        * Pop
        * Peek
@@ -64,6 +64,7 @@
 6. Hash Table (Object)
    * Big-O Analysis
    * Code
+     * Setup
      * Insert
      * Delete
      * Keys
@@ -72,6 +73,7 @@
 7. Binary Search Tree
    * Big-O Analysis
    * Code
+     * Setup
      * Max
      * Min
      * Next Largest
@@ -81,14 +83,19 @@
 8. Heap
    * Big-O Analysis
    * Code
+     * Setup
      * Heapify
      * n-largest
      * n-smallest
      * push
      * pop
      * Return mix/max
+9. Graphs
+   * Big-O Analysis
+   * Code
+     * Setup
 
-#### Algorithms
+### Algorithms
 1. Binary Search
    * Big-O
    * Implementation
@@ -111,11 +118,30 @@
    * Type conversion
    * Type checking
 2. Parallel Computing
-3. Recursion
-4. Dynamic Programming
-5. Greedy Algorithms
-6. Operating Systems
-7. Networking
-8. Design Patterns
-9. Testing
-10. Callbacks
+3. Math and Probability
+4. Networking
+5. Operating Systems
+6. Unix Command Line
+7. Databases
+8. Compilers/Interpreters
+9. Computer Hardware
+10. Electronics
+11. Design Patterns
+12. Callbacks
+
+### OOP
+1. Inheritance
+2. Encapsulation
+3. Polymorphism
+
+### Testing
+1. Unit Tests
+2. Integration Tests
+3. End-to-end Tests
+
+### Paradigms
+1. Recursion
+2. Dynamic Programming
+3. Greedy Algorithms
+4. Divide and Conquer
+5. Brute Force
