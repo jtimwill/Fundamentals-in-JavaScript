@@ -1,6 +1,10 @@
 # Fundamentals-in-JavaScript
 
 ## Outline
+### Primitive Types
+1. Bit manipulation
+2. Type conversion
+3. Type checking
 
 ### Data Structures
 1. Arrays and Strings
@@ -70,7 +74,7 @@
      * Keys
      * Values
      * Pairs
-7. Binary Search Tree
+7. Binary Search Tree (Balanced Binary Tree)
    * Big-O Analysis
    * Code
      * Setup
@@ -94,6 +98,11 @@
    * Big-O Analysis
    * Code
      * Setup
+       * Adjacency Matrix
+       * Adjacency List
+10. Union Find
+   * Big-O Analysis
+   * Code   
 
 ### Algorithms
 1. Binary Search
@@ -112,23 +121,6 @@
    * Big-O
    * Implementation
 
-### Miscellaneous
-1. Primitive Types
-   * Bit manipulation
-   * Type conversion
-   * Type checking
-2. Parallel Computing
-3. Math and Probability
-4. Networking
-5. Operating Systems
-6. Unix Command Line
-7. Databases
-8. Compilers/Interpreters
-9. Computer Hardware
-10. Electronics
-11. Design Patterns
-12. Callbacks
-
 ### OOP
 1. Inheritance
 2. Encapsulation
@@ -138,10 +130,30 @@
 1. Unit Tests
 2. Integration Tests
 3. End-to-end Tests
+4. TDD (RGR)
 
-### Paradigms
-1. Recursion
-2. Dynamic Programming
+### Paradigms (Identify Canonical Problems)
+1. Divide and Conquer (Recursion)
+2. Randomized Algorithms
 3. Greedy Algorithms
-4. Divide and Conquer
+4. Dynamic Programming
 5. Brute Force
+
+# Miscellaneous
+### Math and Probability
+### Parallel Computing
+### Networking
+### Operating Systems
+   * Processes
+   * Threads
+   * Concurrency
+### Unix Command Line
+### Databases
+### Compilers/Interpreters
+### Computer Hardware
+### Electronics
+### Design Patterns
+### System Design
+   * Scalability and Memory Limits
+### P vs NP
+### Callbacks (JavaScript)
