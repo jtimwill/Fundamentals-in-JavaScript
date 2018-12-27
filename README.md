@@ -125,6 +125,8 @@
 1. Inheritance
 2. Encapsulation
 3. Polymorphism
+4. Abstraction
+5. Composition
 
 ### Testing
 1. Unit Tests
@@ -142,15 +144,32 @@
 # Miscellaneous
 ### Math and Probability
 ### Parallel Computing
+   * Multi-core processors vs. single core
+   * Parallelism vs. Concurrency
+   * Amdahl's Law
+   * Gustafson's Law
 ### Networking
+   * OSI vs TCP/IP
 ### Operating Systems
-   * Processes
-   * Threads
+   * Kernel
    * Concurrency
+   * Process
+   * Threads
+   * Interrupt
+   * Context Switching
+   * Device Driver
+   * CPU Virtualization
+   * Memory Virtualization
+   * Multi-tasking
+   * Persistence
+   * Multi-threading, Lock, Mutex, Semaphore
 ### Unix Command Line
 ### Databases
 ### Compilers/Interpreters
 ### Computer Hardware
+   * Components of a Computer System
+   * CPU
+   * RISC Pipeline
 ### Electronics
 ### Design Patterns
 ### System Design
