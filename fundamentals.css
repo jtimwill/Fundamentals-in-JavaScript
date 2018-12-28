@@ -10,11 +10,7 @@
 }
 
 .home {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  align-items: center;
   display: flex;
   text-decoration: none;
 }
@@ -103,15 +99,11 @@ h6,p { font-size: 1em; }
   display: inline-block;
   margin: 0 10px 0 10px;
   text-decoration: none;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
   transition: all 0.1s;
 }
 
 .hero-icon:active {
-  -webkit-transform: scale(0.9, 0.9);
-      -ms-transform: scale(0.9, 0.9);
-          transform: scale(0.9, 0.9);
+  transform: scale(0.9, 0.9);
 }
 
 .hero-icon:hover {
@@ -121,37 +113,25 @@ h6,p { font-size: 1em; }
 /* Projects */
 .project-container {
   background-color: #E1E2E1;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 48px 0;
 }
 
 .project {
   background-color: #F5F5F6;
   border-radius: 8px;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
   display: inline-block;
-  -ms-flex-preferred-size: 28%;
-      flex-basis: 28%;
+  flex-basis: 28%;
   margin: 15px 15px;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
   transition: all 0.4s;
 }
 
 .project:hover {
-  -webkit-box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
-          box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
-  -webkit-transform: scale(1.05, 1.05);
-      -ms-transform: scale(1.05, 1.05);
-          transform: scale(1.05, 1.05);
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+  transform: scale(1.05, 1.05);
 }
 
 .project-image {
@@ -197,16 +177,12 @@ h6,p { font-size: 1em; }
   margin: 0 3px 0 3px;
   padding: 6px 8px;
   text-decoration: none;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
   transition: all 0.1s;
 }
 
 .button:active {
   border-width: 5px;
-  -webkit-transform: scale(0.9, 0.9);
-      -ms-transform: scale(0.9, 0.9);
-          transform: scale(0.9, 0.9);
+  transform: scale(0.9, 0.9);
 }
 
 .button:hover {
@@ -216,8 +192,7 @@ h6,p { font-size: 1em; }
 /* Breakpoints */
 @media (max-width: 992px) {
   .project {
-    -ms-flex-preferred-size: 40%;
-        flex-basis: 40%;
+    flex-basis: 40%;
   }
 }
 
@@ -229,8 +204,7 @@ h6,p { font-size: 1em; }
   }
 
   .project {
-    -ms-flex-preferred-size: 60%;
-        flex-basis: 60%;
+    flex-basis: 60%;
   }
 
   .project-container {
@@ -262,8 +236,7 @@ h6,p { font-size: 1em; }
   }
 
   .project {
-    -ms-flex-preferred-size: 90%;
-        flex-basis: 90%;
+    flex-basis: 90%;
   }
 
   .project-container {
