@@ -340,10 +340,11 @@
 7. P vs NP (Reductions)
 8. P vs NP (Completeness)
 9. P = NP if...
-10. Cryptography
-11. Private/Public Key Cryptography
-12. Diffie-Hellman Key Exchange
-13. RSA Encryption
+10. 3 strategies for NP-complete problems
+11. Cryptography
+12. Private/Public Key Cryptography
+13. Diffie-Hellman Key Exchange
+14. RSA Encryption
 
 ### Callbacks (JavaScript)
 1. Callbacks
