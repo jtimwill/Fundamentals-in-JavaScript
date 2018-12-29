@@ -256,6 +256,12 @@
 3. RDBMS
 4. Relational vs Non Relational Databases
 5. SQL Sub-languages
+6. DB Normalization
+7. SQL vs NoSQL
+8. DB Index
+9. Foreign Key vs Primary Key
+10. Three Entity Relationship Types
+11. Types of Joins in SQL
 
 ### Languages
 1. Generations: Machine Code, Assembly Language, Procedural Languages
