@@ -222,14 +222,15 @@
 22. Impedance (Resistors, Capacitors, Inductors)
 23. Maxwell's Equations
 24. Types of Motors
-25. Transformer Applications
-26. Electricity Distribution
-27. Oscillator Circuits (Harmonic)
+25. Transistor Physics
+26. Transformer Types and Applications
+27. Electricity Distribution
+28. Oscillator Circuits (Harmonic)
    * RC
    * LC
    * Crystal
-28. Sensors
-29. Electronic Switches
+29. Sensors
+30. Electronic Switches
    * Vacuum Tubes
    * Relays
    * Transistors
