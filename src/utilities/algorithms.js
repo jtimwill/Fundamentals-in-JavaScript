@@ -1,5 +1,5 @@
 export default {
-js_code: ` // Code Source: https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0
+js_code: `// Code Source: https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0
 // Split the array into halves and merge them recursively
 function mergeSort (arr) {
   if (arr.length === 1) {
