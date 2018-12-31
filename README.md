@@ -1,262 +1,68 @@
-# Fundamentals-in-JavaScript
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Outline
-### Primitive Types
-1. Bit manipulation
-2. Type conversion
-3. Type checking
-4. Type sizes (bytes)
+## Available Scripts
 
-### Data Structures
-1. Arrays and Strings
-2. Linked List
-3. Binary Tree
-4. Stack
-5. Queue
-6. Hash Table (Object)
-7. Binary Search Tree (Balanced Binary Tree)
-8. Heap
-9. Graphs
-10. Union Find  
+In the project directory, you can run:
 
-### Algorithms
-1. Binary Search
-2. Merge Sort
-3. Quick Sort
-4. Depth-first Search
-5. Breadth-first Search
+### `npm start`
 
-### OOP
-1. Inheritance (Object-based/Prototypal vs. Class-based)
-2. Encapsulation
-3. Polymorphism
-4. Abstraction
-5. Composition
-6. Mixin
-7. Instance vs. Class Variables/Methods
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Testing
-1. Unit Tests
-2. Integration Tests
-3. End-to-end Tests
-4. TDD (RGR)
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-### Paradigms (Identify Canonical Problems)
-1. Divide and Conquer (Recursion)
-2. Randomized Algorithms
-3. Greedy Algorithms
-4. Dynamic Programming
-5. Brute Force
+### `npm test`
 
-# Miscellaneous
-### Math and Probability
-1. Logarithms
-2. Complex Number Representation
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Parallel Computing
-1. Multi-core processors vs. single core
-2. Parallelism vs. Concurrency
-3. Amdahl's Law
-4. Gustafson's Law
+### `npm run build`
 
-### Networking
-1. OSI vs TCP/IP
-2. Application Layer
-3. Transport Layer
-4. Network Layer
-5. Link Layer
-6. IP
-7. TCP vs UDP
-8. IPv4/IPv6 Address Assignment
-9. ARP
-10. ICMP
-11. End-to-end Principle
-12. Three Error Detection Algorithms
-13. Packet
-14. Packet Switching
-15. Forwarding Table
-16. Ethernet Switch vs. Internet Router
-17. NATs and the New Hourglass
-18. HTTP
-19. DNS Architecture
-20. DHCP
-21. Internet Routing Protocols
-22. Internet Structure
-23. Shannon Capacity, Shannon Limit
-24. Modulation
-25. Signal to Noise Ratio (SNR)
-26. Coding (list a few algorithms)
-27. Why is data transmitted using a clock?
-28. What are Asynchronous communications?
-29. What are Synchronous communications?
-30. How is the radio spectrum allocated in the US (that big map)?
-31. How does Signal Strength work with wireless?
-32. Ethernet, Ethernet most commonly used wired network
-33. Ethernet Hubs vs. Switches
-34. The fundamental network security problem
-35. Three Ways Communication Can Be Compromised
-36. Three Security Principles
-37. The most important network security lesson
-38. Wireless Communication: Digital vs. Analog
-39. Wired Communication: Sync Serial vs. Async Serial vs. Parallel
-40. UART
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Operating Systems
-1. Operating System Definition
-1. Kernel
-2. What happens when a program runs? (Von Neumann)
-3. CPU Virtualization
-4. Memory Virtualization
-5. Concurrency
-6. Process
-7. Threads
-8. Persistence
-9. 3 OS Abstractions
-10. System Call
-11. Trap
-12. Context Switching
-13. Caches (Single-CPU vs. Multi-CPU Hardware)
-14. Address Space Components (Program Code, Stack, Heap)
-15. Memory Problems (Leak, Stack Overflow, Segmentation Fault, Page Fault etc.)
-16. Internal vs. External Fragmentation
-17. Paging
-18. Two Types of Locality
-19. Single threaded process vs. Multi-threaded process
-20. Context Switching between threads
-21. Race condition, critical section, atomicity, transaction
-22. Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore
-23. Famous Concurrency Problems: bounded buffer, dining philosophers, etc.
-24. Common problems with concurrency (Non-Deadlock, Deadlock, Order-Violation)
-25. Event-Based Concurrency (e.g. Node.JS)
-26. Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)
-27. What does a canonical device consist of?
-28. Interrupt vs. Polling
-29. Device Driver
-30. Single HDD vs. RAIDs
-31. What is the File System, Ideal file system, File System Mental Model
-32. What is a File, Directory, Directory Tree
-33. Hard link vs. Link
-34. Inode vs Inumber
-35. Crash-consistency Problem and solutions
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-### Unix Command Line
-1. What is the shell?
-2. What is Bash?
-3. What is text?
-4. What is the typical directory structure on a linux system?
-5. What Exactly Are Commands?
-6. What is I/O redirection?
-7. What are pipelines?
-8. What are PIDs?
-9. What are startup files?
-10. How can you modify the environment?
-11. What is FTP?
-12. What is SSH?
-13. What Are Shell Scripts?
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Databases
-1. ORM
-2. SQL Definition
-3. RDBMS
-4. Relational vs Non Relational Databases
-5. SQL Sub-languages
-6. DB Normalization
-7. SQL vs NoSQL
-8. DB Index
-9. Foreign Key vs Primary Key
-10. Three Entity Relationship Types
-11. Types of Joins in SQL
+### `npm run eject`
 
-### Languages
-1. Generations: Machine Code, Assembly Language, Procedural Languages
-2. Dynamic vs. Static Languages
-3. Compiled Languages vs. Interpreted Languages
-4. C Integration
-5. Garbage Collection
-6. Static vs. Dynamic Typing
-7. Higher Order Functions & Lexical Closures
-8. Pointer Arithmetic
-9. Interpreter vs. Compiler
-10. Java vs. JavaScript
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### Computer Hardware
-1. Boolean Logic (Nand Gate, Adder)
-2. VHDL
-3. Sequential Logic (Flip-flop, Register, Counter)
-4. Memory (RAM, ROM, Firmware)
-5. I/O
-6. CPU (ALU, Data/Address Registers, Control Unit, Cache, Program Counter)
-7. Fetch Execution Cycle
-8. The Stored Program Concept
-9. Von Neumann vs. Harvard (Data Memory, Instruction Memory)
-10. Computer System (Memory, CPU, I/O)
-11. RISC Pipeline (vs. CISC)
-12. Moore's Law
-13. Locality (Memory Access Hierarchy)
-14. Numbers Everyone Should Know (latency)
-15. Micro-controller vs Microprocessor
-16. Multicore Processor
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Electronics
-1. Electrical Current
-2. Conventional vs. Actual Current Flow
-3. Voltage
-4. Resistance vs Resistivity
-5. Conductivity
-6. Heat vs. Power
-7. Grounds
-8. Current Divider (AC/DC)
-9. Voltage Divider (AC/DC)
-10. AC generation
-11. AC importance
-12. RMS vs. Peak-to-peak
-13. Capacitors
-14. Inductors
-15. Complex Resistance, Capacitive Reactance, Inductive Reactance
-16. Ohms Law's Law (AC/DC)
-17. Apparent Power vs. Reactive Power vs. Real Power
-18. Power Factor
-19. Resonant Circuits
-20. Two-port networks and filters
-21. Phasor Diagram
-22. Impedance (Resistors, Capacitors, Inductors)
-23. Maxwell's Equations
-24. Types of Motors
-25. Transformer Applications
-26. Electricity Distribution
-27. Oscillator Circuits (Harmonic)
-   * RC
-   * LC
-   * Crystal
-28. Sensors
-29. Electronic Switches
-   * Vacuum Tubes
-   * Relays
-   * Transistors
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### Design Patterns https://scotch.io/bar-talk/4-javascript-design-patterns-you-should-know
-1. Module
-2. Prototype
-3. Observer
-4. Singleton
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Misc CS
-1. Scalability and Memory Limits
-2. Operations/second
-3. Words in Main Memory
-4. Touch all words in 1 second
-5. Operation Nanoseconds
-6. Why 2s Comp is Used
-7. P vs NP (Reductions)
-8. P vs NP (Completeness)
-9. P = NP if...
-10. 3 strategies for NP-complete problems
-11. Cryptography
-12. Private/Public Key Cryptography
-13. Diffie-Hellman Key Exchange
-14. RSA Encryption
+## Learn More
 
-### Callbacks (JavaScript)
-1. Callbacks
-2. Promises
-3. Async/Await
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
