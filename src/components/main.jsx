@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import algorithms from '../utilities/algorithms';
+import Accordion from './accordion';
 
 class Main extends Component {
+  state = {
+    algorithms: algorithms,
+    current_item: {},
+    current_tab: 1
+  };
+
+  handleItemSelect = item => {
+    if (item === this.state.current_item) {
+      item = {};
+    }
+    this.setState({ current_item: item, current_tab: 1 });
+  };
+
+  handleTabSelect = tab => {
+    this.setState({ current_tab: tab});
+  };
+
   render() {
     const accordionStyle = { width: "800px" };
     const mainStyle = { paddingBottom: "350px" };
@@ -18,35 +36,22 @@ class Main extends Component {
           </div>
           <div className="accordion" id="accordionExample" style={accordionStyle}>
             <h3 className="text-light">Algorithms</h3>
-            <div className="card">
-              <div className="card-header" id="headingTwo">
-                <h2 className="mb-0">
-                  <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    MergeSort
-                  </button>
-                </h2>
+            {this.state.algorithms.map((item, index) => (
+              <div
+                key={item.id}
+                className={"my-1 card " +
+                (item === this.state.current_item ? "border-primary" : "")}
+              >
+              <Accordion
+                item={item}
+                current_item={this.state.current_item}
+                index={index}
+                onItemSelect={this.handleItemSelect}
+                current_tab={this.state.current_tab}
+                onTabSelect={this.handleTabSelect}
+              />
               </div>
-              <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div className="card-body">
-                  <ul className="nav nav-tabs" id="myTab" role="tablist">
-                    <li className="nav-item">
-                      <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Psuedocode</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">JavaScript</a>
-                    </li>
-                  </ul>
-                  <div className="tab-content" id="myTabContent">
-                    <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <pre className="line-numbers mb-3" data-src="prism-line-numbers.js"><code className="language-js">{algorithms.pseudocode}</code></pre>
-                    </div>
-                    <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><pre className="line-numbers mb-3" data-src="prism-line-numbers.js"><code className="language-js">{algorithms.js_code}</code></pre></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card">
-            </div>
+            ))}
           </div>
           <div className="flex-shrink-1">
           </div>
