@@ -26,12 +26,12 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
           </ul>
           <div className="tab-content">
             <div className={current_tab === 1 ? "tab-pane show active" : "tab-pane"}>
-              <pre className="line-numbers mb-3" data-src="prism-line-numbers.js">
+              <pre className="line-numbers" data-src="prism-line-numbers.js">
                 <code className="language-js">{item.pseudocode}</code>
               </pre>
             </div>
             <div className={current_tab === 2 ? "tab-pane show active" : "tab-pane"}>
-              <pre className="line-numbers mb-3" data-src="prism-line-numbers.js">
+              <pre className="line-numbers" data-src="prism-line-numbers.js">
                 <code className="language-js">{item.code}</code>
               </pre>
             </div>

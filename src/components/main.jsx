@@ -29,10 +29,8 @@ class Main extends Component {
             <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
           </div>
         </div>
-        <div className="d-flex justify-content-center">
-          <div className="flex-shrink-1">
-          </div>
-          <div className="custom-accordion">
+        <div className="">
+          <div className="accordion custom-accordion">
             <h3 className="text-light">Algorithms</h3>
             {this.state.algorithms.map((item, index) => (
               <div
@@ -50,8 +48,6 @@ class Main extends Component {
               />
               </div>
             ))}
-          </div>
-          <div className="flex-shrink-1">
           </div>
         </div>
       </main>
