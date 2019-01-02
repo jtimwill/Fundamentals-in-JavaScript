@@ -5,10 +5,18 @@
 }
 
 .custom-show {
-  max-height: 1000px;
-  transition: all 0.5s ease-in-out;
+  max-height: 2000px;
+  transition: all 0.1s ease-in-out;
 }
 
 .custom-hover:hover {
   cursor: pointer;
+}
+
+.custom-main {
+  padding-bottom: 350px;
+}
+
+.custom-accordion {
+  width: 800px;
 }

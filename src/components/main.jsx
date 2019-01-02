@@ -21,10 +21,8 @@ class Main extends Component {
   };
 
   render() {
-    const accordionStyle = { width: "800px" };
-    const mainStyle = { paddingBottom: "350px" };
     return (
-      <main className="bg-secondary" style={mainStyle}>
+      <main className="bg-secondary custom-main">
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">Fluid jumbotron</h1>
@@ -34,7 +32,7 @@ class Main extends Component {
         <div className="d-flex justify-content-center">
           <div className="flex-shrink-1">
           </div>
-          <div className="accordion" id="accordionExample" style={accordionStyle}>
+          <div className="custom-accordion">
             <h3 className="text-light">Algorithms</h3>
             {this.state.algorithms.map((item, index) => (
               <div
