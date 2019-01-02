@@ -1,9 +1,9 @@
-export default [
+export default { name: "Algorithms", data: [
   {
     id: 0,
     name: "MergeSort",
     language: "js",
-code: `// Code Source: https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0
+    code: `// Code Source: https://hackernoon.com/programming-with-js-merge-sort-deb677b777c0
 // Split the array into halves and merge them recursively
 function mergeSort (arr) {
   if (arr.length === 1) {
@@ -43,7 +43,7 @@ function merge (left, right) {
 const list = [2, 5, 1, 3, 7, 2, 3, 8, 6, 3]
 console.log(mergeSort(list)) // [ 1, 2, 2, 3, 3, 3, 5, 6, 7, 8 ]`,
 
-pseudocode: `//Code Source: https://www.geeksforgeeks.org/merge-sort/
+  pseudocode: `//Code Source: https://www.geeksforgeeks.org/merge-sort/
 MergeSort(arr[], l,  r)
 If r > l
 1. Find the middle point to divide the array into two halves:
@@ -59,7 +59,7 @@ If r > l
   id: 1,
   name: "QuickSort",
   language: "js",
-code: `// Code Source: http://blog.benoitvallon.com/sorting-algorithms-in-javascript/the-quicksort-algorithm/
+  code: `// Code Source: http://blog.benoitvallon.com/sorting-algorithms-in-javascript/the-quicksort-algorithm/
 // array to sort
 var array = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
 
@@ -145,7 +145,7 @@ function partitionHoare(array, left, right) {
 
 console.log(quicksort(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]`,
 
-pseudocode: `//Code Source: https://www.geeksforgeeks.org/quick-sort/
+  pseudocode: `//Code Source: https://www.geeksforgeeks.org/quick-sort/
 /* low  --> Starting index,  high  --> Ending index */
 quickSort(arr[], low, high)
 {
@@ -159,5 +159,27 @@ quickSort(arr[], low, high)
         quickSort(arr, pi + 1, high); // After pi
     }
 }`
-},
-];
+    },
+    {
+      id: 2,
+      name: "Binary Search",
+      language: "js",
+      code: ``,
+      pseudocode: ``
+    },
+    {
+      id: 3,
+      name: "Depth-first Search",
+      language: "js",
+      code: ``,
+      pseudocode: ``
+    },
+    {
+      id: 4,
+      name: "Breadth-first Search",
+      language: "js",
+      code: ``,
+      pseudocode: ``
+    }
+  ]
+};
