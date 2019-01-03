@@ -1,23 +1,13 @@
 export default {
-  name: "Callbacks",
+  name: "JavaScript Callbacks",
   data: [
     {
       id: 0,
       name: "Callbacks",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 1,
-      name: "Promises",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 2,
-      name: "Async/Await",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [{name: "Callbacks", data: "Answer"},
+             {name: "Promises", data: "Answer"},
+             {name: "Async/Await", data: "Answer"}]
     }
   ]
 };

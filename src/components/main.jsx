@@ -41,6 +41,7 @@ class Main extends Component {
       primitive_types,
       data_structures,
       algorithms,
+      callbacks_js,
       oop,
       testing,
       paradigms,
@@ -54,8 +55,7 @@ class Main extends Component {
       computer_hardware,
       electronics,
       design_patters,
-      misc_cs,
-      callbacks_js
+      misc_cs
     ];
     return (
       <main className="bg-secondary custom-main">
