@@ -17,13 +17,9 @@
   padding-bottom: 100px;
 }
 
-
-@media only screen and (min-width:802px) {
-  .custom-accordion {
-    width: 800px;
-    margin: auto;
-  }
+.custom-accordion {
+  margin: 0 20px 0 20px;
 }
 
-@media only screen and (max-width:600px) {}
-@media only screen and (max-width:991px) {}
+/* @media only screen and (max-width:600px) {} */
+/* @media only screen and (max-width:991px) {} */
