@@ -8,36 +8,30 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
   return (
     <div>
       <div className="card-header custom-hover" onClick={() => onItemSelect(item)}>
-        <span className="font-weight-bold">{item.name}</span>
+        <span className="font-weight-bold">{`${index+1}. ${item.name}`}</span>
       </div>
-      <div className={getAccordionCSSClass(item, current_item)}>
-        <div className="card-body">
-          <ul className="nav nav-tabs">
-            <li className="nav-item" onClick={() => onTabSelect(1)}>
-              <a className={current_tab === 1 ? "nav-link active" : "nav-link"}>
-                Psuedocode
-              </a>
-            </li>
-            <li className="nav-item" onClick={() => onTabSelect(2)}>
-              <a className={current_tab === 2 ? "nav-link active" : "nav-link"}>
-                JavaScript
-              </a>
-            </li>
-          </ul>
-          <div className="tab-content">
-            <div className={current_tab === 1 ? "tab-pane show active" : "tab-pane"}>
-              <pre className="line-numbers" data-src="prism-line-numbers.js">
-                <code className="language-js">{item.pseudocode}</code>
-              </pre>
-            </div>
-            <div className={current_tab === 2 ? "tab-pane show active" : "tab-pane"}>
-              <pre className="line-numbers" data-src="prism-line-numbers.js">
-                <code className="language-js">{item.code}</code>
-              </pre>
-            </div>
+        <div className={getAccordionCSSClass(item, current_item)}>
+          <div className="card-body">
+            <ul className="nav nav-tabs">
+              { item.tabs.length > 1 && item.tabs.map((tab, index) => (
+                <li className="nav-item" onClick={() => onTabSelect(index)}>
+                  <a className={current_tab === index ? "nav-link active" : "nav-link"}>
+                    {tab.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {item.tabs.map((tab, index) => (
+              <div className="tab-content">
+                <div className={current_tab === index ? "tab-pane show active" : "tab-pane"}>
+                  <pre className="line-numbers" data-src="prism-line-numbers.js">
+                    <code className="language-js">{tab.data}</code>
+                  </pre>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
     </div>
   );
 };
