@@ -5,29 +5,25 @@ export default {
       id: 0,
       name: "Module",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 1,
       name: "Prototype",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 2,
       name: "Observer",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 3,
       name: "Singleton",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };

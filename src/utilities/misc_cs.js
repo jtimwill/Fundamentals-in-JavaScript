@@ -5,99 +5,85 @@ export default {
       id: 0,
       name: "Scalability and Memory Limits",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 1,
       name: "Operations/second",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 2,
       name: "Words in Main Memory",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 3,
       name: "Touch all words in 1 second",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 4,
       name: "Operation Nanoseconds",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 5,
       name: "Why 2s Comp is Used",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 6,
       name: "P vs NP (Reductions)",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 7,
       name: "P vs NP (Completeness)",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 8,
       name: "P = NP if...",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 9,
       name: "3 strategies for NP-complete problems",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 10,
       name: "Cryptography",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 11,
       name: "Private/Public Key Cryptography",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 12,
       name: "Diffie-Hellman Key Exchange",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 13,
       name: "RSA Encryption",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };

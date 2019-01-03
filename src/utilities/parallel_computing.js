@@ -5,29 +5,25 @@ export default {
       id: 0,
       name: "Multi-core processors vs. single core",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 1,
       name: "Parallelism vs. Concurrency",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 2,
       name: "Amdahl's Law",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 3,
       name: "Gustafson's Law",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };

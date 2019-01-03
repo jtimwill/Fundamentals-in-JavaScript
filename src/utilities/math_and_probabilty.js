@@ -5,15 +5,13 @@ export default {
       id: 0,
       name: "Logarithms",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 1,
       name: "Complex Number Representation",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };

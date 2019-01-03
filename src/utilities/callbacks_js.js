@@ -5,22 +5,19 @@ export default {
       id: 0,
       name: "Callbacks",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 1,
       name: "Promises",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     },
     {
       id: 2,
       name: "Async/Await",
       language: "js",
-      code: ``,
-      pseudocode: ``
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };
