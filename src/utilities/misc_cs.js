@@ -84,6 +84,12 @@ export default {
       name: "RSA Encryption",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
+    },
+    {
+      id: 14,
+      name: "Powers of 2",
+      language: "js",
+      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };
