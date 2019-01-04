@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <nav className="navbar fixed-bottom navbar-light bg-light">
         <a className="navbar-brand" href="#">
-          <div className="custom-text">© 2019 JTW</div>
+          <div className="custom-text">© 2019 jtimwill@gmail.com</div>
         </a>
       </nav>
     </footer>
