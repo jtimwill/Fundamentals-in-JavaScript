@@ -235,7 +235,7 @@
    * Relays
    * Transistors
 
-### Design Patterns https://scotch.io/bar-talk/4-javascript-design-patterns-you-should-know
+### Design Patterns
 1. Module
 2. Prototype
 3. Observer
