@@ -61,15 +61,14 @@ class Main extends Component {
       <main className="bg-secondary custom-main">
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
-            <h1 className="display-4">Fluid jumbotron</h1>
+            <h1 className="display-4">Software Fundamentals in JS</h1>
             <p className="lead">
-              This is a modified jumbotron that occupies the entire horizontal
-              space of its parent.
+              This is a collection of important concepts and useful resources.
             </p>
           </div>
         </div>
-        {categories.map(category => (
-          <div className="accordion custom-accordion">
+        {categories.map((category, index) => (
+          <div key={index} className="accordion custom-accordion">
             <h3 className="text-light">{category.name}</h3>
             {category.data.map((item, index) => (
               <div

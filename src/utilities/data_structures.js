@@ -123,7 +123,6 @@ trim	// Trims whitespace from the beginning and end of the string.
       id: 5,
       name: "Hash Table",
       language: "js",
-      language: "js",
       tabs: [
               {name: "Setup", data: "Answer"},
               {name: "Insert", data: "Answer"},

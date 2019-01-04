@@ -13,16 +13,16 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
         <div className={getAccordionCSSClass(item, current_item)}>
           <div className="card-body">
             <ul className="nav nav-tabs">
-              { item.tabs.length > 1 && item.tabs.map((tab, index) => (
-                <li className="nav-item" onClick={() => onTabSelect(index)}>
-                  <a className={current_tab === index ? "nav-link active" : "nav-link"}>
+              {item.tabs.length > 1 && item.tabs.map((tab, idx) => (
+                <li key={idx} className="nav-item" onClick={() => onTabSelect(index)}>
+                  <div className={current_tab === index ? "custom-pointer nav-link active" : "custom-pointer nav-link"}>
                     {tab.name}
-                  </a>
+                  </div>
                 </li>
               ))}
             </ul>
-            {item.tabs.map((tab, index) => (
-              <div className="tab-content">
+            {item.tabs.map((tab, idx) => (
+              <div key={idx} className="tab-content">
                 <div className={current_tab === index ? "tab-pane show active" : "tab-pane"}>
                   <pre className="line-numbers" data-src="prism-line-numbers.js">
                     <code className="language-js">{tab.data}</code>

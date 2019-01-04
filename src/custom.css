@@ -21,5 +21,13 @@
   margin: 0 20px 0 20px;
 }
 
+.custom-text {
+  font-size: 12px;
+}
+
+.custom-pointer {
+  cursor: pointer;
+}
+
 /* @media only screen and (max-width:600px) {} */
 /* @media only screen and (max-width:991px) {} */

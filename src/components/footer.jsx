@@ -4,7 +4,9 @@ const Footer = () => {
   return (
     <footer>
       <nav className="navbar fixed-bottom navbar-light bg-light">
-        <a className="navbar-brand" href="#">Fixed bottom</a>
+        <a className="navbar-brand" href="#">
+          <div className="custom-text">© 2019 JTW</div>
+        </a>
       </nav>
     </footer>
   );
