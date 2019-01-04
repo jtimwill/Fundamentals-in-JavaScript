@@ -6,7 +6,8 @@ export default { name: "Algorithms", data: [
     tabs: [
       {
         name: "Pseudocode",
-        data: `//Code Source: https://www.geeksforgeeks.org/merge-sort/
+        data:
+`// Code Source: https://www.geeksforgeeks.org/merge-sort/
 MergeSort(arr[], l,  r)
 If r > l
 1. Find the middle point to divide the array into two halves:
