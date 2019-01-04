@@ -67,8 +67,8 @@ class Main extends Component {
             </p>
           </div>
         </div>
-        {categories.map((category, index) => (
-          <div key={index} className="accordion custom-accordion">
+        {categories.map((category, index1) => (
+          <div key={index1} className="accordion custom-accordion">
             <h3 className="text-light">{category.name}</h3>
             {category.data.map((item, index) => (
               <div
