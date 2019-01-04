@@ -256,6 +256,7 @@
 12. Private/Public Key Cryptography
 13. Diffie-Hellman Key Exchange
 14. RSA Encryption
+15. Powers of 2
 
 ### Callbacks (JavaScript)
 1. Callbacks
