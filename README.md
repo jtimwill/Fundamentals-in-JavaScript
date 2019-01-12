@@ -1,4 +1,5 @@
 # Fundamentals-in-JavaScript
+https://jtimwill.github.io/fundamentals-in-javascript/
 
 ## Outline
 ### Primitive Types
