@@ -9,8 +9,7 @@ export default {
         {
           name: "Callbacks",
           data:
-`
-// Code Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+`// Code Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 doSomething(function(result) {
   doSomethingElse(result, function(newResult) {
     doThirdThing(newResult, function(finalResult) {
@@ -23,8 +22,7 @@ doSomething(function(result) {
         {
           name: "Promises",
           data:
-`
-// Code Source: https://scotch.io/tutorials/javascript-promises-for-dummies
+`// Code Source: https://scotch.io/tutorials/javascript-promises-for-dummies
 /_ ES6 _/
 const isMomHappy = true;
 
@@ -59,8 +57,7 @@ askMom();
         {
           name: "Async/Await",
           data:
-`
-// Code Source: https://scotch.io/tutorials/javascript-promises-for-dummies
+`// Code Source: https://scotch.io/tutorials/javascript-promises-for-dummies
 /_ ES7 _/
 const isMomHappy = true;
 
