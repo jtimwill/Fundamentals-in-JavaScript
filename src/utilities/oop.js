@@ -101,8 +101,12 @@ class Shape {
   }
 }
 
-Object.setPrototypeOf(Circle.prototype, Shape.prototype); // Hook up instance properties
-Object.setPrototypeOf(Circle, Shape); // Hook up static properties
+//** Old Way
+// Hook up instance properties:
+Object.setPrototypeOf(Circle.prototype, Shape.prototype);
+// Hook up static properties:
+Object.setPrototypeOf(Circle, Shape);
+//**
 
 // *****
 class Circle extends Shape {
