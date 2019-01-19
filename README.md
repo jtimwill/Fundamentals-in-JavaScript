@@ -107,12 +107,12 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 1. Operating System Definition
 1. Kernel
 2. What happens when a program runs? (Von Neumann)
-3. CPU Virtualization
-4. Memory Virtualization
-5. Concurrency
+3. Virtualization
+4. Concurrency
+5. Persistence
 6. Process
 7. Threads
-8. Persistence
+8. Process Creation: how the OS gets a program up and running
 9. 3 OS Abstractions
 10. System Call
 11. Trap
