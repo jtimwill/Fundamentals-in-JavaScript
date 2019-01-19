@@ -12,28 +12,26 @@ export default {
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
 
 What is an operating system?
-The body of software that is designed to make the system operate correctly and
-efficiently in an easy to use manner
+1. The body of software that is designed to make the system operate correctly
+   and efficiently in an easy to use manner
 
 How does the operating system do that?
 
-The primary way is through a technique called virtualization
-  The OS takes a physical resource (such as the processor, or memory, or a disk)
-  and transforms it into a more general, powerful, and easy-to-use virtual form
-  of itself. Thus, we sometimes refer to the operating system as a
-  virtual machine.
-
-The OS also provides interfaces (APIs) that you can call. This allows users to
-make use of the features of the virtual machine (like running a program, or
-allocating memory, or accessing a file)
-  A typical OS, in fact, exports a few hundred system calls that are available
-  to applications. We sometimes say that the OS provides a standard library to
-  applications
-
-Because virtualization allows many programs to run (sharing the CPU), many
-programs to concurrently access their own instructions and data
-(sharing memory), and many programs to access devices (sharing disks, etc), the
-OS is sometimes known as a resource manager.
+1. The primary way is through a technique called virtualization
+   a. The OS takes a physical resource (such as the processor, or memory, or a
+      disk) and transforms it into a more general, powerful, and easy-to-use
+      virtual form of itself. Thus, we sometimes refer to the operating system
+      as a virtual machine.
+2. The OS also provides interfaces (APIs) that you can call. This allows users
+   to make use of the features of the virtual machine (like running a program,
+   or allocating memory, or accessing a file)
+   a. A typical OS, in fact, exports a few hundred system calls that are
+      available to applications. We sometimes say that the OS provides a
+      standard library to applications
+3. Because virtualization allows many programs to run (sharing the CPU), many
+   programs to concurrently access their own instructions and data
+   (sharing memory), and many programs to access devices (sharing disks, etc),
+   the OS is sometimes known as a resource manager.
 `
         }
       ]
@@ -54,12 +52,11 @@ OS is sometimes known as a resource manager.
           data:
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
 
-it executes instructions. Many millions (and these days, even billions) of times
-every second, the processor fetches an instruction from memory, decodes it (i.e.,
-figures out which instruction this is), and executes it.
-
-After it is done with this instruction, the processor moves on to the next
-instruction, and so on, and so on, until the program finally completes.
+1. it executes instructions. Many millions (and these days, even billions) of
+   times every second, the processor fetches an instruction from memory, decodes
+   it (i.e., figures out which instruction this is), and executes it.
+2. After it is done with this instruction, the processor moves on to the next
+   instruction, and so on, and so on, until the program finally completes.
 `
         }
       ]
@@ -75,16 +72,16 @@ instruction, and so on, and so on, until the program finally completes.
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
 
 Virtualizing the CPU:
-  Turning a single CPU (or small set of them) into a seemingly infinite number
-  of CPUs and thus allowing many programs to seemingly run at once
+1. Turning a single CPU (or small set of them) into a seemingly infinite number
+   of CPUs and thus allowing many programs to seemingly run at once
 
 Virtualizing Memory
-  Each process accesses its own private virtual address space (sometimes just
-  called its address space), which the OS maps onto the physical memory of the
-  machine.
-  A memory reference within one running program does not affect the address
-  space of other processes (or the OS itself); as far as the running program is
-  concerned, it has physical memory all to itself.
+1. Each process accesses its own private virtual address space (sometimes just
+   called its address space), which the OS maps onto the physical memory of the
+   machine.
+2. A memory reference within one running program does not affect the address
+   space of other processes (or the OS itself); as far as the running program is
+   concerned, it has physical memory all to itself.
 `
         }
       ]
@@ -121,14 +118,13 @@ in a volatile manner; when power goes away or the system crashes, any data in
 memory is lost.
 
 Thus, we need hardware and software to be able to store data persistently;
-  The hardware comes in the form of some kind of input/output or I/O device; in
-  modern systems, a hard drive is a common repository for long lived
-  information, although solid-state drives (SSDs) are making headway in this
-  arena as well.
-
-  The software in the operating system that usually manages the disk is called
-  the file system; it is thus responsible for storing any files the user creates
-  in a reliable and efficient manner on the disks of the system.
+1. The hardware comes in the form of some kind of input/output or I/O device; in
+   modern systems, a hard drive is a common repository for long lived
+   information, although solid-state drives (SSDs) are making headway in this
+   arena as well.
+2. The software in the operating system that usually manages the disk is called
+   the file system; it is thus responsible for storing any files the user
+   creates in a reliable and efficient manner on the disks of the system.
 `
         }
       ]
@@ -147,42 +143,37 @@ A process is an abstraction of a running program that the OS provides to users
 
 The Components of a Process:
   Machine state: what a program can read or update when it is running
-    Memory: Instructions lie in memory; the data that the running program reads
-    and writes sits in memory as well. Thus, the memory that the process can
-    address (called its address space) is part of the process.
-
-    Registers: many instructions explicitly read or update registers and thus
-    clearly they are important to the execution of the process.
-      Examples of important registers:
-        The program counter (PC): contains the address of the next instruction
-
-        The stack pointer and associated frame pointer manage the stack for
-        function parameters, local variables, and return addresses
-
-    Persistent Storage Devices: are often accessed by programs too. Such I/O
-    information might include a list of the files the process currently has
-    open.
+    1. Memory: Instructions lie in memory; the data that the running program
+       reads and writes sits in memory as well. Thus, the memory that the
+       process can address (called its address space) is part of the process.
+    2. Registers: many instructions explicitly read or update registers and thus
+       clearly they are important to the execution of the process.
+       a. Examples of important registers:
+         i. The program counter (PC): contains the address of the next
+            instruction
+         ii. The stack pointer and associated frame pointer manage the stack for
+             function parameters, local variables, and return addresses
+    3. Persistent Storage Devices: are often accessed by programs too. Such I/O
+       information might include a list of the files the process currently has
+       open.
 
   Process API
     The following APIs, in some form, are available on any modern operating
     system:
-      Create: An OS must include some method to create new processes. When you
-      type a command into the shell, or double-click on an application icon, the
-      OS is invoked to create a new process to run the program you have
-      indicated.
-
-      Destroy: System also provide an interface to destroy processes forcefully.
-      When a process doesn’t exit itself when complete, the user may wish to
-      kill them.
-
-      Wait: Sometimes it is useful to wait for a process to stop running.
-
-      Miscellaneous Control: Other controls are sometimes possible. For example:
-      suspend a process (stop it from running for a while) and then resume it.
-
-      Status: There are usually interfaces to get some status information about
-      a process as well, such as how long it has run for, or what state it is
-      in.
+      1. Create: An OS must include some method to create new processes. When
+         you type a command into the shell, or double-click on an application
+         icon, the OS is invoked to create a new process to run the program you
+         have indicated.
+      2. Destroy: System also provide an interface to destroy processes
+         forcefully. When a process doesn’t exit itself when complete, the user
+         may wish to kill them.
+      3. Wait: Sometimes it is useful to wait for a process to stop running.
+      4. Miscellaneous Control: Other controls are sometimes possible. For
+         example: suspend a process (stop it from running for a while) and then
+         resume it.
+      5. Status: There are usually interfaces to get some status information
+         about a process as well, such as how long it has run for, or what state
+         it is in.
 `
         }
       ]
