@@ -36,6 +36,20 @@ class Main extends Component {
     this.setState({ current_tab: tab});
   };
 
+  calculateProgress(categories){
+    let cat_number = 0;
+    let done_number = 0;
+    for(let topic of categories) {
+      for(let question of topic.data) {
+        cat_number++;
+        if (question.tabs[0].data !== "Answer") {
+          done_number++;
+        }
+      }
+    }
+    return ((done_number/cat_number)*100).toFixed(2);
+  }
+
   render() {
     const categories = [
       primitive_types,
@@ -65,6 +79,7 @@ class Main extends Component {
             <p className="lead">
               This is a collection of important concepts and useful resources.
             </p>
+            <p>Progress: {this.calculateProgress(categories)}%</p>
           </div>
         </div>
         {categories.map((category, index1) => (

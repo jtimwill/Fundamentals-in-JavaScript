@@ -5,9 +5,14 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
   function getAccordionCSSClass(item, current_item) {
     return item === current_item ? "custom-show" : "custom-hide-2"
   }
+
+  function getHeaderCSS(item) {
+    const base = "card-header custom-hover"
+    return item.tabs[0].data !== "Answer" ? `${base} bg-success` : `${base}`
+  }
   return (
     <div>
-      <div className="card-header custom-hover" onClick={() => onItemSelect(item)}>
+      <div className={getHeaderCSS(item)} onClick={() => onItemSelect(item)}>
         <span className="font-weight-bold">{`${index+1}. ${item.name}`}</span>
       </div>
         <div className={getAccordionCSSClass(item, current_item)}>
@@ -15,7 +20,9 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
             <ul className="nav nav-tabs">
               {item.tabs.length > 1 && item.tabs.map((tab, index) => (
                 <li key={index} className="nav-item" onClick={() => onTabSelect(index)}>
-                  <div className={current_tab === index ? "custom-pointer nav-link active" : "custom-pointer nav-link"}>
+                  <div className={current_tab === index ?
+                    "custom-pointer nav-link active" :
+                    "custom-pointer nav-link"}>
                     {tab.name}
                   </div>
                 </li>
