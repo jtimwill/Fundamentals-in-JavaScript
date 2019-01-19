@@ -47,7 +47,8 @@ class Main extends Component {
         }
       }
     }
-    return ((done_number/cat_number)*100).toFixed(2);
+    const percent = ((done_number/cat_number)*100).toFixed(2)
+    return `Progress: ${percent}% (${done_number}/${cat_number})`;
   }
 
   render() {
@@ -79,7 +80,7 @@ class Main extends Component {
             <p className="lead">
               This is a collection of important concepts and useful resources.
             </p>
-            <p>Progress: {this.calculateProgress(categories)}%</p>
+            <p>{this.calculateProgress(categories)}</p>
           </div>
         </div>
         {categories.map((category, index1) => (
