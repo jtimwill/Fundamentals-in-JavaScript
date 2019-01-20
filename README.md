@@ -143,14 +143,14 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 
 ### Unix Command Line
 1. What is the shell?
-2. What is Bash?
+2. What are Terminal Emulators?
 3. What is text?
 4. What is the typical directory structure on a linux system?
 5. What Exactly Are Commands?
 6. What is I/O redirection?
 7. What are pipelines?
 8. What are PIDs?
-9. What are startup files?
+9. What is the environment?
 10. How can you modify the environment?
 11. What is FTP?
 12. What is SSH?
