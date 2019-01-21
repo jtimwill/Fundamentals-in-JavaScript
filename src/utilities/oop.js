@@ -3,11 +3,27 @@ export default {
   data: [
     {
       id: 0,
-      name: "Classes",
+      name: "Inheritance (Object-based/Prototypal vs. Class-based)",
       language: "js",
       tabs: [
         {
           name: "Question",
+          data:
+`// Source: https://en.wikipedia.org/wiki/Prototype-based_programming
+◦	Object-based/Prototypal Inheritance: (objects inherit from objects) 
+  1. Clone existing prototypes objects to make new objects 
+  2. Extend the prototype object with new more specific properties 
+
+// Source: https://en.wikipedia.org/wiki/Class-based_programming
+◦	Class-based Inheritance: (objects inherit from  classes) 
+  1. The structure and behavior of an object are defined by a class, which is a
+     definition, or blueprint, of all objects of a specific type.
+  2. An object must be explicitly created based on a class and an object thus
+     created is considered to be an instance of that class.
+`
+        },
+        {
+          name: "JavaScript",
           data:
 `// Code Source: https://hacks.mozilla.org/2015/07/es6-in-depth-classes/
 // ES6
@@ -78,19 +94,9 @@ class Circle { // Note: semi colons are optional
     this._radius = radius;
   };
 }
-`
-        }
-      ]
-    },
-    {
-      id: 1,
-      name: "Inheritance (Object-based/Prototypal vs. Class-based)",
-      language: "js",
-      tabs: [
-        {
-          name: "Question",
-          data:
-`// Code Source: https://hacks.mozilla.org/2015/08/es6-in-depth-subclassing/
+
+
+// Code Source: https://hacks.mozilla.org/2015/08/es6-in-depth-subclassing/
 class Shape {
   get color() {
     return this._color;
@@ -161,36 +167,110 @@ constructor(...args) {
       ]
     },
     {
-      id: 2,
+      id: 1,
       name: "Encapsulation",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`// Source: https://stackify.com/oop-concept-for-beginners-what-is-encapsulation/
+
+Encapsulation is one of the fundamental concepts in object-oriented programming
+(OOP). It describes the idea of bundling data and methods that work on that data
+within one unit, e.g., a class in Java.
+
+This concept is also often used to hide the internal representation, or state,
+of an object from the outside. This is called information hiding. The general
+idea of this mechanism is simple. If you have an attribute that is not visible
+from the outside of an object, and bundle it with methods that provide read or
+write access to it, then you can hide specific information and control access to
+the internal state of the object.
+
+If you’re familiar with any object-oriented programming language, you probably
+know that these methods as getter and setter methods. As the names indicate, a
+getter method retrieves an attribute, and a setter method changes it. Depending
+on the methods that you implement, you can decide if an attribute can be read
+and changed, or if it’s read-only, or if it is not visible at all. As I will
+show you later, you can also use the setter method to implement additional
+validation rules to ensure that your object always has a valid state.
+`
+        }
+      ]
+    },
+    {
+      id: 2,
+      name: "Polymorphism",
+      language: "js",
+      tabs: [
+        {
+          name: "Question",
+          data:
+`// Source: https://www.webopedia.com/TERM/P/polymorphism.html
+Generally, the ability to appear in many forms. In object-oriented programming,
+polymorphism refers to a programming language's ability to process objects
+differently depending on their data type or class. More specifically, it is the
+ability to redefine methods for derived classes. For example, given a base class
+shape, polymorphism enables the programmer to define different area methods for
+any number of derived classes, such as circles, rectangles and triangles. No
+matter what shape an object is, applying the area method to it will return the
+correct results. Polymorphism is considered to be a requirement of any true
+object-oriented programming language (OOPL).
+`
+        }
+      ]
     },
     {
       id: 3,
-      name: "Polymorphism",
+      name: "Abstraction",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`// Source: https://stackify.com/oop-concept-abstraction/
+Abstraction is one of the key concepts of object-oriented programming (OOP)
+languages. Its main goal is to handle complexity by hiding unnecessary details
+from the user. That enables the user to implement more complex logic on top of
+the provided abstraction without understanding or even thinking about all the
+hidden complexity.
+`
+        }
+      ]
     },
     {
       id: 4,
-      name: "Abstraction",
+      name: "Composition",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`// Source: https://en.wikipedia.org/wiki/Object_composition
+Object Composition: (HAS-A)
+In computer science, object composition is a way to combine simple objects or
+data types into more complex ones.
+`
+        }
+      ]
     },
     {
       id: 5,
-      name: "Composition",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 6,
       name: "Mixins",
       language: "js",
       tabs: [
         {
           name: "Question",
+          data:
+`// Source: https://en.wikipedia.org/wiki/Mixin
+Mixin
+•	mixin is a class that contains methods for use by other classes without having
+  to be the parent class of those other classes. 
+•	Mixins are sometimes described as being "included" rather than "inherited". 
+`
+        },
+        {
+          name: "JavaScript",
           data:
 `// Code Source: https://hacks.mozilla.org/2015/08/es6-in-depth-subclassing/
 // the well-known extend mixin idiom
@@ -233,10 +313,24 @@ class DistributedEdit extends mix(Loggable, Serializable) {
       ]
     },
     {
-      id: 7,
+      id: 6,
       name: "Instance vs. Class Variables/Methods",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`// Source: http://www.jvoegele.com/software/langcomp.html
+
+Class Variables/Methods
+	•	Class variables and methods are owned by a class, and not any particular
+    instance of a class.
+	•	This means that for however many instances of a class exist at any given
+    point in time, only one copy of each class variable/method exists and is
+    shared by every instance of the class
+`
+        }
+      ]
     }
   ]
 };

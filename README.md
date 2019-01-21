@@ -28,14 +28,13 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 5. Breadth-first Search
 
 ### OOP
-1. Classes
-2. Inheritance (Object-based/Prototypal vs. Class-based)
-3. Encapsulation
-4. Polymorphism
-5. Abstraction
-6. Composition
-7. Mixin
-8. Instance vs. Class Variables/Methods
+1. Inheritance (Object-based/Prototypal vs. Class-based)
+2. Encapsulation
+3. Polymorphism
+4. Abstraction
+5. Composition
+6. Mixins
+7. Instance vs. Class Variables/Methods
 
 ### Testing
 1. Unit Tests
