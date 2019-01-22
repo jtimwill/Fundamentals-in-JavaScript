@@ -14,7 +14,7 @@ import databases from '../utilities/databases.js';
 import languages from '../utilities/languages.js';
 import computer_hardware from '../utilities/computer_hardware.js';
 import electronics from '../utilities/electronics.js';
-import design_patters from '../utilities/design_patters.js';
+import design_patterns from '../utilities/design_patterns.js';
 import misc_cs from '../utilities/misc_cs.js';
 import callbacks_js from '../utilities/callbacks_js.js';
 import Accordion from './accordion';
@@ -69,7 +69,7 @@ class Main extends Component {
       languages,
       computer_hardware,
       electronics,
-      design_patters,
+      design_patterns,
       misc_cs
     ];
     return (
