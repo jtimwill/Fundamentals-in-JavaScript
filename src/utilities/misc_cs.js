@@ -3,12 +3,25 @@ export default {
   data: [
     {
       id: 0,
-      name: "Scalability and Memory Limits",
+      name: "Asymptotic Analysis",
       language: "js",
       tabs: [
         {
           name: "Question",
-          data: "Answer"
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+a*n^b 
+  ◦	System independent effects (determines the exponent b) 
+    ▪	Algorithm 
+    ▪	(Rarely) Input data 
+  ◦	System dependent effects (determines constant a) 
+    ▪	Hardware: CPU, memory, cache, … 
+    ▪	Software: compiler, interpreter, garbage collector 
+    ▪	System: operating system, network, other apps, … 
+    ▪	Input data 
+`
         }
       ]
     },
@@ -16,25 +29,75 @@ export default {
       id: 1,
       name: "Operations/second",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+10^9 operations per second (GHz)
+`
+        }
+      ]
     },
     {
       id: 2,
       name: "Words in Main Memory",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+10^9 words of main memory (GB) 
+  ◦	2^20 bytes ≈ 1 Million (MB)
+  ◦	2^30 bytes ≈ 1 Billion (GB)
+`
+        }
+      ]
     },
     {
       id: 3,
       name: "Touch all words in 1 second",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+You can touch all words in ≈ 1 second (a truism (roughly) since 1950!)
+`
+        }
+      ]
     },
     {
       id: 4,
       name: "Operation Nanoseconds",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+Estimated time of basic operations [OSX on MacBook Pro 2.2GHz with 2GB RAM]
+  Integer Add (a + b):              2.1ns
+  Integer Multiply (a * b):         2.4ns
+  Integer Divide (a / b):           5.4ns
+  Floating-point Add (a + b):       4.6ns
+  Floating-point Multiply (a * b):  4.2ns
+  Floating-point Divide (a / b):   13.5ns
+  Sine (Math.sine(theta)):         91.3ns
+  Arctangent (Math.atan2(y, x)):  129.0ns
+`
+        }
+      ]
     },
     {
       id: 5,
@@ -93,25 +156,78 @@ Why We Use 2’s Comp  https://www.youtube.com/watch?v=lKTsv6iVxV4
       id: 6,
       name: "P vs NP (Reductions)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+•	Reductions [Sedgewick/Wayne Princeton] 
+  ◦	Def: Problem X reduces to problem Y if you can use an algorithm that solves
+    Y to help solve X 
+  * See Diagram *
+  ◦	Cost of solving X = total cost of solving Y + cost of reduction 
+    ▪	Perhaps many calls to Y on problems of different sizes (typically only 1
+      call) 
+    ▪	Preprocessing and postprocessing (typically less than cost of solving Y) 
+
+Source: http://www.timroughgarden.org/videos.html
+•	Reductions [Roughgarden] 
+  ◦	Definition: Problem π1 reduces to problem π2 if: 
+    ▪	Given a polynomial-time subroutine for π2, can solve π1 in polynomial time
+      (π2 is at least as hard as π1) 
+      ▪	[Enlarging the frontier of tractability from π2 to include π1 ] 
+  ◦	Reduction Examples 
+    ▪	Computing the median reduces to sorting 
+    ▪	Detecting a cycle reduces to DFS 
+    ▪	APSP reduces to SSSP 
+`
+        }
+      ]
     },
     {
       id: 7,
       name: "P vs NP (Completeness)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 8,
-      name: "P = NP if...",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://www.timroughgarden.org/videos.html
+
+•	Completeness (using reduction to spread the frontier of intractability from π1
+  to π2) [Roughgarden] 
+  ◦	Suppose π1 reduces to π2 
+  ◦	Contrapositive: if π1 is not in P, then neither is π2 
+    ▪	That is: π2 is at least as hard as π1 
+  ◦	Definition: let C = a set of all problems 
+    ▪	The problem π is C-complete (complete for C)  if: 
+      1.	C and 
+      2.	Everything in C reduces to π 
+  ◦	That is: π is the hardest problem in all of C
+`
+        }
+      ]
     },
     {
       id: 9,
       name: "3 strategies for NP-complete problems",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://www.timroughgarden.org/videos.html
+◦	Identify computationally tractable special cases
+◦	Heuristics - fast algorithms that are not always correct (e.g., via suitable
+  greedy algorithms)
+◦	Solve in exponential time, but faster than brute-force search [for when you
+  are unwilling to consider heuristics]
+  a. Note: here you are insisting on correctness
+`
+        }
+      ]
     },
     {
       id: 10,

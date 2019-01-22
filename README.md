@@ -241,7 +241,7 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 4. Singleton
 
 ### Misc CS
-1. Scalability and Memory Limits
+1. Asymptotic Analysis
 2. Operations/second
 3. Words in Main Memory
 4. Touch all words in 1 second
@@ -249,13 +249,12 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 6. Why 2s Comp is Used
 7. P vs NP (Reductions)
 8. P vs NP (Completeness)
-9. P = NP if...
-10. 3 strategies for NP-complete problems
-11. Cryptography
-12. Private/Public Key Cryptography
-13. Diffie-Hellman Key Exchange
-14. RSA Encryption
-15. Powers of 2
+9. 3 strategies for NP-complete problems
+10. Cryptography
+11. Private/Public Key Cryptography
+12. Diffie-Hellman Key Exchange
+13. RSA Encryption
+14. Powers of 2
 
 ### Callbacks (JavaScript)
 1. Callbacks

@@ -94,7 +94,49 @@ symbol // for unique identifiers.
       id: 3,
       name: "Type sizes",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://www.coursera.org/learn/algorithms-part1
+Source: https://www.coursera.org/learn/algorithms-part2
+
+•	Memory (Java) 
+  ◦	We assume 64-bit machine with 8-byte pointers 
+    ▪	Some JVMs “compress” ordinary object pointers to 4 bytes to avoid this
+      cost
+  ◦ Primitive Types
+      boolean: 1 byte
+      byte: 1 byte
+      char: 2 bytes
+      int: 4 bytes
+      float: 4 bytes
+      long: 8 bytes
+      double: 8 bytes
+  ◦ One-dimensional Arrays
+      char[]: 2n + 24 bytes
+      int[]: 4n + 24 bytes
+      double[]: 8n + 24 bytes
+  ◦ Two-dimensional Arrays
+      char[][]: ≈ 2mn bytes
+      int[][]: ≈ 4mn bytes
+      double[][]: ≈ 8mn bytes
+  ◦ Objects
+    ▪	Object overhead: 16 bytes 
+	    ▪	+8 extra bytes per inner class object (for reference to enclosing class) 
+	  ▪	Object reference: 8 bytes. 
+	  ▪	Padding: Each object uses a multiple of 8 bytes (padding rounds up). 
+	  ▪	Example: Date object uses 32 bytes of memory 
+      public class Date { // overhead: 16 bytes
+        private int day; // 4 bytes
+        private int month; // 4 bytes
+        private int year; // 4 bytes
+        // 4 bytes (padding)
+      ...
+      }
+`
+        }
+      ]
     }
   ]
 };
