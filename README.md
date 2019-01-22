@@ -47,7 +47,6 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 2. Randomized Algorithms
 3. Greedy Algorithms
 4. Dynamic Programming
-5. Brute Force
 
 # Miscellaneous
 ### Math and Probability
@@ -55,10 +54,9 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 2. Complex Number Representation
 
 ### Parallel Computing
-1. Multi-core processors vs. single core
-2. Parallelism vs. Concurrency
-3. Amdahl's Law
-4. Gustafson's Law
+1. Parallelism vs. Concurrency
+2. Amdahl's Law
+3. Gustafson's Law
 
 ### Networking
 1. OSI vs TCP/IP
@@ -196,7 +194,7 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 13. Locality (Memory Access Hierarchy)
 14. Numbers Everyone Should Know (latency)
 15. Micro-controller vs Microprocessor
-16. Multicore Processor
+16. Multicore Processor vs Single-core Processor
 
 ### Electronics
 1. Electrical Current

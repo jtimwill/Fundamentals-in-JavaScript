@@ -40,7 +40,38 @@ How does the operating system do that?
       id: 1,
       name: "Kernel",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Kernel_(operating_system)
+
+The kernel is a computer program that is the core of a computer's operating
+system, with complete control over everything in the system.[1] On most systems,
+it is one of the first programs loaded on start-up (after the bootloader). It
+handles the rest of start-up as well as input/output requests from software,
+translating them into data-processing instructions for the central processing
+unit. It handles memory and peripherals like keyboards, monitors, printers, and
+speakers.
+
+The critical code of the kernel is usually loaded into a separate area of
+memory, which is protected from access by application programs or other, less
+critical parts of the operating system. The kernel performs its tasks, such as
+running processes, managing hardware devices such as the hard disk, and handling
+interrupts, in this protected kernel space. In contrast, everything a user does
+is in user space: writing text in a text editor, running programs in a GUI, etc.
+This separation prevents user data and kernel data from interfering with each
+other and causing instability and slowness,[1] as well as preventing
+malfunctioning application programs from crashing the entire operating system.
+
+The kernel's interface is a low-level abstraction layer. When a process makes
+requests of the kernel, it is called a system call. Kernel designs differ in how
+they manage these system calls and resources. A monolithic kernel runs all the
+operating system instructions in the same address space for speed. A microkernel
+runs most processes in user space,[2] for modularity.[3]
+`
+        }
+      ]
     },
     {
       id: 2,
@@ -279,7 +310,34 @@ The Components of a Process:
       id: 9,
       name: "3 OS Abstractions",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+◦	Virtualizing the CPU: take a single physical CPU and turn it into multiple
+                        virtual CPUs, creating the illusion of multiple programs
+                        running at the same time 
+◦	Virtualizing Memory: the OS secretly multiplexes address space across physical
+                       memory (and sometimes disk), creating the illusion of a
+                       large, private virtual memory for each process
+
+Note: In tandem, these two abstractions allow a program to run as if it is in
+      its own private, isolated world; as if it has its own processor (or
+      processors); as if it has its own memory. This illusion makes programming
+      the system much easier and thus is prevalent today not only on desktops
+      and servers but increasingly on all programmable platforms including
+      mobile phones and the like.
+
+◦	Persistent storage: one more critical piece of the virtualization puzzle
+	◦	Examples: a classic hard disk drive, a more modern solid-state storage
+              device . These devices store information permanently; thus, the OS
+              must take extra care of such a device: this is where users keep
+              data that they really care about  
+`
+        }
+      ]
     },
     {
       id: 10,
@@ -355,7 +413,20 @@ The Address Space
       id: 18,
       name: "Two Types of Locality",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+•	The idea behind hardware caches is to take advantage of locality: 
+  ◦	Temporal Locality: the idea is that an instruction or data item that has
+                       been recently accessed will likely be re-accessed soon in
+                       the future 
+  ◦	Spatial Locality: the idea is that if a program accesses memory at address
+                      x, it will likely soon access memory near x. 
+`
+        }
+      ]
     },
     {
       id: 19,
@@ -397,13 +468,108 @@ The Address Space
       id: 25,
       name: "Event-Based Concurrency (e.g. Node.JS)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+Event-based Concurrency (Advanced) [single thread: the event loop]
+	•	You can actually build concurrent applications without using threads 
+	•	Event-based concurrency is a different style concurrent programming. It is
+    often used in both GUI-based applications [O96] as well as some types of
+    internet servers [PDZ99] 
+	•	It has become popular in some modern systems, including server-side
+    frameworks such as node.js [N13], but its roots are found in C/UNIX systems
+    that we’ll discuss below. 
+	•	The two problems event-based concurrency addresses: 
+	  ◦	Managing concurrency correctly in multi-threaded applications can be
+      challenging; as we’ve discussed, missing locks, deadlock, and other nasty
+      problems can arise. 
+	  ◦	in a multi-threaded application, the developer has little or no control
+      over what is scheduled at a given moment in time; rather, the programmer
+      simply creates threads and then hopes that the underlying OS schedules
+      them in a reasonable manner across available CPUs 
+
+The Crux: how to build concurrent servers without threads
+
+The Basic Idea: An Event Loop
+	•	The basic approach we’ll use, as stated above, is called event-based
+    concurrency. 
+	•	The approach is quite simple: 
+	  ◦	you simply wait for something (i.e., an “event”) to occur; 
+	  ◦	when it does, you check what type of event it is and do the small amount
+      of work it requires (which may include issuing I/O requests, or scheduling
+      other events for future handling, etc.). 
+	  ◦	That’s it! 
+
+
+•	Example: pseudo code for a canonical event-based server (event loop) 
+  ￼while(1) {
+    events = getEvents();
+    for (e in events)
+      processEvent(e);
+  }
+  ◦	The main loop simply waits for something to do (by calling getEvents() in
+    the code above) and then, for each event returned, processes them, one at a
+    time; 
+  ◦	the code that processes each event is known as an event handler. 
+  ◦	Importantly, when a handler processes an event, it is the only activity
+    taking place in the system; thus, deciding which event to handle next is
+    equivalent to scheduling. 
+  ◦	This explicit control over scheduling is one of the fundamental advantages
+    of the event based approach.
+`
+        }
+      ]
     },
     {
       id: 26,
       name: "Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+Aside: Blocking vs. Non-Blocking Interfaces
+	•	Blocking (or synchronous) interfaces do all of their work before returning
+    to the caller 
+	•	Non-blocking (or asynchronous) interfaces begin some work but return
+    immediately, thus letting whatever work that needs to be done get done in
+    the background. 
+	•	The usual culprit in blocking calls is I/O of some kind. 
+	  ◦	For example, if a call must read from disk in order to complete, it might
+      block, waiting for the I/O request that has been sent to the disk to
+      return. 
+	•	Non-blocking interfaces can be used in any style of programming (e.g., with
+    threads), but are essential in the event-based approach, as a call that
+    blocks will halt all progress.
+
+Why Simpler? No Locks Needed
+	•	With a single CPU and an event-based application, the problems found in
+    concurrent programs are no longer present. 
+	  ◦	Specifically, because only one event is being handled at a time, there is
+      no need to acquire or release locks; the event-based server cannot be
+      interrupted by another thread because it is decidedly single threaded. 
+	•	Thus, concurrency bugs common in threaded programs do not manifest in the
+    basic event-based approach.
+
+TIP: DON’T BLOCK IN EVENT-BASED SERVERS
+•	Event-based servers enable fine-grained control over scheduling of tasks. 
+•	However, to maintain such control, no call that blocks the execution the
+  caller can ever be made; failing to obey this design tip will result in a
+  blocked event-based server 
+
+Asynchronous I/O
+•	Many modern operating systems have introduced new ways to issue I/O requests
+  to the disk system, referred to generically as asynchronous I/O. 
+  ◦	These interfaces enable an application to issue an I/O request and return
+    control immediately to the caller, before the I/O has completed; 
+  ◦	additional interfaces enable an application to determine whether various
+    I/Os have completed (Tim note: e.g., Polling I/O vs. Interrupt)
+`
+        }
+      ]
     },
     {
       id: 27,

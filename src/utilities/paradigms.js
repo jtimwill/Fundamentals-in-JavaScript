@@ -24,12 +24,6 @@ export default {
       name: "Dynamic Programming",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 4,
-      name: "Brute Force",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
     }
   ]
 };
