@@ -18,7 +18,6 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 7. Binary Search Tree (Balanced Binary Tree)
 8. Heap
 9. Graphs
-10. Union Find  
 
 ### Algorithms
 1. Binary Search
@@ -60,45 +59,39 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 
 ### Networking
 1. OSI vs TCP/IP
-2. Application Layer
-3. Transport Layer
-4. Network Layer
-5. Link Layer
-6. IP
-7. TCP vs UDP
-8. IPv4/IPv6 Address Assignment
-9. ARP
-10. ICMP
-11. End-to-end Principle
-12. Three Error Detection Algorithms
-13. Packet
-14. Packet Switching
-15. Forwarding Table
-16. Ethernet Switch vs. Internet Router
-17. NATs and the New Hourglass
-18. HTTP
-19. DNS Architecture
-20. DHCP
-21. Internet Routing Protocols
-22. Internet Structure
-23. Shannon Capacity, Shannon Limit
-24. Modulation
-25. Signal to Noise Ratio (SNR)
-26. Coding (list a few algorithms)
-27. Why is data transmitted using a clock?
-28. What are Asynchronous communications?
-29. What are Synchronous communications?
-30. How is the radio spectrum allocated in the US (that big map)?
-31. How does Signal Strength work with wireless?
-32. Ethernet, Ethernet most commonly used wired network
-33. Ethernet Hubs vs. Switches
-34. The fundamental network security problem
-35. Three Ways Communication Can Be Compromised
-36. Three Security Principles
-37. The most important network security lesson
-38. Wireless Communication: Digital vs. Analog
-39. Wired Communication: Sync Serial vs. Async Serial vs. Parallel
-40. UART
+2. IP
+3. TCP vs UDP
+4. IPv4/IPv6 Address Assignment
+5. ARP
+6. ICMP
+7. End-to-end Principle
+8. Three Error Detection Algorithms
+9. Packet
+10. Packet Switching
+11. Forwarding Table
+12. Ethernet Switch vs. Internet Router
+13. NATs and the New Hourglass
+14. HTTP
+15. DNS Architecture
+16. DHCP
+17. Internet Routing Protocols
+18. Internet Structure
+19. Shannon Capacity, Shannon Limit
+20. Modulation
+21. Coding (list a few algorithms)
+22. Why is data transmitted using a clock?
+23. What are Asynchronous communications?
+24. What are Synchronous communications?
+25. How is the radio spectrum allocated in the US (that big map)?
+26. How does Signal Strength work with wireless?
+27. Ethernet, Ethernet most commonly used wired network
+28. Ethernet Hubs vs. Switches
+29. Three Ways Communication Can Be Compromised
+30. Three Security Principles
+31. The most important network security lesson
+32. Wireless Communication: Digital vs. Analog
+33. Wired Communication: Sync Serial vs. Async Serial vs. Parallel
+34. UART
 
 ### Operating Systems
 1. Operating System Definition

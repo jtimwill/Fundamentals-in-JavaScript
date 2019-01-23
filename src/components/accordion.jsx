@@ -31,6 +31,12 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
             {item.tabs.map((tab, index) => (
               <div key={index} className="tab-content">
                 <div className={current_tab === index ? "tab-pane show active" : "tab-pane"}>
+                  {!!tab.image_src &&
+                    <>
+                      <img src={tab.image_src} className="card-img-top"/>
+                      <a href={tab.image_src}>Image Source</a>
+                    </>
+                  }
                   <pre className="line-numbers" data-src="prism-line-numbers.js">
                     <code className="language-js">{tab.data}</code>
                   </pre>

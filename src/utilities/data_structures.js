@@ -167,14 +167,6 @@ trim	// Trims whitespace from the beginning and end of the string.
       tabs: [
               {name: "Setup", data: "Answer"}
             ]
-    },
-    {
-      id: 9,
-      name: "Union Find",
-      language: "js",
-      tabs: [
-              {name: "Setup", data: "Answer"}
-            ]
     }
   ]
 };

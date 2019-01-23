@@ -48,7 +48,7 @@ class Main extends Component {
       }
     }
     const percent = ((done_number/cat_number)*100).toFixed(2)
-    return `Progress: ${percent}% (${done_number}/${cat_number})`;
+    return `Progress: ${percent}% (${done_number}/${cat_number}) Work Left: ${cat_number - done_number}`;
   }
 
   render() {
