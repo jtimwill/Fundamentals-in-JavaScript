@@ -46,6 +46,33 @@ The network layer is “special”
 
 IP is the “thin waist” [only one protocol option for network layer]
 
+The Internet Protocol (IP)
+	•	IP is used every time we send and receive datagrams 
+	•	How the data is transferred 
+￼
+IP Service Model
+	•	Datagram: individually routed packets. Hop-by-hop routing. 
+	•	Unreliable: packets might be dropped. 
+	•	Best effort: packets are only dropped if necessary 
+	•	Connectionless: no per-flow state. Packets might be mis-sequenced. 
+
+Why is the IP service so simple?
+	•	Simple, dump, minimal: Faster, more streamlined and lower cost to build and
+    maintain 
+	•	The end-to-end principle: where possible, implement features in the end
+    hosts 
+	  ◦	Allows a variety of reliable (or unreliable) services to be built on top 
+	•	Works over any link layer: IP makes very few assumptions about the link
+    layer below. 
+
+The IP Service Model (Details)
+	1. Tries to prevent packets looping forever (TTL) 
+	2. Will fragment packets if they are too long 
+	3. Uses a header checksum to reduce chances of delivering datagram to wrong
+     destination 
+	4. Allows for new versions of IP 
+    	a. Currently: IPv4 with 32-bit addresses 
+    	b. Also: IPv4 with 128-bit addresses 
 `
         }
       ]
@@ -281,7 +308,22 @@ Consequences of Packet Switching
       id: 10,
       name: "Forwarding Table",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+•	The router uses a forwarding table to decide where to send a packet 
+  ◦	A forwarding table consists of a set of IP address patterns and the link to
+    send across for each pattern. 
+  ◦	When a packet arrives, the router checks which forwarding table entry’s
+    pattern best matches the packet. It forwards the packet along that entry’s
+    link. Generally, “best” means the most specific match. 
+  ◦	The default route matches every IP address. 
+`
+        }
+      ]
     },
     {
       id: 11,
@@ -777,7 +819,6 @@ Async Serial
 ◦	Tim note: Is all wireless communication asynchronous serial? 
   ▪	Asynchronous because you don’t have a clock wire 
   ▪	Serial because you only have one carrier wave 
-
 `
         },
         {
