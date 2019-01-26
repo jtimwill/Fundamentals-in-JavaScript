@@ -343,28 +343,60 @@ Note: In tandem, these two abstractions allow a program to run as if it is in
       id: 10,
       name: "System Call",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://notes.shichao.io/spec/figure_3.2.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/System_call
+
+In computing, a system call is the programmatic way in which a computer program
+requests a service from the kernel of the operating system it is executed on.
+This may include hardware-related services (for example, accessing a hard disk
+drive), creation and execution of new processes, and communication with integral
+kernel services such as process scheduling. System calls provide an essential
+interface between a process and the operating system.
+
+In most systems, system calls can only be made from userspace processes, while
+in some systems, OS/360 and successors for example, privileged system code also
+issues system calls.[1]
+
+Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+◦	User applications run in what is referred to as user mode which means the
+  hardware restricts what applications can do; 
+  ▪	for example, an application running in user mode can’t typically initiate an
+    I/O request to the disk, access any physical memory page, or send a packet
+    on the network. 
+◦	A system call transfers control into the OS while simultaneously raising the
+  hardware privilege level. 
+◦	When a system call is initiated (usually through a special hardware-specific
+  instruction called a trap), the hardware transfers control to a pre-specified
+  trap handler and simultaneously raises the privilege level to kernel mode. 
+  ▪	In kernel mode, the OS has full access to the hardware of the system and
+    thus can do things like initiate an I/O request or make more memory
+    available to a program. 
+  ▪	When the OS is done servicing the request, it passes control back to the
+    user via a special return-from-trap instruction, which reverts to user mode
+    while simultaneously passing control back to where the application left off. 
+`
+        }
+      ]
     },
     {
       id: 11,
-      name: "Trap",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 12,
       name: "Context Switching",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 13,
+      id: 12,
       name: "Caches (Single-CPU vs. Multi-CPU Hardware)",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 14,
+      id: 13,
       name: "Address Space Components (Program Code, Stack, Heap)",
       language: "js",
       tabs: [
@@ -392,25 +424,25 @@ The Address Space
       ]
     },
     {
-      id: 15,
+      id: 14,
       name: "Memory Problems (Leak, Stack Overflow, Segmentation Fault, Page Fault etc.)",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 16,
+      id: 15,
       name: "Internal vs. External Fragmentation",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 17,
+      id: 16,
       name: "Paging",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 18,
+      id: 17,
       name: "Two Types of Locality",
       language: "js",
       tabs: [
@@ -429,43 +461,43 @@ The Address Space
       ]
     },
     {
-      id: 19,
+      id: 18,
       name: "Single threaded process vs. Multi-threaded process",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 20,
+      id: 19,
       name: "Context Switching between threads",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 21,
+      id: 20,
       name: "Race condition, critical section, atomicity, transaction",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 22,
+      id: 21,
       name: "Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 23,
+      id: 22,
       name: "Famous Concurrency Problems: bounded buffer, dining philosophers, etc.",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 24,
+      id: 23,
       name: "Common problems with concurrency (Non-Deadlock, Deadlock, Order-Violation)",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 25,
+      id: 24,
       name: "Event-Based Concurrency (e.g. Node.JS)",
       language: "js",
       tabs: [
@@ -523,7 +555,7 @@ The Basic Idea: An Event Loop
       ]
     },
     {
-      id: 26,
+      id: 25,
       name: "Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)",
       language: "js",
       tabs: [
@@ -572,56 +604,142 @@ Asynchronous I/O
       ]
     },
     {
-      id: 27,
+      id: 26,
       name: "What does a canonical device consist of?",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://slideplayer.com/slide/13081284/79/images/5/Hint%3A+remember%2C+devices+can+be+slow%21.jpg",
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+•	A device has two important components: 
+  ◦	The hardware interface it presents to the rest of the system. Just like a
+    piece of software, hardware must also present some kind of interface that
+    allows the system software to control its operation. Thus, all devices have
+    some specified interface and protocol for typical interaction. 
+  ◦	Its internal structure. Very simple devices will have one or a few hardware
+    chips to implement their functionality; more complex devices will include a
+    simple CPU, some general purpose memory, and other device-specific chips to
+    get their job done. 
+    ▪	For example, modern RAID controllers might consist of hundreds of
+      thousands of lines of firmware (i.e., software within a hardware device)
+      to implement its functionality. 
+
+The Canonical Protocol
+•	In the picture above, the (simplified) device interface is comprised of three
+  registers. By reading and writing these registers, the operating system can
+  control device behavior. 
+  ◦	status register: can be read to see the current status of the device 
+  ◦	command register: tells the device to perform a certain task 
+  ◦	data register: can pass data to the device, or get data from the device 
+•	Example: a typical interaction that the OS might have with the device in order
+  to get the device to do something on its behalf. The protocol is as follows: 
+  * See code in picture *
+￼
+  ◦	The protocol has four steps: 
+    ▪	First, the OS waits until the device is ready to receive a command by
+      repeatedly reading the status register; we call this polling the device
+      (basically, just asking it what is going on). 
+    ▪	Second, the OS sends some data down to the data register; 
+      ▪	one can imagine that if this were a disk, for example, that multiple
+        writes would need to take place to transfer a disk block (say 4KB) to
+        the device. 
+      ▪	When the main CPU is involved with the data movement (as in this example
+        protocol), we refer to it as programmed I/O (PIO). 
+    ▪	Third, the OS writes a command to the command register; doing so
+      implicitly lets the device know that both the data is present and that it
+      should begin working on the command. 
+    ▪	Fourth, the OS waits for the device to finish by again polling it in a
+      loop, waiting to see if it is finished (it may then get an error code to
+      indicate success or failure). 
+•	Basic protocol summary: 
+  ◦	Pros: simple and working 
+  ◦	Cons: 
+    ▪	The first problem you might notice in the protocol is that polling seems
+      inefficient; specifically, it wastes a great deal of CPU time just waiting
+      for the (potentially slow) device to complete its activity, instead of
+      switching to another ready process and thus better utilizing the CPU. 
+
+The Crux: How to Avoid The Costs of Polling
+•	How can the OS check device status without frequent polling, and thus lower
+  the CPU overhead required to manage the device? 
+
+Lowering CPU Overhead With Interrupts
+•	The invention that many engineers came upon years ago to improve this
+  interaction is something we’ve seen already: the interrupt. 
+•	Interrupts allow for the overlap of computation and I/O, which is key for
+  improved utilization 
+•	Instead of polling the device repeatedly: 
+  ◦	the OS can issue a request, put the calling process to sleep, and context
+    switch to another task. 
+  ◦	When the device is finally finished with the operation, it will raise a
+    hardware interrupt, causing the CPU to jump into the OS at a pre-determined
+    interrupt service routine (ISR) or more simply an interrupt handler. 
+  ◦	The handler is just a piece of operating system code that will finish the
+    request (for example, by reading data and perhaps an error code from the
+    device) and wake the process waiting for the I/O, which can then proceed as
+    desired. 
+`
+        }
+      ]
+    },
+    {
+      id: 27,
+      name: "Device Driver",
+      language: "js",
+      tabs: [
+        {
+          image_src: "https://www.faceofit.com/wp-content/uploads/2016/06/Device-Drivers-1.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Device_driver
+
+In computing, a device driver is a computer program that operates or controls a
+particular type of device that is attached to a computer.[1] A driver provides a
+software interface to hardware devices, enabling operating systems and other
+computer programs to access hardware functions without needing to know precise
+details about the hardware being used.
+
+A driver communicates with the device through the computer bus or communications
+subsystem to which the hardware connects. When a calling program invokes a
+routine in the driver, the driver issues commands to the device. Once the device
+sends data back to the driver, the driver may invoke routines in the original
+calling program. Drivers are hardware dependent and operating-system-specific.
+They usually provide the interrupt handling required for any necessary
+asynchronous time-dependent hardware interface.[2]
+`
+        }
+      ]
     },
     {
       id: 28,
-      name: "Interrupt vs. Polling",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 29,
-      name: "Device Driver",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 30,
       name: "Single HDD vs. RAIDs",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 31,
+      id: 29,
       name: "What is the File System, Ideal file system, File System Mental Model",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 32,
+      id: 30,
       name: "What is a File, Directory, Directory Tree",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 33,
+      id: 31,
       name: "Hard link vs. Link",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     },
     {
-      id: 34,
+      id: 32,
       name: "Inode vs Inumber",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 35,
-      name: "Crash-consistency Problem and solutions",
       language: "js",
       tabs: [{name: "Question", data: "Answer"}]
     }

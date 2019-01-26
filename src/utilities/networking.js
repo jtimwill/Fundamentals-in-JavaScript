@@ -540,13 +540,101 @@ Asynchronous communication (works for short packets)
       id: 24,
       name: "How is the radio spectrum allocated in the US (that big map)?",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Chart: https://www.ntia.doc.gov/files/ntia/publications/january_2016_spectrum_wall_chart.pdf
+
+Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+￼
+◦	So RF is at a frequency below visible light. 
+
+•	The Radio Spectrum: 
+  ◦	So you can see there's a huge chunk of spectrum going all the way from 3kHz,
+    when you have 3000 waves per second, up to 300GHz, up or 300 billion waves
+    per second. 
+  ◦	So, if given that electromagnetic radiation moves at 1ft/ns, at 3kHz you're
+    looking at waves that are on the order of 300,000 feet long. Whereas down to
+    the 300 gigahertz range. You're looking at waves that are 1/300th of a foot
+    long. 
+  ◦	So a huge, huge range of frequencies for all kinds of things: TV, radio,
+    data communication, maritime systems, military systems, satellites, etc. 
+  ◦	Access point Networks: 
+    ▪	When we talk about access point networks and modern data communication
+      systems, we're talking about these four narrow chunks. 
+      ▪	See the slide. He points out Telephony and WiFi 
+      ▪	So when you think about all of the data communication that we use today,
+        phones and laptops, it's all squished into these four tiny little
+        slices. 
+`
+        }
+      ]
     },
     {
       id: 25,
       name: "How does Signal Strength work with wireless?",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.isa.org/uploadedImages/Content/Standards_and_Publications/ISA_Publications/InTech_Magazine/2008/April/2008_04_53(1).gif",
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Wireless is a shared medium
+•	So the first thing to realize about wireless is that, unlike in a wired
+  network where the medium, the wire, is completely under your control (there's
+  nobody fighting you for the capacity of that wire. It's for you and you alone)
+  . In the wireless environment you're using the electromagnetic spectrum around
+  you which everyone else might be wanting to use as well.
+•	It's not a controlled medium. It's a shared medium. So, in practice, what this
+  means is that it is very tightly regulated.
+
+Wireless Is Different
+•	Wireless transmission medium is not a wire 
+  ◦	Unlike something propagated on a wire, where there's some attenuation or
+    there's some resistance in the copper, a wireless signal is radiating over
+    space. 
+•	Radiates over space 
+  ◦	Signal weakens with distance: r^2 or faster 
+    ▪	In the simplest, if you have a perfect omnidirectional antenna, it's
+      basically radiating in a sphere, out. And what this means is that the
+      signal strength degrades with distance at R^2 or faster. A signal when you
+      are twice as far away from a transmitter, the signal is at least
+      attenuated by 75%. It's at a quarter of the strength. Think of the surface
+      of a sphere. 
+  ◦	Intermediate links (Tim note: I think he skipped this) 
+•	Uncontrolled medium 
+  ◦	Signal strength changes over time 
+    ▪	Unlike in a wired system, where we can know, for example, as long as the
+      cable good and it's no longer than 100 meters, we're going to have a
+      strong signal strength, in wireless systems, you often have a very weak
+      signal strength. 
+    ▪	Wireless is out in the world around you. so, it can be that somebody steps
+      between you and your access point. Now, suddenly, all these wireless
+      signals have to go through that person, basically, a big bag of water, the
+      wireless is going to become much weaker. So, the signal strength is going
+      to change significantly over time. As people open doors, people move
+      around, as you move around, as the humidity changes. 
+  ◦	Interference from other transmitters 
+    ▪	Furthermore, everyone else is using the medium as well. There's lots of
+      interference. It's not like you have this wire to yourself. Instead, the
+      person next door might be using their wireless network, which is on the
+      same frequency. 
+
+Signal Strength
+•	Obstructions can further weaken signal 
+  ◦	The problem here is that there are obstructions in the real world, they can
+    move around, and they weaken the signal. 
+  ◦	If you stand behind a metal plate, your wireless signal will be much weaker
+    than if you stood in front of it. 
+•	Wireless signals can reflect 
+  ◦	Multipath: can receive signal in multiple paths/reflections, with different
+    delays (analogy: echoes in a canyon) 
+`
+        }
+      ]
     },
     {
       id: 26,

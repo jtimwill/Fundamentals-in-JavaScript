@@ -11,13 +11,12 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 ### Data Structures
 1. Arrays and Strings
 2. Linked List
-3. Binary Tree
-4. Stack
-5. Queue
-6. Hash Table (Object)
-7. Binary Search Tree (Balanced Binary Tree)
-8. Heap
-9. Graphs
+3. Stack
+4. Queue
+5. Hash Table (Object)
+6. Binary Search Tree (Balanced Binary Tree)
+7. Heap
+8. Graphs
 
 ### Algorithms
 1. Binary Search
@@ -95,17 +94,16 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 
 ### Operating Systems
 1. Operating System Definition
-1. Kernel
-2. What happens when a program runs? (Von Neumann)
-3. Virtualization
-4. Concurrency
-5. Persistence
-6. Process
-7. Threads
-8. Process Creation: how the OS gets a program up and running
-9. 3 OS Abstractions
-10. System Call
-11. Trap
+2. Kernel
+3. What happens when a program runs? (Von Neumann)
+4. Virtualization
+5. Concurrency
+6. Persistence
+7. Process
+8. Threads
+9. Process Creation: how the OS gets a program up and running
+10. 3 OS Abstractions
+11. System Call
 12. Context Switching
 13. Caches (Single-CPU vs. Multi-CPU Hardware)
 14. Address Space Components (Program Code, Stack, Heap)
@@ -122,14 +120,12 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 25. Event-Based Concurrency (e.g. Node.JS)
 26. Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)
 27. What does a canonical device consist of?
-28. Interrupt vs. Polling
-29. Device Driver
-30. Single HDD vs. RAIDs
-31. What is the File System, Ideal file system, File System Mental Model
-32. What is a File, Directory, Directory Tree
-33. Hard link vs. Link
-34. Inode vs Inumber
-35. Crash-consistency Problem and solutions
+28. Device Driver
+29. Single HDD vs. RAIDs
+30. What is the File System, Ideal file system, File System Mental Model
+31. What is a File, Directory, Directory Tree
+32. Hard link vs. Link
+33. Inode vs Inumber
 
 ### Unix Command Line
 1. What is the shell?
@@ -176,53 +172,49 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 2. VHDL
 3. Sequential Logic (Flip-flop, Register, Counter)
 4. Memory (RAM, ROM, Firmware)
-5. I/O
-6. CPU (ALU, Data/Address Registers, Control Unit, Cache, Program Counter)
-7. Fetch Execution Cycle
-8. The Stored Program Concept
-9. Von Neumann vs. Harvard (Data Memory, Instruction Memory)
-10. Computer System (Memory, CPU, I/O)
-11. RISC Pipeline (vs. CISC)
-12. Moore's Law
-13. Locality (Memory Access Hierarchy)
-14. Numbers Everyone Should Know (latency)
-15. Micro-controller vs Microprocessor
-16. Multicore Processor vs Single-core Processor
+5. Fetch Execution Cycle
+6. The Stored Program Concept
+7. Computer System (Memory, CPU, I/O)
+8. Instruction set architecture
+9. Moore's Law
+10. Locality (Memory Access Hierarchy)
+11. Numbers Everyone Should Know (latency)
+12. Micro-controller vs Microprocessor
+13. Multicore Processor vs Single-core Processor
 
 ### Electronics
-1. Electrical Current
-2. Conventional vs. Actual Current Flow
-3. Voltage
-4. Resistance vs Resistivity
-5. Conductivity
-6. Heat vs. Power
-7. Grounds
-8. Current Divider (AC/DC)
-9. Voltage Divider (AC/DC)
-10. AC generation
-11. AC importance
-12. RMS vs. Peak-to-peak
-13. Capacitors
-14. Inductors
-15. Complex Resistance, Capacitive Reactance, Inductive Reactance
-16. Ohms Law's Law (AC/DC)
-17. Apparent Power vs. Reactive Power vs. Real Power
-18. Power Factor
-19. Resonant Circuits
-20. Two-port networks and filters
-21. Phasor Diagram
-22. Impedance (Resistors, Capacitors, Inductors)
-23. Maxwell's Equations
-24. Types of Motors
-25. Transistor Physics
-26. Transformer Types and Applications
-27. Electricity Distribution
-28. Oscillator Circuits (Harmonic)
+1. Electric Current
+2. Voltage
+3. Resistance vs Resistivity
+4. Conductivity
+5. Heat vs. Power
+6. Grounds
+7. Current Divider
+8. Voltage Divider
+9. AC generation
+10. AC importance
+11. RMS vs. Peak-to-peak
+12. Capacitors
+13. Inductors
+14. Complex Resistance, Capacitive Reactance, Inductive Reactance
+15. Ohms Law's Law (AC/DC)
+16. Apparent Power vs. Reactive Power vs. Real Power
+17. Power Factor
+18. Resonant Circuits
+19. Two-port networks and filters
+20. Phasor Diagram
+21. Impedance (Resistors, Capacitors, Inductors)
+22. Maxwell's Equations
+23. Types of Motors
+24. Transistor Physics
+25. Transformer Types and Applications
+26. Electricity Distribution
+27. Oscillator Circuits (Harmonic)
    * RC
    * LC
    * Crystal
-29. Sensors
-30. Electronic Switches
+28. Sensors
+29. Electronic Switches
    * Vacuum Tubes
    * Relays
    * Transistors
