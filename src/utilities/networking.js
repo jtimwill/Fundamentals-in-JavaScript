@@ -81,7 +81,108 @@ The IP Service Model (Details)
       id: 2,
       name: "TCP vs UDP",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.pluralsight.com/content/dam/pluralsight/blog/2007/10/networking-basics-tcp-udp-tcpip-osi-models/wp/img/TCP7.jpg",
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+TCP:
+
+TCP Service Model [in-order, reliable delivery of a stream of bytes between
+applications processes]
+Transmission Control Protocol (TCP)
+	•	Transmission Control Protocol (TCP) is used by over 95% of Internet
+    applications. 
+	•	TCP is almost universally used because it provides the reliable, end-to-end,
+    bidirectional byte-stream service that almost all applications want. 
+
+•	Application: hands some bytes it wants to deliver to the other end to TCP
+•	Transport: TCP places the bytes in a TCP Segment and hands it to the IP layer
+•	Network: The IP layer encapsulates the TCP Segment in an IP datagram. The IP
+           addresses are added. The IP datagram is handed to the Link Layer.
+•	Link: The link layer builds the link frame, adds the Link address and then
+        sends it onto the wire.
+* See Diagram *
+
+•	Transport layer: almost all web traffic is over TCP, the Transport Control
+                   Protocol. 
+  ◦	In its typical operation, there’s a client and a server. A server listens
+    for connection requests. 
+
+To open a connection it takes three messages (“three way handshake”) 
+  1. Client sends a “synchronize” message to server (SYN) 
+  2. Server responds with a “synchronize” message that also acknowledges the
+     client’s “synchronize”, or a “synchronize and acknowledge message”
+     (SYN-ACK) 
+  3. Client responds by acknowledging the server’s synchronize (ACK) 
+
+Connection Teardown: -> Fin, <- (Data +) Ack, <- Fin, -> Ack
+
+•	From the perspective of the network layer, packets sent to different
+  applications on the same computer look the same. This means that to open a TCP
+  stream to another program, we need two addresses. 
+  ◦	Internet Protocol address, is the address the network layer uses to deliver
+    packets to the computer. 
+  ◦	TCP port, tells the computer’s software which application to deliver data
+    to. 
+    ▪	Web servers usually run on TCP port 80. 
+    ▪	Note: IP packets contain TCP segments that have the destination port 
+
+The TCP Service Model:
+Stream of bytes: Reliable byte delivery service
+Reliable delivery:
+1. acknowledgements indicate correct delivery
+2. Checksums detect corrupted data
+3. Sequence numbers detect missing data
+4. Flow-control prevents overruning reciever
+In-Sequence: Data delivered to application in sequence transmitted
+Congestion Control: controls network congestion
+
+UDP Service Model
+UDP provides a simpler, datagram delivery service between application processes.
+
+User Datagram Protocol (UDP): used by applications that don’t need the
+guaranteed delivery service of TCP, either because the application handles
+retransmissions in its own private way, or because the application just doesn’t
+need reliable delivery.
+
+User Datagram Protocol (UDP)
+Connectionless Datagram Service: No connection established. Packets may show up
+                                 in any order.
+Self-contained datagrams:
+Unreliable delivery:
+1. No acknowledgements
+2. No mechanism to detect missing or mis-sequenced datagrams
+3. No flow control
+
+So why do we have UDP?
+•	It is used by applications that don’t need reliable delivery, such as simple
+  request-response applications. 
+•	DNS – the domain name system used by the Internet to turn a hostname into an
+  IP address uses UDP because the request is fully contained in one UDP
+  datagram. 
+  ◦	If we send a DNS request containing a hostname, the DNS server will respond
+    with an IP address we can use to send IP datagrams to the host. 
+    ▪	If the request is successful, then using UDP is lightweight and fast –
+      there is no need to setup a connection before making the query. If the
+      request is unsuccessful, it simply times out and is resent. 
+      ▪	This makes DNS simple and fast most of the time. 
+•	The DHCP or Dynamic Host Configuration Protocol also uses UDP. 
+  ◦	DHCP is also a request-response application making a single, self-contained
+    request in one UDP datagram. 
+  ◦	DHCP helps a new host find out its IP address when it joins a network. 
+  ◦	Your laptop probably uses DHCP when it connects to WiFi. 
+•	The Network Time Protocol or NTP also uses UDP for the same reason. 
+•	Some applications use UDP because they have their own special needs for
+  retransmission, congestion control, in-sequence delivery. 
+  ◦	 A few real-time streaming audio and video services use UDP. 
+    ▪	This is much less common that it used to be, because most video and audio
+      streams of http today, which uses TCP instead of UDP. 
+`
+        }
+      ]
     },
     {
       id: 3,
@@ -90,7 +191,137 @@ The IP Service Model (Details)
       tabs: [
         {
           name: "Question",
-          data: "Answer"
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Names and Addresses: IPv4
+Original Goal of Internet Protocol Address
+	•	Stitch many different networks together 
+	•	Need network-independent, unique address 
+Internet Protocol, Version 4
+	•	An IPv4 address identifies a device on the Internet 
+	  ◦	Layer 3 (network) address 
+	•	32 bits long (4 octets): a.b.c.d 
+  	◦	Example: 171.64.64.64 
+  	◦	Example: 128.30.76.82 
+  	◦	Example: 12.22.58.30 
+	•	Every device connected through IPv4 has an IP address 
+	  ◦	The IP layer delivers packets whose destination is this address, to that
+      device 
+	•	A device typically also has a Netmask. A netmask tells the device which IP
+    addresses are local (on the same link or network), and which require going
+    through an IP router. 
+	•	Netmask: apply this mask, if it matches, in the same network (bitwise AND) 
+  	◦	Netmask of 255.255.255.0 means if the first 24 bits must match 
+  	◦	Netmask of 255.255.252.0 means if the first 22 bits must match 
+  	◦	Netmask of 255.128.0.0 means if the first 9 bits must match 
+  	◦	Smaller netmask (fewer 1s) means larger network 
+
+Address Structure Today
+•	Classless Inter-Domain Routing (CIDR) 
+  ◦	Allows allows prefixes to be any number of bits 
+    ▪	All CIDR prefixes define a block of addresses that is a power of 2 in size 
+    ▪	When we talk about CIDR addresses, we refer to its netmask length 
+  ◦	Address block is a pair: address, count. Counts are powers of 2, specify
+    netmask length (from left to right in bits 0-32) 
+    ▪	171.64.0.0/16 means (“slash 16) 
+      ▪	any address in the range 171.64.0.0 to 171.64.255.255 
+    ▪	A /24 describes 256 addresses, a /20 describes 4,096 addresses 
+•	Stanford today has 5 /16 blocks -- 325,000 addresses 
+
+IPv4 Address Assignment
+•	Internet Corporation for Assignment of Names and Numbers (ICANN) 
+  ◦	Delegates the work to IANA 
+•	IANA: Internet Assigned Numbers Authority 
+•	IANA gives out /8s (16 million addresses) to Regional Internet Registries
+  (RIRs) 
+  ◦	Ran out in February 2011, in special end case of giving 1 to each RIR 
+•	RIRs responsible for geographic regions, each has own policy 
+  ◦	AfriNIC: Africa 
+  ◦	ARIN: U.S.A., Canada, Caribbean, Antarctica 
+  ◦	APNIC: Asia, Australia, New Zealand 
+  ◦	LACNIC: Latin America, Caribbean 
+  ◦	RIPE NCC: Europe, Russia, Middle East, Central Asia 
+
+
+
+Names and Addresses: IPv6
+Goal of Internet Protocol Addresses
+•	Stitch many different networks together 
+•	Need network-independent, unique address 
+  ◦	Well, these days it can be only mostly unique -- see NATs, anycast, etc. 
+•	But there are only 2^32 IPv4 addresses (approximately 4 billion) 
+  ◦	Generally, utilization is ~35% 
+    ▪	Generally, for a variety of reasons, on any kind of numbering scheme like
+      this (like telephone numbers, etc…), utilization is never going to be
+      100%. 
+    ▪	In the case of IPv4, only about 35% of the IPv4 addresses are active at
+      any time. 
+  ◦	Challenge: If you’re using IPv4, you need an address to communicate… 
+
+
+Internet Protocol, Version 6
+•	Work started in 1994 
+•	Basic protocol published in 1998 (published in RFC 2460) 
+  ◦	Just before the dot com boom and bubble 
+•	Lull, then increased interest in 2003-2006 
+•	Today: hard push within the IETF as well as several governments for adoption 
+
+Address Structure
+•	IPv6 has 128 bits of address 
+  ◦	2^128 (≈3.4x10^38) addresses: 
+  ◦	You could have 4.3x10^20 addresses per square inch of the world’s surface! 
+•	In General, address are separated into subnet and interface portions (RFC
+  4291) 
+  ◦	Similar to a CIDR class, where you have the net mask describing the network
+    identifier, and then the set of nodes within that 
+  ◦	Note: n below is number of bits 
+￼* See Diagram *
+•	Write address in hexadecimal as 8 blocks of 16 bits, separated by “:” 
+  ◦	market.scs.stanford.edu: 2001:470:806d:1::9 prefixlen 64 
+    ▪	Prefix length 64 indicates that the subnet is 64. The last 64 bits denote
+      the actual address of the node (0:0:0:9 in this case). 
+  ◦	Can omit a single run of zeros with :: 
+    ▪	In the example above, the 5th, 6th and 7th blocks are all zero 
+    ▪	So, the full address would be 2001:470:806d:1:0:0:0:9 
+  ◦	Use brackets in URLs: http://[2001:470:806d:1::9]:80 
+  ◦	Can write low 32 bits like IPv4: 64:ff9b::171.66.3.9 
+    ▪	This is one way to make IPv4 addresses addressable from IPv6 
+
+IPv6 Address Assignment
+•	Gone through several iterations, improved with experience 
+•	RFC 3177: give out: /48 in general case, /64 sometimes, /128 very rarely 
+•	RFIC 6177: give out: at least /64, don’t use /128, Up to RIRs to decide on
+  allocation size (kind of like IPv4 today) 
+  ◦	The observation is that 48 is much more than almost anyone needs 
+
+Example Approach to get an IPv6 Address (RFC 4291)
+•	You can auto-generate IPv6 address from subnet /64 and Ethernet address 
+  ◦	If your organization has a 64-bit subnet identifier, you can automatically
+    generate your own IPv6 address. You don’t have to ask for an address like
+    you do when using IPv4 with DHCP 
+•	Ethernet devices have a 48-bit unique identifier (layer 2 address) 
+  ◦	Specified at manufacturing, today you can typically change it if you want 
+    ▪	Baked in the card, but often you can reprogram it if you want 
+•	Ethernet Address Structure: 
+  ◦	Manufacturer code (c) and assigned value (m), g is 0 for unicast MAC address 
+    ▪	The lower 24 bits are used to produce 16 million devices 
+    |cccccc0g|cccccccc|cccccccc|mmmmmmmm|mmmmmmmm|mmmmmmmm|
+•	Convert 48-bit Ethernet address to 64-bit interface ID by flipping 0, sticking
+  0xfffe in middle: 
+
+|cccccc1g|cccccccc|cccccccc|11111111|11111110|mmmmmmmm|mmmmmmmm|mmmmmmmm|
+
+Bottom line: The size of the address space being 128 bits actually gives you a
+great deal of flexibility in terms of assigning addresses. Furthermore, it can
+simplify management and configuration.
+
+His example: Every Ethernet device has the same two bytes in it (0xfffe), this
+provides flexibility because, if we want to do something besides Ethernet, as
+long as we don’t match those two bytes, we can generate an IPv6 address that
+will not collide.
+
+`
         }
       ]
     },
@@ -98,13 +329,141 @@ The IP Service Model (Details)
       id: 4,
       name: "ARP",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Address Resolution Protocol (ARP) [Get the link address from the IP address]
+ARP: the mechanism by which the network layer can discover the link address
+associated with a network address it’s directly connected to.
+•	ARP is needed because each protocol layer has its own names and addresses 
+•	Network-level address: IP address 
+  ◦	It describes the host, a unique destination at the network layer 
+•	Link-level address: link address 
+  ◦	It describes a particular network card, a unique device that sends and
+    receives link layer frames 
+  ◦	Example: Ethernet has 48 bit addresses 
+    ▪	Whenever you buy an Ethernet card, it is preconfigured with a unique
+      Ethernet address 
+    ▪	Usually written as a colon delimited set of 6 octets written in hex, such
+      as: 
+      ▪	0:13:72:4c:d9:6a 
+•	Note: while link layer and network layer addresses are completely decoupled
+  with respect to the protocol layers, in terms of assignment and management
+  they might not be. 
+  ◦	For example: it is very common for a single host to have multiple IP
+    addresses (one for each of its interfaces). It needs to because of the
+    netmask 
+    ▪	Netmask doesn’t work well with if IP addresses are too different (the
+      addresses belong in different networks) 
+  ◦	The fact that link layer and network layer addresses are decoupled logically
+    but coupled in practice is in some ways a historical artifact. 
+    ▪	When the internet started there were already many link layers with there
+      own (no IP) addressing schemes, and it wanted to be able to run on top of
+      all of them. 
+
+
+Address Resolution Protocol
+•	ARP is a simple request-reply protocol that Generates mappings between layer 2
+  and layer 3 addresses 
+  ◦	Every node keeps a cache of mappings from IP addresses on its network to
+    link layer addresses 
+    ▪	If a node needs to send a packet to an IP address it doesn’t have a
+      mapping for, it sends a request: “Who has network address X?”. 
+      ▪	The node that has that network address sends a response that includes
+        the link layer address. 
+      ▪	On receiving the response, the requester can generate the mapping and
+        send the packet. 
+  ◦	Cache entries expire 
+•	So that every node hears the request, a node sends requests to a link layer
+  broadcast address. Every node in the network will hear the packet. 
+•	Reply sent to requesting address (not broadcast) 
+•	Furthermore, ARP is structured so that it contains redundant data. 
+  ◦	The request contains the network and link layer address of the requestor 
+  ◦	Request has sufficient information to generate a mapping 
+    ▪	That way, when nodes hear a request (since it’s broadcast), they can
+      insert or refresh a mapping in their cache. 
+  ◦	Makes debugging much simpler 
+•	Nodes only respond to requests for themselves. No “sharing” of state means
+  that bad state will die eventually. 
+  ◦	This means, assuming nobody is generating packets incorrectly, the only way
+    you can generate a mapping for another node is in response to a packet that
+    node sends. 
+  ◦	So if that node crashes or disconnects, its state will inevitably leave the
+    network when all of the cached mappings expire. This makes debugging and
+    troubleshooting ARP much easier. 
+•	How long do these dynamically discovered mappings last? 
+  ◦	It depends on the device: some versions of Mac OSX, for example, keep them
+    around for 20 minutes, while some Cisco devices use timeouts of 4 hours. 
+  ◦	The assumption is that these mappings do not change very frequently 
+`
+        }
+      ]
     },
     {
       id: 5,
       name: "ICMP",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+ICMP service model
+
+Internet Control Message Protocol (ICMP): typically used to report errors and
+diagnose problems with the network layer.
+•	It provides information about the network layer to end hosts and routers. 
+•	It sits above the IP layer and, therefore, strictly speaking, it's a transport
+  layer mechanism. 
+  ◦	Although it's really there to serve the network layer. 
+•	The commonly used tools ping and traceroute both rely on ICMP 
+
+
+Making The Network Layer Work (three mechanisms needed)
+1.	The Internet Protocol (IP) 
+    1.	The creation of IP datagrams 
+    2.	Hop-by-hop delivery of datagrams from end to end 
+2.	Routing Tables 
+    1.	Algorithms are run to populate router forwarding tables 
+3.	Internet Control Message Protocol 
+    1.	Communicates network layer information between end hosts and routers 
+    2.	Reports error conditions 
+    3.	Helps us diagnose problems 
+    4.	Helps us figure out the path taken by packets 
+    5.	etc. 
+
+ICMP Runs Above the Network Layer
+•	Strictly speaking ICMP is a transport layer protocol. 
+•	When an end host or router want to report an error using ICMP, it puts the
+  information that it wants to send back to the source into an ICMP payload. And
+  hands it to IP, to be sent as a datagram. 
+
+An Example (* See Diagram *)
+￼
+An HTTP or web client is going to be accessing an HTTPserver at B.
+•	So as we've seen before, the application bytes that for, for HTTP get put into
+  the transport layer as usual and to TCP, comes down to the network, goes out
+  along the link, comes up to the router. 
+•	Imagine that the address is actually to a network that this router has no
+  information about in its forwarding table. 
+•	Now this will be a pretty bad situation, because that router doesn't know how
+  to forward the packet to B. 
+•	But, if that happens, then the router will send back a message to A that says
+  “destination network unreachable.” 
+  ◦	And that's simply saying that it has no means to deliver that packet to B,
+    so it's alerting A by sending that back. 
+
+The ICMP Service Model
+Reporting Message: Self-contained message reporting error.
+Unreliable: Simple datagram service - no retries.
+
+`
+        }
+      ]
     },
     {
       id: 6,
@@ -300,6 +659,99 @@ Consequences of Packet Switching
      failures: 
 	   a. the simple forwarding paradigm, with no per-flow state in each router,
         makes it easier to quickly route around link and router failures.
+
+
+What is Packet Switching?
+Packet switching was first described by Paul Barren in the early 1960s.
+	•	It describes the way in which packets of information are routed one-by-one
+    across the internet to their destination, just like letters are delivered by
+    the post office. 
+
+
+Packet Switching
+•	So again, we're gonna look at two end systems communicating and this in this
+  case we're gonna look at this laptop on the left, A, and it's going to be
+  talking to the server on the right, B. 
+￼* See Diagram *
+•	In packet switching there's no dedicated circuit to carry our data. Instead we
+  just send when we are ready at any time we want we send a block of data by
+  adding a header to it . That's what we call a packet. 
+•	A header contains the address of where the packet is going just like an
+  envelope tells the post office where to send the letter. 
+•	Packet switched network consists of end host, the links, and packet switches.
+  When we send the packet, it's routed one hop at a time from the source, in
+  this case that laptop, A, all the way through to the destination B. 
+•	If you look at the packet it has the data in it, and it also has the address,
+  B of where it's going to. [in reality, packets are more complicated than this] 
+•	So when we send the packet it's gonna be routed hop-by-hop from the source to
+  the destination. 
+•	Each packet switch has a local forwarding table to tell it where the packet
+  goes next, based on the packet’s destination address. 
+•	So in the internet, there's lots of different types of packet switch. Some of
+  them are called routers because they deal with addresses that are internet
+  addresses and they may include little routers that we have on our desks at
+  home or huge routers that are in big wiring closets in big switching centers.
+  But we call those routers. 
+•	There are also things called ethernet switches. 
+•	Of course at any instance there's gonna be many packets flowing across the
+  Internet. Millions and millions of packets flowing in all sorts of different
+  directions. And they're all being routed hop-by-hop, one at a time by the, by
+  the packet switches along the path. 
+
+Packet switches have buffers
+•	In addition to a forwarding table, packet switches also have to have buffers. 
+•	If two packets arrive at the same time (let’s say they are arriving at the
+  full line rate of the outgoing link). 
+•	Then the packet switch has to hold one of them while it sends the other, it
+  can't send them both at the same time. 
+•	Because it might have many incoming links, the packet switch has to have a
+  buffer to hold perhaps, many, many packets. These buffers can be quite large
+  in a practice. 
+•	So the buffers hold packets: 
+  ◦	When two or more packets arrive at the same time. 
+  ◦	And particularly during periods of congestion, when there are lots and lots
+    of packets coming in at all of these input links, all trying to get to the
+    same output, it may actually have quite big buffers to hold packets during
+    those times of congestion. 
+
+Packet Switching Summary
+￼
+•	Packets are routed individually by looking up the address in the router's
+  local forwarding table. 
+•	All packets share the full capacity of a link. 
+•	The routers maintain no per-communication state. 
+  ◦	Now this is really quite key. In a circuit switch, remember, we need to
+    maintain state associated with every circuit we're maintaining. 
+  ◦	Here we maintain no state, we just maintain the forwarding table. 
+    ▪	There's is no per communication, no per packet, or no per flow state
+      associated with that communication. 
+
+Why does the Internet use Packet Switching? [The three original reasons]
+1.	Efficient use of expensive links 
+    1.	Links were assumed to be expensive and scarce 
+    2.	Packet switching allows many, bursty flows to share same link
+        efficiently 
+        1.	Because at any one instant, the packet can use the entire link. But
+            it can be immediately followed by another packet using the entire
+            link belonging to a different communication. 
+    3.	“Circuit switching is rarely used for data networks, … because of very
+        inefficient use of the links”  - Bertsekas/Gallager 
+2.	Resilience to failure of links & routers 
+    1.	Because each packet is individually routed along the path, if something
+        breaks, a link breaks or a router breaks, then we can, because we have
+        no state in all of the switches for this particular flow, simply send
+        the packet on a different path. We can send it over a different link, to
+        a different router, and it will find its way eventually. 
+    2.	“For high reliability, … [the Internet] was to be a datagram subnet, so
+        if some lines and [routers] were destroyed, messages could be rerouted”
+        - Tanenbaum 
+3.	The internet was originally designed as an interconnection of the existing
+    networks. 
+    1.	At that time, pretty much all widely used communication networks. All
+        computer networks were packet switched. So, if the internet was to
+        interconnect all of those existing networks, then it too needed to be
+        packet switched as well. 
+
 `
         }
       ]
@@ -321,6 +773,16 @@ Consequences of Packet Switching
     pattern best matches the packet. It forwards the packet along that entry’s
     link. Generally, “best” means the most specific match. 
   ◦	The default route matches every IP address. 
+
+
+Longest Prefix Match
+•	IP routers use the longest prefix match algorithm to choose matching entry
+  from forwarding table (where to forward a packet) 
+•	Forwarding table has two parts 
+  1. a set of CIDR entries describing a block of addresses 
+  2. A next hop for packets that match that CIDR entry 
+•	Algorithm: use forwarding entry with the longest matching prefix 
+•	An address might match multiple entries. 
 `
         }
       ]
@@ -329,25 +791,446 @@ Consequences of Packet Switching
       id: 11,
       name: "Ethernet Switch vs. Internet Router",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+•	Routers: IP packets between the client and server take many “hops,” where a
+           hop is a link connecting two routers. 
+  ◦	A router can have many links connecting it. As each packet arrives, a router
+    decides which of its links to send it out on. 
+  ◦	Routers have IP addresses, so it’s also the case that it might not forward a
+    packet but rather deliver it to its own software. 
+    ▪	For example, when you log into a router using TCP, the IP packets are
+      destined to the router’s own IP address. 
+
+
+Generic packet switch
+￼
+The three main stages of a packet switch are that when a packet arrives:
+1.	Look up the destination address in the forwarding table 
+    1.	We send the destination address down to the forwarding table which will
+        tell us the egress link or the port that it's going to and that helps us
+        decide where to send it next. 
+2.	Update the header (if necessary) 
+    1.	For example, if it's an Internet router we have to decrement the TTL and
+        update the checksum. 
+3.	Queue the packet (if necessary) 
+    1.	There may be many packets trying to get to the same outgoing link at the
+        same time. So we use a buffer memory to hold some packets that are
+        waiting their turn to depart on the egress line. 
+
+
+Ethernet switch [specific type of packet switch that deals with Ethernet frames]
+These are the four basic operations that an Ethernet switch must perform
+1.	Examine the header of each arriving frame 
+2.	If the Ethernet destination address (DA) is in the forwarding table, forward
+    the frame to the correct output port(s) 
+    1.	These are 48 bit addresses with the Ethernet. 
+    2.	If it finds that address in the forwarding table, it's gonna forward the
+        frame to the correct outgoing port, or maybe a selection of ports if
+        it's a multicast packet. 
+3.	If the Ethernet DA is not in the table, broadcast the frame to all ports
+    (except the one through which the frame arrived) 
+    1.	In other words, it doesn't know where to send it, so it's going to flood
+        it to everybody, in the hope it'll reach its destination. 
+4.	Entries in the table are learned by examining the Ethernet source address of
+    arriving packets 
+    1.	So when packets first come through, the destination address is not in
+        the table. 
+    2.	It's broadcast to everybody. 
+    3.	Hopefully the other end will respond, send a packet back, we'll see it's
+        source address and therefore learn which port to use to reach that
+        particular address 
+
+Internet Router [a type of packet switch that processes the IP destination
+address]
+1.	If the Ethernet DA of the arriving frame belongs to the router, accept the
+    frame. Else drop it. 
+    1.	Because IP datagrams are encapsulated in Ethernet packets, it's going to
+        check to see whether the Ethernet destination address of the arriving
+        frame belongs to the router. 
+    2.	In other words, is it specifically addressed to this router? If not, it
+        drops it. 
+2.	Examine the IP version number and length of the datagram 
+    1.	e.g., the IP version number is 4 if it’s an IPV4 router 
+3.	Decrement the TTL, update the IP header checksum [because it includes the
+    TTL] 
+4.	Check if TTL == 0 
+    1.	If TTL == 0, drop packet 
+    2.	If TTL != 0, continue 
+5.	If the IP DA is in the forwarding table, forward to the correct egress
+    port(s) for the next hop 
+    1.	ports if it's multicast. 
+6.	Turn the IP DA into the equivalent Ethernet DA for the next hop router [ARP] 
+7.	Create a new Ethernet frame and send it 
+    1.	Encapsulate the IP datagram into a new ethernet frame and send it to the
+        wire 
+
+Basic Operations of a Packet Switch
+1.	Lookup Address: How is the address looked up in the forwarding table? 
+2.	Switching: How is the packet sent to the correct output port? 
+
+Address Lookup: Ethernet Switch [exact match]
+Address Lookup: Internet Router (IP router) [longest prefix match]
+
+
+`
+        }
+      ]
     },
     {
       id: 12,
       name: "NATs and the New Hourglass",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Network Address Translator (NAT) first specified in RFC 1631
+NATs are an example of the tradeoffs that result from putting some smarts into
+the network:
+	•	They have some really nice benefits, but they introduce complexity that can
+    cause a lot of headaches. 
+
+Example: What they do
+•	It’s a box that sits between you and the Internet 
+•	In this example, your device is on the left 
+•	The NAT has its own IP address, for the public Internet, we’ll call it IP
+  address X 
+•	The NAT also has an internal interface, we’ll call it IP address I. 
+  ◦	Nick note: the NAT device manages a subnet or set or private internal
+    addresses (for example, all the IP addresses starting with 10, or all the IP
+    addresses starting with 192.168). It assigns one of the private addresses to
+    itself (example: 192.168.0.1), and then assigns the remaining addresses to
+    devices in the internal network 
+•	When a packet comes from your computer, to the NAT’s internal interface, the
+  NAT will rewrite your packet so it appears to be coming from the NAT’s
+  external interface, IP address X. 
+•	The destination host sees a packet from X 
+•	When the destination sends a packet back to X, the NAT will re-write the
+  packet destination to your destination IP address and forward it appropriately
+  to its internal interface 
+
+Examples of How NATs help you
+•	Almost all wireless home routers today are NATs 
+  ◦	You connect your wireless router to your Internet connection and the ISP
+    gives you a single IP address 
+  ◦	Internally, the NAT can give many machines behind it different private IP
+    addresses (local IP addresses) 
+  ◦	It can then translate all of the private IP addresses into a single public
+    IP address 
+  ◦	So, this is a way for many nodes to share an IP address. It allows you to
+    have, for example, machines in your house with a single IP address 
+  ◦	The single public routable IP address is the NAT’s IP address 
+•	Having a NAT wireless home router provides some security 
+  ◦	Because your IP addresses are hidden behind this NAT, it’s actually very
+    hard for adversaries or attackers to start opening connections to your
+    machines. 
+  ◦	So, it’s a limited kind of firewall security protection 
+
+So, this is what’s happening when you connect over wireless to your wireless
+router at home. When you look up your IP address on your network control panel,
+it will almost certainly be a local private address, either something in the 10
+range or 192.168. When you are sending packets out to servers on the Internet,
+your router is translating them to it’s own public IP address and port.
+•	Example: in terminal: $ ifconfig 
+  ◦	His wireless interface is en1, and he has a private IP address: 10.33.6.35,
+    because he is sitting behind a NAT 
+  ◦	When he googles his “what’s my ip”, he gets 171.66.168.122, his public IP
+    address. 
+  ◦	Bottom line: 
+    ▪	He has a private IP address of 10.33.6.35 on the internal interface of the
+      NAT 
+    ▪	The external interface of the NAT is 171.66.168.122 
+
+Transport: No New Transport! Perhaps an even deeper implication of NATs
+•	For a NAT to set up a mapping, it needs to know what the transport protocol
+  is, and how it works. 
+•	If you deploy a new transport protocol, use the transport protocol identifier
+  in an IP packet, and try to get it to traverse a NAT, the NAT will discard it
+  because it isn’t familiar with the packet format. 
+•	The problem: 
+  ◦	You can’t deploy a new transport protocol on the Internet because of NATs 
+  ◦	The people that are developing and maintaining NAT software will not add
+    support for a new protocol until it’s very, very popular, but it won’t
+    become very popular until it works across NATs. 
+•	Result: we are basically stuck with TCP, UDP, ICMP 
+  ◦	To have an application really work on the Internet at large, it has to use
+    one of those three protocols 
+
+NAT Debate
+•	Tremendously useful 
+  ◦	Reuse addresses 
+  ◦	Simple Security (not opening connections can be good!) 
+    ▪	Example: you have vulnerable open ports on your Linux or Windows machine.
+      Because there’s no mapping, attackers from from outside on the broad
+      Internet can’t compromise me. 
+•	Tremendously painful 
+  ◦	Large complication to application development (especially before standard
+    behavior) 
+    ▪	Example: switching servers, symmetric NATs, port realocation, connection
+      breaks, hard to debug 
+  ◦	Speak freely (pre-Skype VOIP!) 
+    ▪	Developer quit because he couldn’t get it to work under NATs. Note: this
+      was before the behavior was standard enough to figure out things like hole
+      punching. 
+•	Debate interesting but pointless: NATs are here to stay 
+  ◦	They’re deployed and they will always be deployed 
+  ◦	Their advantages, generally are considered to outweigh their disadvantages. 
+
+The New Hourglass [how NATs caused an architectural shift in the Internet within
+the past decade]
+￼* See Diagram *
+•	Really, in a practical sense, the new hourglass includes not only layer 3, but
+  also layer 4. 
+  ◦	Because for practical concerns, we’re not going to see new transport
+    protocols deployed. 
+•	You can build protocols on top of UDP, and that’s generally what’s done today.
+  Since UDP just provides a nice datagram service, rather than using a transport
+  identifier at layer 3, you use a port at layer 4. 
+•	Nick note: In general, when people create new transport protocols, they either
+  masquerade as TCP, or run on top of UDP 
+
+`
+        }
+      ]
     },
     {
       id: 13,
       name: "HTTP",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+HTTP HyperText Transfer Protocol (an Application that uses TCP)
+
+HTTP is a cornerstone of the modern Internet. Originally intended to transfer
+documents, it’s now used for so much more.
+
+Basic conceptual model behind HTTP: REST
+
+HyperText
+•	Definition: HyperText is a document format that lets you include formatting
+  and content information in a document. 
+  ◦	All of the formatting is inside angle brackets: <>. 
+  ◦	At a basic level, a hypertext document is just a text document your browser
+    displays based on these special formatting controls called tags. 
+  ◦	A hypertext document is more than just formatting, you can embed documents
+    or files inside other files. 
+    ▪	For example: it can reference an image, style sheets, scripts, fonts,
+      etc... 
+•	Whenever you download a web page, you’re downloading a hypertext document. 
+•	Unlike many other document formats like Microsoft Word or PDF, hypertext is
+  all ASCII text. If you look a document, generally speaking, there aren’t any
+  characters your regular text editor can’t display. 
+
+World Wide Web (HTTP)
+￼
+In HTTP, a client opens a TCP connection to a server and sends commands to it.
+•	The most common command is GET, which requests a page. 
+•	HTTP was designed to be a document-centric way for programs to communicate 
+•	For example: if I type http://www.stanford.edu/ in my browser 
+  ◦	The browser opens a connection to the server www.stanford.edu and sends a
+    GET request for the root page of the site. 
+  ◦	The server receives the request, checks if it’s valid and the user can
+    access that page, and sends a response. 
+    ▪	The response has a numeric code associated with it. For example, if the
+      server sends a 200 OK response to a GET, this means that the request was
+      accepted and the rest of the response has the document data. So the rest
+      of the response would include HyperText that describes the main Stanford
+      page. 
+•	There are other kinds of requests, such as PUT, DELETE, and INFO, as well as
+  other responses such as 400 Bad Request. 
+•	Like hypertext itself, HTTP is all in ASCII text: it’s human readable.
+  Examples: 
+  ▪	the beginning of a GET request for the New York Times looks like this:
+    GET / HTTP/1.1. 
+  ▪	The beginning of a response to a successful request looks like this:
+    HTTP/1.1 200 OK. 
+
+HTTP Request Format
+￼* See Diagram *
+Above is what an HTTP request looks like
+•	The first line, ASCII text, says the method, such as GET, the URL for the
+  method, and the version of HTTP being used. 
+•	After this first line (the request itself) there’s zero or more headers. 
+  ◦	There’s one header per line. 
+  ◦	Each header line starts with the header field name, followed by the value. 
+  ◦	Note: the “If-Modified-Since” header, is how the client tells the server to
+    only give the document if it’s been modified since that timestamp. If it has
+    been modified, the server responds with 200 OK, and a new copy of the
+    document. Otherwise, the server responds with 304, Not Modified. This header
+    is useful when your client caches pages, which most web browsers do. 
+•	After the headers, there’s an empty line, followed by the body of the message. 
+  ◦	In the case of the GET method, to request a page, the body is empty 
+  ◦	HTTP supports other methods, such as POST, which sends data, for example
+    when you fill out a form and submit it. POST requests often have a body. 
+•	Notes: 
+  ◦	The white boxes represent spaces. 
+  ◦	The left arrow means carriage return -- a way to say to go to the beginning
+    of the line, and the down arrow means newline, a way to say to go to a new
+    line. 
+
+HTTP Response
+￼* See Diagram *
+An HTTP response looks similar.
+•	The first line has the HTTP version, the status code, and the phrase
+  associated with that status code, such as 200 OK or 404 Not Found. 
+•	There’re then zero or more headers, a blank line, and the body of the
+  response. 
+
+
+One nice thing about HTTP is that it’s human readable text 
+
+`
+        }
+      ]
     },
     {
       id: 14,
       name: "DNS Architecture",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.computerhope.com/jargon/d/dns.gif",
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Domain Name System (an Application that uses UDP)
+
+Domain Name System
+•	Map human readable names to addresses (more generally, values) 
+  ◦	Originally, it was to map IP addresses. Nowadays, you can use it for much
+    more. 
+•	Must be able to handle huge number of records 
+  ◦	In theory, there are 2^32 IP addresses 
+•	Must have distributed control: people can control their own names 
+  ◦	One of the problems with hosts.text was that there was a single centralized
+    repository. 
+•	Must be robust to individual node failures 
+
+Domain Name System Design
+•	Two properties make DNS design feasible 
+  1.	Read-only or read-mostly database: hosts look up names much more often
+      than update them 
+  2.	Loose consistency: changes can take a little while to propagate 
+      1.	We don’t need perfect consistency. It is okay if things are slightly
+          out of date. 
+•	Those two properties allow extensive caching 
+  ◦	Look up a name, keep result for a long time 
+  ◦	Once you have a result, you can hold onto it for a long time. Then, when it
+    expires, maybe request a new result. But, rather than have one place that
+    has to be asked for everything, you can ask some place once, and then cache
+    that result and answer it for other people. So you can look up a name and
+    keep the result for a long time and then use it to answer other queries. 
+
+DNS Name Architecture
+•	This is how DNS meets requirement of having a distributed administration of
+  names 
+•	The root: at the top is what’s called the “dot” or the called the root of the
+  DNS namespace 
+  ◦	It’s an empty name 
+  ◦	So these are called the root servers 
+•	TLDs: Next are the top level domains or TLDs (EDU, COM, ORG, US, FR, etc..) 
+•	Domains: Next are the domain names (e.g., stanford.edu, cisco.com, baidu.cn) 
+•	Subdomains: the domain owners can hand out additional domains 
+  ◦	Examples: 
+    ▪	cs.stanford.edu and www.stanford.edu are one level below stanford.edu 
+    ▪	www.cs.berkeley.edu is one level below cs.berkeley.edu which is one level
+      below berkeley.edu 
+￼* See diagram *
+
+DNS Servers
+•	Hierarchical zones (“root” zone, edu, stanford, scs) 
+•	Each zone can be separately administered 
+  ◦	Example: EDU can grant Stanford the name “Stanford,” but it’s up to Stanford
+    to manage all the names beneath Stanford. 
+•	Each zone can be served from several replicated servers 
+  ◦	The idea is that, if a server goes down, other servers can still answer
+    questions about Stanford. 
+•	Root zone: 13 servers, highly replicated (a, b, c, ... m) 
+  ◦	Bootstrap: root server IPs are stored in a file on name server 
+    ▪	There’s sort of a bootstrapping process when you computer asks about a
+      name it knows nothing about. 
+  ◦	Root servers are additionally replicated through IP Anycast (discussed
+    later) 
+    ▪	IP Anycast: there are many machines that have the same IP address, which
+      basically causes you to contact the one that is closest to you. 
+  ◦	DDOS: the root servers are highly robust. Large-scale DDoS attacks against
+    the DNS root servers, where people are are trying to cause the DNS system to
+    fail, have never succeeded. 
+    ▪	There are so many of these servers (robust) and their job is so simple,
+      that attackers have not been able to do it. 
+
+DNS Root Server Map
+￼* See Diagram *
+http://en.wikipedia.org/wiki/File:Root-current.svg
+Above is a map of the DNS root servers
+•	They are spread all over the world 
+•	So, if a DNS server in Saudi Arabia, for example, wanted to issue a DNS query,
+  it doesn’t have to go very far. There are root servers that are very close by. 
+
+A DNS Query
+•	Two types of queries [specified by a bit in query] 
+  ◦	Recursive: asks the server to resolve the entire query [client] 
+  ◦	Non-recursive: the server resolves one step of the query [resolver] 
+•	DNS usually uses UDP port 53 
+  ◦	512 byte message limit 
+•	You can use TCP port 53 
+  ◦	Prefix messages with 16-bit length field 
+  ◦	All the DNS messages have a 16-bit length field. You know how long they are
+    since they are not datagrams, they’re a stream. 
+•	Example: client asks for IP address associated with www.stanford.edu 
+  ￼* See Diagram
+  ◦	Using DHCP, the client has an address for a DNS server (resolver) 
+  ◦	Client sends a DNS recursive query for IP address of www.stanford.edu to
+    resolver 
+  ◦	The resolver recursively resolves the entire query 
+  ◦	Assume the resolver has nothing cached (it knows nothing about the world).
+    It
+    just has the IP address of some root servers 
+    1.	Resolvers sends a non-recursive query to a root server for information
+        about EDU (such as an EDU server’s IP address) 
+        1.	Note: you can’t ask a root server to answer the whole query. Root
+            servers just answer one step. 
+    2.	The resolver caches the root server’s response. 
+    3.	The resolver sends a non-recursive query to the EDU server for
+        information about Stanford. 
+    4.	The resolver caches the EDU server’s response. It now has information
+        about the Stanford domain server. 
+    5.	The resolver asks the Stanford domain server for the IP address of WWW 
+    6.	The Stanford domain server responds with the IP address for
+        www.stanford.edu 
+    7.	The resolver caches the result 
+  ◦	The resolver returns the IP address to the client 
+  ◦	Note: if the resolver already had the desired information cached (from a
+    previous query), it could have returned the cached result and avoided asking
+    all the other servers. 
+  ◦	DNS cache poisoning: a aspect of DNS attacks where a bad record is placed
+    into the resolver’s cache. This could be used to direct a client to a
+    hacker’s server instead of their intended destination 
+
+•	Nick notes: 
+◦	Each of the records can be cached for a long time to reduce load 
+◦	To make caching work even better, often many clients share a resolver, a
+  computer who queries the Domain Name service for you. 
+  ▪	That way, it can cache all of those results and share them among clients. 
+  ▪	All of stanford only needs to do a single lookup for Google, rather than
+    having every laptop contact Google’s DNS servers. 
+
+
+`
+        }
+      ]
     },
     {
       id: 15,
