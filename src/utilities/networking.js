@@ -1236,19 +1236,377 @@ A DNS Query
       id: 15,
       name: "DHCP",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Dynamic Host Configuration Protocol (DHCP)
+
+Communicating with IP
+•	Need three things that a host needs (plus one) 
+  1.	IP address 
+  2.	Subnet mask 
+    ▪	It needs to differentiate between its local subnet vs. nodes it must
+      contact through a local gateway. 
+  3.	Gateway router 
+    ▪	It needs to know the gateway router, so that if a node is not on its local
+      subnet, it has the IP address of the first hop towards destinations
+      outside of the local subnet. 
+  ◦	A DNS server IP address is also useful (but not necessary for IP) 
+    ▪	This allows you to translate names like www.cnn.com into an IP address 
+•	Problem: how do we get these values? 
+
+DHCP
+•	Dynamic Host Configuration Protocol (DHCP), RFC 2131 
+•	A machine can request configuration from a DHCP server when connected to a
+  network 
+  ◦	Movement: just request configuration again 
+    ▪	You’re in a different part of the network, so you need a different
+      configuration 
+  ◦	Configuration has a duration: a “lease,” which can be renewed 
+    ▪	When the DHCP server gives you a configuration, it’s associated with a
+      lease. 
+    ▪	If you are nearing the end of that lease, you can re-request the same
+      configuration, and usually the server will give it to you. 
+  ◦	Garbage collection: when lease expires 
+    ▪	Leases make garbage collection very easy, because if somebody doesn’t
+      re-request it, you can reclaim say, that IP address. 
+•	Packet exchange in DHCP: discover, offer, request, ack, release 
+  ◦	Discover: when a client node first joins the network and knows nothing, it
+    sends out a discover message to determine what DHCP servers are out there,
+    and what configurations they might provide. 
+  ◦	Offer: the DHCP server responds to the discover with a configuration offer.
+    There might be offers from multiple servers 
+  ◦	Request: the client sends a request for one of the configurations to the
+    originating DHCP server 
+  ◦	Ack: the server sends an ack, acknowledging that you can have that
+    configuration. This configuration is now valid for the duration of the
+    lease. 
+  ◦	Release (optional): the client can release the configuration early. 
+  ◦	Note: If the lease is nearing its end, the client uses the same request
+    mechanism as before to do a re-request. 
+
+
+
+`
+        }
+      ]
     },
     {
       id: 16,
       name: "Internet Routing Protocols",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Note:
+	•	Today, all Ethernet switches and Internet Routers use forwarding tables. 
+	•	The job of the routing algorithm is to populate the forwarding tables. 
+
+Spanning Tree when populating the forwarding tables with entries, it’s often the
+goal to create the spanning tree
+•	Spanning: it reaches all leaves 
+  ◦	Every source can reach every destination 
+•	Tree: it has no loops 
+
+Note: the network is not a spanning tree, the spanning tree is just used to
+populate the forwarding tables
+
+
+•	We need automated algorithms to calculate the route and put the necessary
+  forwarding entries into the forwarding tables in the routers. 
+•	To calculate the routes, the routers are going to exchange information with
+  each other about the current topology as they know it. This is the job of the
+  routing algorithm (aka the routing protocol). 
+
+
+Bellman Ford (a Distance Vector Protocol)
+Distance vector protocols:
+  •	Each router maintains a distance vector that keeps track of the distances
+    between that router and every other router. 
+  •	Iteratively, through a distributed algorithm, they converge on finding the
+    shortest path or the lowest spanning tree from them to every other router 
+
+Problem: how can routers work together to find minimum cost spanning tree?
+•	Equivalent to finding minimum cost spanning tree among routers only. The end
+  hosts don’t need to be included. 
+￼* See diagram *
+The Distributed Bellman-Ford Algorithm
+•	Example: Find min-cost spanning tree to R8 
+  ◦	Assume routers know cost of link to each neighbor. 
+  ◦	Router Ri maintains value cost Ci to reach R8. 
+  ◦	Vector C = (C1, C2,…C7) is the distance vector to R8. 
+  ◦	Initially, set C = (∞, ∞, … ∞). 
+    1.	After T seconds, Ri sends Ci to its neighbors 
+    2.	If Ri learns lower cost path, update Ci 
+    3.	Repeat 
+
+  ◦	Calculating a tree for R1 – R7 is a natural extension. Just exchange all of
+    the values. 
+
+Distributed Bellman-Ford Algorithm
+Questions:
+1.	What is the maximum run time of the algorithm? 
+  1.	The algorithm will stop after it completes as many iterations as hops in
+      the longest loop-free path 
+      1.	A path with a loop in it will have a higher cost 
+2.	Will the algorithm always converge (on correct answer)? 
+    1.	Yes, because we only replace a value with a lower cost value, and
+        eventually all of our neighbors will send us their lowest cost path. 
+3.	What happens when link costs change, or when routers/links fail? 
+    1.	In general, it will continue to converge (if the graph is still a
+        spanning tree) 
+
+A Problem with Bellman-Ford “Bad news travels slowly” [counting to infinity
+problem]
+•	The problem arises, because R3 is relying on old information 
+* See diagram *
+
+Counting to Infinity Problem Solutions
+1.	Set infinity = “some small integer” (e.g. 16). Stop when count = 16. 
+2.	Split Horizon: Because R2 received lowest cost path from R3, it does not
+    advertise cost to R3. 
+3.	Split-horizon with poison reverse: R2 advertises infinity to R3. 
+4.	There are many problems with (and fixes for) the Bellman-Ford algorithm. 
+
+Bellman Ford in practice
+•	Bellman-Ford algorithm is an example of a Distance Vector algorithm. 
+•	It was used in the first Internet routing protocol, called Routing Information
+  Protocol (RIP) 
+  ◦	Phil: The good thing about RIP is that its algorithm is distributed: the
+    routers work together to build a complete set of forwarding tables. This was
+    important in the early days of the Internet when the routers were assumed to
+    have very little computing power. 
+•	It requires very little computation on the routers, is distributed, and will
+  eventually converge 
+•	Over time it was replaced by algorithms that independently calculate the
+  entire minimum cost spanning tree at each router. 
+
+
+Dijkstra (a Link State Algorithm)
+Link state algorithm:
+•	Link state is known by every router (through flooding) 
+  ◦	routers flood all the information about the network topology to each other
+    (which links are there, which links are up, which ones are down). 
+•	Each router independently finds the shortest path spanning tree, from itself,
+  to every other router in the network 
+
+Dijkstra’s shortest path first algorithm (example of a “Link State Algorithm”)
+1.	Exchange link state: A router floods to every other router the state of
+    links connected to it, so that every router has a full topology map. They
+    do this: 
+    1.	Periodically 
+    2.	When link state changes 
+2.	Run Dijkstra: Each router independently runs Dijkstra’s shortest path first
+    algorithm. 
+
+Each router finds min-cost spanning tree to every other router.
+
+An example: from R8
+￼* See diagram *
+•	First step: add the router that has the lowest cost path back to R8 (R7) 
+  ◦	Merge R8 and R7 into a tree 
+•	Next step: add the router that has the lowest cost into the R8-R7 tree 
+•	…. 
+•	Bottom line: 
+  ◦	At each step you are adding the router with the lowest cost path, and
+    because that is its lowest cost path, we know we’re done with that router. 
+
+Dijkstra’s Algorithm
+Questions:
+1.	How long does the algorithm take to run? 
+    1.	It will always run the number of iterations equal to the number of
+        routers in the network. 
+2.	What happens when link costs change, or when routers/links fail? 
+    1.	Every time there’s a change in the link state, in other words, every
+        time a link goes up or down, we recalculate from scratch 
+        1.	The routers flood that state to every other router in the network 
+        2.	They then re-run Dijkstra algorithm.   
+    2.	Result: we don’t have to worry about things like “bad news travels
+        slowly” 
+
+Dijkstra’s algorithm in practice
+•	Dijkstra’s algorithm is an example of a Link State algorithm. 
+•	It is the basis of OSPF (Open Shortest Path First), a very widely used routing
+  protocol in the Internet 
+
+Another view of Dijkstra
+•	Thanks to Prof Jean Walrand, Berkeley 
+  ◦	If connect balls together with relative string length representing cost,
+    gravity will show you the shortest cost path from a starting point at the
+    top. 
+  ◦	The loose strings are not a part of the minimum cost spanning tree 
+￼* See Diagram *
+￼
+  ￼
+
+
+`
+        }
+      ]
     },
     {
       id: 17,
       name: "Internet Structure",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.hierarchystructure.com/wp-content/uploads/2018/02/What-is-Internets-Hierarchical-Structure-1024x683.jpg",
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Internet (RIP, OSPF) AS’s
+Summary
+	•	The Internet consists of multiple AS’s, each managed independently 
+	•	An AS runs its own interior routing protocol 
+	•	Stub AS’s use simple default routing. 
+	•	AS’s with multiple exits must decide the best exit. 
+	•	AS’s must connect using the BGP-4 protocol. 
+
+
+Hierarchy in the Internet
+The Internet is made up of millions of routers interconnecting over a billion
+different users. So, simply for reasons of scale, we need to decompose routing
+into smaller sets (Autonomous Systems)
+	•	Imagine exchanging the link state information with a million other routers.
+    The network would be flooded with updates all the time, and the distance
+    vector algorithm would never converge.
+* See diagram *
+
+	•	Note: The Internet was built up by different entities. One of the original
+    goals of the Internet was to allow each organization to independently decide
+    how it would run its piece of the network (administrative autonomy). 
+	  ◦	In many ways, this was a big factor in the success of the organic growth
+      or the Internet, particularly during the 1990s. 
+	  ◦	Each AS is free to use an Interior routing protocol of its choice. 
+
+Autonomous Systems
+•	The basic unit of hierarchy in the Internet. 
+  ◦	Within an AS, the owner decides how routing is done 
+  ◦	Between AS’s, must use BGP-4 (Border Gateway Protocol, v4)* 
+    ▪	* defined by Internet RFC 1771 
+    ▪	This allows for a consistent method of AS communication
+
+Interior Routing Protocols
+RIP (the first widely-used interior routing protocol in the Internet)
+•	Uses distance vector (distributed Bellman-Ford algorithm). 
+•	Defined in Internet RFC 2453 
+  ◦	RIP version 2 is the one most widely used 
+•	Updates sent every 30 seconds. 
+  ◦	If it hasn’t heard from a router within 180 seconds, it will assume that the
+    router has become unavailable 
+•	No authentication for updates. 
+•	Originally in BSD UNIX, “route-dee” daemon. 
+  ◦	RIP’s initial popularity stemmed from it being in the BSD version of Unix 
+  ◦	There was a daemon that was widely available for routers that were using RIP 
+•	Widely used for many years; used less now. 
+  ◦	Less used now because of RIP’s convergence problems. 
+  ◦	Mostly replaced by OSPF or IS-IS (very similar to OSPF) 
+
+OSPF
+•	Link-state updates sent (using flooding) as and when required. 
+  ◦	Flooding is used because when we are trying to find the topology of the
+    network, we don’t know how to reach anyone. 
+•	Defined in Internet RFC 2328 
+•	Every router runs Dijkstra’s algorithm. 
+•	Authenticated updates 
+  ◦	This means that we’re sure they belong to the router that we are
+    communicating with. 
+•	Autonomous system may be partitioned into “areas”. 
+  ◦	Because some autonomous systems are very big, it is common to partition them
+    into areas. For example, the Stanford network is partitioned  into OSPF
+    areas. 
+•	Widely used, complex. 
+  ◦	We are covering a gross simplification here, just the basic ideas of how
+    OSPF works 
+•	IS-IS (RFC 1142) is similar, and is also widely used. 
+
+How do we leave an AS?
+•	Once we know how to route packets within an autonomous system, how do we route
+  them to a different autonomous system? 
+•	Two cases to think about: single exit point, multiple exit points. 
+
+Routing to a single exit point (easier case)
+There is only one exit point, so routers within the AS can use default routing.  
+	•	Each router knows all prefixes within AS. 
+	•	Packets with an address for another AS are sent to the default router.   
+	•	Default router is the border gateway to the next AS. 
+
+Routing tables in single exit AS’s tend to be small.
+	•	This is because each router only needs to hold the prefixes within its AS.
+    Otherwise, it just forwards them out. 
+
+Routing to multiple exit points
+	•	Used by multi-homed enterprises and transit AS’s. 
+	•	Each internal router must be told which exit point to use for a given
+    destination prefix. 
+	•	Requires very large routing tables to route to every prefix 
+	  ◦	Tens or hundreds of thousands of prefix entries 
+
+Approach 1: Hot-potato routing – send to closest exit point.
+	•	If it is not for within the AS, the router sends it to the closest exit
+    point 
+	•	Hot-potato routing is seen as offloading, a somewhat selfish act by the AS.
+    It’s offloading packets as quickly as possible to become someone else’s
+    problem. This is not very popular with its neighboring autonomous systems. 
+	•	Very widely used today in the Internet, for commercial and simplicity
+    reasons. 
+Approach 2: Pick exit closest to destination (or is on lowest cost path to
+destination).
+	•	This is a more elaborate approach. It requires the dissemination of more
+    information within the AS, in order to make the decision. 
+
+Exterior Routing Protocol
+•	Every AS must interconnect using BGP-4. 
+  ◦	The thin waist of routing protocols is BGP-4 
+•	Problems BGP-4 was designed to solve 
+  ◦	Topology: The Internet is a complex mesh of different AS’s with very little
+    structure. 
+  ◦	Autonomy of AS’s: Each AS defines link costs in different ways, so not
+    possible to find lowest cost paths. 
+    ▪	We’re simply going to have to find a set of paths based on the number of
+      autonomous systems they pass through 
+  ◦	Trust: Some AS’s can’t trust others to advertise good routes (e.g. two
+    competing backbone providers), or to protect the privacy of their traffic
+    (e.g. two warring nations). 
+  ◦	Independent Policies: Different AS’s have different objectives (e.g. route
+    over fewest hops; use one provider rather than another). 
+    ▪	In general, these policies are kept secret 
+    ▪	BGP-4 is designed to allow for that policy to be a local, private matter
+      for the AS 
+
+Internet structure
+￼* See Diagram *
+•	Tier 1 Internet Service Providers 
+  ◦	There are about a dozen of these (AT&T or NTT in Japan) 
+  ◦	ISPs that are fully mesh interconnected with each other and who peer each
+    other without charging each other. It’s called settlement-free peering. In
+    other words, no money goes across the (horizontal) interface between them. 
+•	Regional ISP’s 
+  ◦	Might correspond to a state, or a county, or a region of a country 
+•	Access ISPs 
+  ◦	There will be many access ISPs along the bottom 
+  ◦	These are the ones that we connect to as users 
+•	How the graph works 
+  ◦	A provider is providing a service to the customer below it. 
+  ◦	The provider will charge the customer a settlement charge to send packets
+    from up a level. 
+  ◦	Money is charged going up, but not going across horizontally. 
+  ◦	Thus, Regional ISPs often have connections between them, so if there is a
+    lot of traffic between access ISPs they can avoid the costs of going through
+    the tier 1 ISPs 
+
+
+
+`
+        }
+      ]
     },
     {
       id: 18,
@@ -1299,13 +1657,224 @@ Shannon Limit
       id: 19,
       name: "Modulation",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.taitradioacademy.com/wp-content/uploads/2014/10/Image-8.png",
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Modulation: ASK, FSK
+•	Different ways to represent bits 
+* See Diagram *
+
+Amplitude Shift Keying (often used in wired systems)
+•	ASK works well in wired networks because signal strength does not decrease
+  much with distance 
+  ◦	Used in most common wired Ethernet systems 
+  ◦	Note: it’s works well in wired networks because the medium is controlled.
+    The signal doesn’t decrease much with distance, because wires do not have a
+    lot of resistance (that’s why they are used to carry power). 
+•	PAM-5: five level pulse amplitude modulation (-2, -1, 0, +1, +2) 
+  ◦	Used in 100BASE-T and 1000BASE-T Ethernet (100Mbps and 1 gigabit) 
+  ◦	You can think of these as five voltage levels: -2, -1, 0, +1, +2 
+•	PAM-16: sixteen level pulse amplitude modulation 
+  ◦	Used in 10GBASE-T Ethernet (10 gigabit) 
+  ◦	Needs more more levels of amplitudes to get all of its data through 
+
+Modulation: PSK [adjusting the phase of the waves]
+•	Note: he points out that 180˚ and -180˚ are the same in this case. He also
+  says that the phase is being “reversed” 
+￼* See diagram *
+
+Phase Shift Keying (most wireless technologies or things over less controlled
+media like cable modems and DSL use PSK or QAM)
+•	PSK works well when there can be significant variations in signal strength 
+  ◦	DSL, cable modems, wireless all use phase shift keying 
+  ◦	Note: the variations in signal strength can be due to the medium. ASK
+    doesn’t work as well in wireless situations because signal strength is less
+    stable. 
+•	Binary phase shift keying (BPSK) 
+￼* See diagram *
+  ◦	Two phases: (0, π) or (0, 180º) 
+  ◦	Used in 1Mbps and 2Mbps 802.11b (WiFi) 
+  ◦	Allows us to send one bit per wave 
+•	Quadrature phase shift keying (QPSK) 
+  ◦	Four phases: (0, π/2, π, 3π/2) or (0, 90º, 180º, 270º) 
+  ◦	Used in 5.5Mbps and 11Mbps 802.11b (WiFi) 
+  ◦	Allows us to send two bit per wave 
+
+Shifting Phase
+•	One reason PSK is very popular: it’s very easy to shift phase 
+  ◦	Example: if you have a carrier wave at, say 0˚ and another carrier wave at
+    -90˚, any linear combination of these two allows you to create any
+    intermediate frequencies. 
+    ▪	So, 0˚ + -90˚ = -45˚, 0˚ + -45˚ = 0, 0˚ + 90˚ = 45˚ 
+      ▪	The brackets represent the coefficients for -90˚ and 0˚ 
+      ▪	Green: -90˚, Blue: 0˚, Red: -45˚, Drawn Red: 45˚ 
+      ▪	Tim note: he using the unit circle, not addition 
+  ◦	This is exactly how hardware does it using I/Q modulation 
+￼* See Diagram *
+I/Q Modulation (how you build the hardware)
+•	I: in-phase component (0º) 
+•	Q: quadrature component (-90º) 
+•	A symbol is a linear combination of I and Q 
+  ◦	So, we can create any phase by combining I and Q with a linear factor 
+  ◦	So, just be changing the scaling factors of I and Q, we can create any phase
+    we want of a signal 
+￼* See diagram *
+  ◦	Binary phase shift keying (BPSK) 
+    ▪	Two phases: 0º, 180º 
+    ▪	(I,Q) = (1,0) (-1,0) 
+  ◦	Quadrature phase shift keying (QPSK) 
+    ▪	Four phases: 0º, 270º, 180º, 90º 
+    ▪	(I,Q) = (1,0) (0,1) (-1,0) (0,-1) Tim note: pretty sure he should switch
+      270˚ and 90˚ 
+
+Tim note: he using the unit circle
+
+I/Q Constellations [simple representation of what’s going on down at the
+physical layer]
+•	For phase shift keying, can represent symbols in an 
+•	I/Q constellation, a 2D plot of the IQ values 
+  ◦	Angle of vector: phase of signal 
+  ◦	Length of vector: amplitude of signal 
+￼* See Diagram *
+•	Notes: 
+  ◦	OOK: on-off keying (no change in phase) 
+  ◦	He didn’t rotate the QPSK points to the small hand-drawn red dot locations,
+    to make the phases easier to see. 
+
+Symbols vs. Bits [at the physical layer the sequence of bits from the link layer
+is transformed into a sequence of symbols]
+•	A symbol is the unit of transfer at the physical layer 
+•	A symbol can contain more than one bit 
+  ◦	BPSK: 1 bit per symbol (0, 1) 
+  ◦	QPSK: 2 bits per symbol (00, 01, 10, 11) 
+•	Example: wired 100BASE-T Ethernet (100Mbps, Cat-5 cable) 
+  ◦	5 voltage levels (5 symbols) of PAM-5 (-2, -1, 0, +1 +2) 
+
+QAM [an approach used in almost all modern communication systems]
+•	Amplitude shift keying and on/off keying use only amplitude to encode symbols 
+•	Phase shift keying uses only phase to encode symbols 
+•	Quadrature Amplitude Modulation (QAM) uses both amplitude and phase keying 
+  ◦	16-QAM: 16 symbols, 4 bits/symbol 
+  ◦	256-QAM: 256 different symbols, 8 bits/symbol 
+
+Example: 16-QAM (IQ constellation used in HSPDA, 3G data standard)
+•	This IQ constellation for 16-QAM shows the how the I and Q values correspond
+  to bits above the physical layer (how symbols map to bits) 
+•	With the markups below, he is showing how you would transmit 1011 1001 
+  ◦	First you would send symbol (-3,3), then you would send symbol (-1,3) 
+  ◦	So, the first signal has a phase of 135˚, the second has a phase of 105˚. He
+    didn’t calculate the amplitudes. 
+￼* See Diagram *
+Examples Today
+•	ASK/OOK: Wired Ethernet 
+  ◦	Basically all wired Ethernet uses ASK 
+•	FSK: NWS “Weatheradio,” Bluetooth uses it in some forms 
+  ◦	It’s very rare of communication systems to use FSK 
+•	BPSK: 802.11abgn, WiMAX 
+  ◦	Basically all the WiFi standards 
+•	QPSK: 802.11abgn, 802.15.4 (low power wireless like Zigbee), HSPDA, LTE, WiMAX 
+•	16-QAM: 802.11abgn, HSPDA, LTE, WiMAX 
+•	64-QAM: 802.11abgn, LTE, WiMAX 
+
+Bottom line: the more modern standards are using denser constellations, because
+people have made things go faster.
+
+
+`
+        }
+      ]
     },
     {
       id: 20,
       name: "Coding (list a few algorithms)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+SNR/BER Curves
+•	For a given modulation scheme and signal-to-noise ratio, you can compute the
+  expected bit error rate 
+  ◦	Making some mathematical assumptions about noise 
+  ◦	Bedrock principle of RF communication theory 
+•	Bit error rate can become arbitrarily low, but never reaches zero! 
+•	In practice, the math works out that sending packets as raw bits is very
+  Inefficient 
+  ◦	Expected data throughput is far, far below Shannon limit 
+
+Bits vs. Symbols
+•	What you do in practice at the physical layer: 
+  ◦	You transform the packet’s data (bits) into symbols, with some amount of
+    redundancy (some amount of error correcting codes). So, the packet will
+    actually get a little longer in terms of bits we’re sending at the physical
+    layer 
+•	Example: 
+  ◦	We have 48 bits, but we send 60 symbols. So, there’re 12 extra bits 
+  ◦	We’ve arranged the 60 symbols into something called “coding” so that if a
+    couple bits are wrong, we can recover from that and still get the original
+    48 bits 
+￼* See Diagram *
+Coding
+•	Adding a little redundancy at the physical layer can greatly improve link
+  layer throughput 
+  ◦	True both in theory and in practice 
+  ◦	Note: you can do it anywhere, but it’s almost always done at the physical
+    layer 
+•	Coding gain: the ratio of bits at link layer to bits at physical layer 
+  ◦	1/2 code: each link layer bit is 2 physical layer bits 
+  ◦	3/4 code: each 3 link layer bits are 4 physical layer bits 
+
+Example: 802.15.4 (QPSK) Used in Zigbee
+•	Each transmitted symbol has two bits 
+•	802.15.4 combines two QPSK symbols into a 4-bit symbol 
+  ◦	Each one of the 16 4-bit symbols maps to 32 QPSK chips. 
+  ◦	So 4-bit link layer symbols are transformed into 32-bit physical layer
+    symbols. 
+￼* See Diagram *
+Calculating Data Rate
+bitrate = bits/symbol * symbol rate * coding rate
+
+Example: 802.15.4
+•	Bitrate: 250kbps 
+•	Coding rate: 16 chips of 2 bits (32 bits) = 4 bits 
+  ◦	So we have a ⅛ code. 
+  ◦	So, at the physical layer we are transmitting 8*250kbps = 2Mbps or 1 million
+    symbols/s (1 symbol has two bits). So each symbol is 1µs. 
+
+Example: 802.11n [a more advanced physical layer]
+•	Many options (just showing a subset) 
+  ◦	Note: The 40Mhz channel is a little better than twice as fast as the 20MHz
+    channel because these time values are fixed, and there are some guards 
+￼* See diagram *
+Overview
+•	Chips (physical layer) versus bits (link layer) 
+  ◦	Bits are transformed into chips at the physical layer 
+•	Physical layer must deal with noise, which can cause chip errors 
+  ◦	Denser modulation provides higher throughput (more bits per symbol) 
+  ◦	Sparser modulation has fewer errors (more robust to noise) 
+•	Translating between link layer bits and physical layer bits 
+  ◦	1:1 mapping is rarely the most efficient data representation 
+    ▪	It’s rarely going to let you get close to the Shannon capacity 
+    ▪	The probability of bit errors means you want some redundancy. 
+  ◦	Coding gain: L2/L1 ratio, so can be robust to some chip errors 
+    ▪	Note above: L = Layer 
+•	Example: 802.11n 
+
+Error correcting codes: (end of course notes)
+•	Generally we use error correcting codes in environments where bit errors are
+  frequent, or where the cost of retransmitting a corrupted packet would be
+  high, for example: in a network with a very large bandwidth-delay product 
+
+
+`
+        }
+      ]
     },
     {
       id: 21,
