@@ -1824,11 +1824,18 @@ Coding
 •	Adding a little redundancy at the physical layer can greatly improve link
   layer throughput 
   ◦	True both in theory and in practice 
+	  ▪	The cost of this little bit of extra redundancy is much, much smaller than
+      its benefit.
   ◦	Note: you can do it anywhere, but it’s almost always done at the physical
     layer 
 •	Coding gain: the ratio of bits at link layer to bits at physical layer 
   ◦	1/2 code: each link layer bit is 2 physical layer bits 
   ◦	3/4 code: each 3 link layer bits are 4 physical layer bits 
+• Forward error correction (FEC): proactively adding some additional data
+  (redundancy) so recipient can correct potential errors 
+	◦	This is nice because the recipient will be able to to decode the data; it
+    saves you the cost of having to resend data. 
+
 
 Example: 802.15.4 (QPSK) Used in Zigbee
 •	Each transmitted symbol has two bits 
@@ -1871,6 +1878,27 @@ Error correcting codes: (end of course notes)
   frequent, or where the cost of retransmitting a corrupted packet would be
   high, for example: in a network with a very large bandwidth-delay product 
 
+Coding Algorithms
+•	There are many, many coding algorithms, with different tradeoffs 
+  ◦	Hamming codes, convolutional codes, LT codes, LDPC, Turbo codes, Tornado
+    codes, Raptor codes... 
+•	Reed-Solomon error correction 
+  ◦	Tremendously commonly used (e.g., CDs, DVDs, DSL, WiMax, RAID6 storage) 
+  ◦	Mathematically simple (compared to some of the others) 
+    ▪	The basic concept is simple (what we’ll look at), designing it for very
+      fast implementation is harder (we’ll skip) 
+
+
+Reed-Solomon Basic Idea
+•	Take k chunks of data 
+•	Represent the data as the coefficients of a k-1 degree polynomial 
+•	Compute n points along the polynomial (n ≥ k-1), send those points as coded
+  data 
+  ◦	Any k of the n points allow you to recover the polynomial coefficients 
+•	Complications: value of n computed points must be in a finite field (limited
+  number of bits) 
+  ◦	Basically, you need to be able to represent each point with a finite number
+    of bits 
 
 `
         }
@@ -2092,13 +2120,352 @@ Signal Strength
       id: 26,
       name: "Ethernet, Ethernet most commonly used wired network",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+When we connect our computer to the network today, we’re usually using WiFi for wireless, or Ethernet for a wired connection. Ethernet is by far the most widely used link layer mechanism in the Internet today.
+
+The origins of Ethernet
+Ethernet started out as a means to connect multiple computers together on a single cable.
+	•	That single cable was arranged as a long string or a bus, as shown here. 
+	  ◦	It was, in fact, a big, thick, yellow cable that snaked around, either in
+      the walls, the ceiling, or under the floor. And computers would be
+      connected down into it, and then they are all sharing access to the same
+      common wire 
+	•	The idea was, that they would share it in order to be able to send packets
+    between themselves. But only one packet would be allowed onto the cable at a
+    time because, otherwise, it would collide or corrupt and interfere with
+    other packets. 
+Sharing a “medium”
+	•	Ethernet is an example of multiple hosts sharing a common cable (“medium”). 
+	•	To share the medium, we need to decide who gets to send, and when. 
+	•	There is a general class of “Medium Access Control Protocols”, or MAC
+    Protocols. 
+	  ◦	These are the protocols or algorithms for determining who gets to send
+      next. 
+	•	We will take a look at some examples. 
+	  ◦	You've probably heard Ethernet addresses being referred to as MAC
+      addresses before. You may even see this written on the bottom of your
+      computer. 
+	      ▪	MAC stands for medium access control, even though we'll see later,
+          Ethernet doesn't use this mechanism very much anymore. That's just a
+          vestige of the earlier 10Mb/s version of Ethernet. 
+Ethernet
+Ethernet started in the early 1970s, originally at around, ten megabits per
+second. But it has evolved a long way since then.
+	•	In this first place, CSMA/CD was right at the heart of how Ethernet worked,
+    and determined how many hosts would share a single cable. It became less
+    important as the speed went up. 
+
+The 10Mb/s Ethernet Standard (IEEE 802.3)
+The original 10Mb/s Ethernet was standardized in IEEE 802.3. You'll often hear
+Ethernet being referred to as a dot three network for this reason, Just as an
+abbreviation of 802.3. This was just the standard's body name that was used to
+write the spec that defined the correct operation of Ethernet. It has two
+components
+	•	The MAC protocol and the frame structure that we've just seen. 
+	•	Underneath, you have different options for the physical layer that could be
+    used. 
+￼* See diagram *
+	•	10Base-5: Original Ethernet: large thick coaxial cable. 
+	  ◦	There was originally 10Base-5, which was that big, thick, yellow cable
+      that I described earlier. That went out of fashion quite a long time ago. 
+	•	10Base-2: Thin coaxial cable version. 
+	  ◦	10Base-5 was replaced by a thin coaxial cable version that used the
+      coaxial cable similar to the RF cables we use for TV.   
+	•	10Base-T: Voice-grade unshielded twisted-pair Category-3 telephone cable.
+	  ◦	But what really transformed Ethernet was when it started to use this type
+      of cable here. This is the RJ45 cable that we're all very familiar with.
+	    ⁃	And that was not because of the connector. 
+	    ⁃	It was because of the type of cable that it can use, and also the
+        topology of the network, and we'll see that in a moment. 
+	    ⁃	But basically, it started to run over voice grade, unshielded twisted
+        pair that was already present in the walls of many buildings. It's
+        called category three telephone cable, it's fairly low-grade cable that
+        was used for connecting telephones to the exchange at a company.
+
+
+	•	10Base-F: Two op/cal fibers in a single cable. 
+	  ◦	There's also an optical fiber version called 10Base-F. 
+	    ▪	It was originally used mostly by the military because they're harder to
+        tap. 
+	    ▪	There were two optical fibers and a single cable, one for each direction. 
+
+10Base-T (“Twisted pair Ethernet”)
+￼* See Diagram *
+
+	•	Ran over existing voice-grade “Category-3” twisted pair telephone wire. 
+	  ◦	Ethernet really took off when the 10Base-T standard came along for running
+      Ethernet over twisted pair. So, 10Mb/s was carried over Category-3 twisted
+      pair telephone wires that already existed in pretty much every building in
+      the world. 
+	•	“Star” wiring worked well with wiring closets. 
+	  ◦	They were arranged in a star. In other words, those, those twisted pair
+      cables would go to a wiring closet on their way to the telephone exchange. 
+	•	Centralized management made networks easier to manage. 
+	  ◦	So, Not only did the twisted pair cable really help Ethernet be successful
+      but this topology of having an end host connected by twisted pair into a
+      hub. And a hub was a repeater, it would take every signal coming in and
+      then repeat it over every outgoing cable except for the one through which
+      it entered. So, it didn't actually understand the packets, it would merely
+      repeat them electrically. 
+	  ◦	If there was a collision, then the collision would take place anywhere
+      within here (from the end hosts and the router to the hub), it would be
+      detected, and the hub would make sure that the voltage levels were
+      sufficient to make sure that it could be detected. 
+	  ◦	Also, this centralized management in this hub this would be managed by the
+      network administrator. And this central management, rather than the
+      distributed management of crawling under the floorboards, or up in the
+      attic made it much easier to manage Ethernet once these hubs were placed
+      in these central locations. 
+	•	This led to a huge growth in Ethernet in mid 1980s. 
+
+Increasing the data rate (10Mb/s -> 100Mb/s -> 1Gb/s -> 10Gb/s)
+Over the years, people wanted to make Ethernet faster. So, 10Mb/s gradually was
+increased to a 100Mb/s and then, 1Gb/s, and more recently, 10Gb/s. So, a 1000
+times faster than the original Ethernet spec.
+
+Faster and Faster
+As we made it faster and faster, the Ethernet MAC protocol stayed the same.
+That's the framing structure and the way in which we decide when to send packets
+onto the wire. That stayed the same for a while.
+	•	The 100 megabit per second Ethernet was called Fast Ethernet. 
+	  ◦	It doesn't seem so fast these days. 
+	  ◦	And there were two standards for the physical layer. 
+	    ▪	100Base-TX, which was the coding structure used for twisted pair cable
+        and then, 100Base-FX for optical fiber. 
+	•	Then later came along the one gigabit Ethernet standard. 
+	  ◦	There was the 1000BASE-T and the 1000BASE-FX. 
+￼* See Diagram *
+100Base-TX:  
+	•	Uses “Category 5” cable, RJ45 connector. 
+	•	Full duplex: one pair for 100Mb/s in each direction. 
+	  ◦	It actually started to be full duplex, meaning there were two pairs that
+      were used, rather than just one within the cable. One pair was used for
+      100Mb/s signaling in each direction. 
+	•	Physical layer: 4B5B encoding. 
+	  ◦	Instead of using the Manchester encoding, it started to use 4B5B encoding
+      which we saw as the means to introduce transitions for clock recovery. We
+      saw that in the video about clocks. 
+	•	100m max distance 
+	  ◦	Of course, it was limited to a distance of a hundred meters.   
+
+1000Base-T:  
+	•	“Category 5” cable, RJ45 connector. 
+	  ◦	The 1000BASE-T standard also runs over category five cable using the RJ45
+      connector, as many of the laptops and servers that are sold today, the
+      Ethernet in them is 1Gb/s or a 1000BASE-T. 
+	•	Four pairs used simultaneously in both directions. 
+	  ◦	It turns out it's very hard carry a 1Gb/s signal over a Category 5 cable.
+      So, they actually use four pairs inside the cable, and they carry signals
+      in both directions at the same time over all four pairs. 
+	  ◦	So, there's no room for anything else on this cable. It can only be used
+      for the gigabit Ethernet. 
+	•	Complex coding; 5-level signaling. 
+	  ◦	It uses a very complex coding which is beyond the level of what we are
+      going to be describing in this class and it uses five level signaling. So,
+      instead of just using a binary on off as was used in the original 10Mb/s
+      Ethernet, It uses five different levels to try and pack as much
+      information onto the cable as it can. 
+	•	100m max distance 
+
+
+Summary
+	•	MAC Protocols: Random and Deterministic.   
+	  ◦	Medium access control protocols come in two main flavors: random access
+      and deterministic. 
+	  ◦	Random access protocols proved very popular, because they're nice and
+      simple, they give transmitting hosts a nice, quick, low delay access to
+      the network when it's being lightly used. 
+	•	CSMA/CD is a simple, random access protocol used in the first 10Mb/s version
+    of Ethernet. 
+	  ◦	And over the years, CSMA/CD became the most popular random access
+      protocol. 
+	•	Ethernet standards emerged for 100Mb/s, 1Gb/s and 10Gb/s over the last 20
+    years. 
+	   ◦	100Mb/s is called “fast Ethernet”
+`
+        }
+      ]
     },
     {
       id: 27,
       name: "Ethernet Hubs vs. Switches",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
+
+Ethernet Switching
+By the late 1980s, 10Base-T Ethernet was extremely popular. There was already
+work going on, on 100 megabit per second Ethernet and it was clear that the
+networks would get faster and faster.
+•	10BaseT meant hubs/repeaters in the wiring closet. 
+  ◦	The hubs in the repeaters in the wiring closets meant that the network could
+    be really quite large and were being deployed on a very large scale. 
+•	100Mb/s and 1Gb/s Ethernet meant 100m limit. 
+  ◦	But it was clear also that for faster and faster networks, each of the
+    segments was going to get very, very short, just down to a 100 meters. 
+•	The need to partition Ethernet networks to reduce the “collision domain”. 
+  ◦	With a large number of hosts sharing a small network, the networks tended to
+    be overwhelmed with the number of collisions that they would see, because
+    there were so many hosts all trying to talk on the same network 
+  ◦	So it became natural to try and partition those Ethernet networks to reduce
+    the number of collisions, what's often referred to as reducing the collision
+    domain.   
+•	Cost of switching hardware came down. 
+  ◦	At the same time, the cost of switching hardware was coming down. It became
+    easier to build ASICs, or specialized chips for doing the switching. 
+•	Led to Ethernet Switching… 
+  ◦	And so, all these things together led to partitioning networks using
+    Ethernet switches. 
+
+
+Hubs to Switches
+￼* See Diagram *
+Hub/Repeater:
+•	with a hub or a repeater, every time a packet is sent, the whole medium of all
+  of these five links would become busy, and would be used up. 
+  ◦	Within this circle here, the entire capacity is, say, 10Mb/s or 100Mb/s,
+    depending on the rate. 
+  ◦	With large networks with, say, hundreds of end hosts all connected to a hub
+    or a set of hubs, This would be very limiting in the total overall capacity
+    that they had to use. 
+Better Solution?
+•	What if we could allow several communications to take place at the same time? 
+  ◦	So, for example, if A wants to talk to B at the same time that C is talking
+    to D. 
+  ◦	Because they're talking to different sets of hosts, why don't we allow the
+    communications to take place independently? 
+•	So, instead of the hub repeating the signal just as an electrical signal, what
+  if it was to actually interpret the packets, and send the packets only to the
+  correct destination, just like a router does, but based on the Ethernet
+  addresses rather than the IP addresses? 
+
+Switch: Before being called Ethernet switches, they were called bridges. You
+will see, see those referred to sometimes, but we're just going to call them
+Ethernet switches.
+•	Basic Operation: 
+  ◦	The basic operation is if A is sending to B, the packet will flow down to
+    the switch. The switch will look at the Ethernet address, to decide where to
+    send it next. If it has it in its table, then it will forward it to B. At
+    the same time, perhaps C is sending a packet to D, and the same thing will
+    be happening over here, independently. 
+•	Collisions: 
+  ◦	So, the collisions now are just held within a single cable. So, if there
+    happen to be signals going in both directions on the cable at the same time,
+    that might cause a collision. 
+  ◦	Although, at the same time, there was also introduced something called Full
+    Duplex Ethernet which was exploiting the fact that communications could take
+    place on the cable in both directions without colliding with each other at
+    the same time. And so now, the switch could operate without the use of
+    CSMA/CD completely once the switches were introduced and all of the links
+    were full duplex. Tim note: is this because the full duplex cables used
+    different pairs for different directions? 
+•	Pervasiveness: 
+  ◦	So, This led to the very first Ethernet switches being developed in the
+    early 1990s. And nearly all Ethernet networks today are based on Ethernet
+    switches. It's very unusual to see an Ethernet hub these days. In fact, for
+    one gigabit per second and ten gigabit per second Ethernet, there is no
+    choice all those networks are switched. 
+•	Advantages: 
+  ◦	So, the advantages are multiple concurrent communications, full duplex
+    links, (they can send and receive at the same time) and also there is a
+    management benefit, that if there are dead or faulty end hosts, they could
+    be isolated by the switch, you could just switch off the link and then
+    isolate it from the network completely to prevent it from harming any other
+    switches in the network. 
+
+
+
+Ethernet Switch Operations
+Forwarding and Learning:
+1.	Examine the header of each arriving frame. 
+    1.	So, when a frame arrives, first of all, it examines the header of each
+        arriving frame to check for the destination address.   
+2.	If the Ethernet DA is in the forwarding table, forward the frame to the
+    correct output port(s). 
+    1.	If the Ethernet destination address is in its forwarding table, it will
+        forward the frame to the correct outgoing port. Or if it's multicast,
+        the set of ports. 
+3.	If the Ethernet DA is not in the table, broadcast the frame to all ports
+    (except the one through which the frame arrived). 
+    1.	If the Ethernet destination address is not in its table, it will
+        broadcast the frame to all ports of the switch except the one through
+        which the frame arrived.   
+4.	Entries in the table are learned by examining the Ethernet SA of arriving
+    packets. 
+    1.	Entries in the table are learned by examining the, the Ethernet source
+        address of arriving packets. 
+    2.	So, it will take the, the source address, look it up in the table. If
+        it finds that it's not there, it will populate the table with that entry
+        that says, "Okay if ever I see this as a destination address, I now know
+        how I reach it by sending it back out of the port that this address is
+        connected to." So, that way, the next time the frame won't be broadcast,
+        it will just be sent on to its correct destination. 
+
+Topology Maintenance: Run Spanning Tree Protocol (STP) to create loop free
+topology.
+•	It runs the spanning tree protocol, where it exchanges those things called
+  bridge protocol data units (the BPDUs that we saw in the spanning tree video),
+  and it runs the spanning tree protocol to talk to the other switches to create
+  a loop free topology. 
+•	That allows it to decide which ports to enable or block, to make sure that it
+  creates a loop free spanning tree among all of the switches in the network. 
+
+Slide with No Title
+￼* See Diagram *
+Ethernet switches are very, very widely deployed. Here's an example of how that
+might look in, say, a university campus. This is pretty much how our college
+networks looks at Stanford.
+•	Inside each building (one group of end hosts and a switch): 
+  ◦	So this might be a building or one floor of the building. This could be the
+    third floor of my building: the Gates building at Stanford. 
+  ◦	This could be the second floor, there's another switch for that floor. 
+•	And then, they connect into the building router. They would often be connected
+  into another router in another building for, fault tolerance in case the, the
+  building router was to fail (dashed arrow line). 
+  ◦	And this router may be running OSPF for routing packets across our campus. 
+  ◦	So, these routers form the campus backbone that spread all across our
+    college campus. 
+•	And then they would eventually connect to a BGP router, that connects to the
+  public internet. 
+  ◦	So, this is speaking the BGP protocol to the outside world to exchange
+    prefixes for paths to the outside world. 
+•	So, Ethernet switches can connect many, many hosts, sometimes hundreds of
+  hosts together. There are switches available with hundreds of ports. They then
+  connect perhaps all the end hosts in the building, or in the floor of a
+  building. 
+
+
+Summary
+•	Limits on link size and the need for more capacity meant that CSMA/CD was
+  gradually replaced by Ethernet switching in which end-hosts typically connect
+  over a full duplex link, and so, can both send and receive at the same time.   
+•	Ethernet switches do pretty much full routing, like a router does, but on the
+  Ethernet addresses. 
+  ◦	They learn the Ethernet addresses to populate their tables by learning the
+    source address of packets that go by. That way, they build up a nice, simple
+    forwarding table. 
+  ◦	And they use the spanning tree protocol to build a loop free topology
+    connecting all the switches within the network. 
+
+So, as a consequence, Ethernet switches are ubiquitous today and used in pretty
+much every organization that has a wired network.
+
+
+
+ 
+
+
+`
+        }
+      ]
     },
     {
       id: 28,
