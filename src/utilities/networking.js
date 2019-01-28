@@ -2126,10 +2126,13 @@ Signal Strength
           data:
 `Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about
 
-When we connect our computer to the network today, we’re usually using WiFi for wireless, or Ethernet for a wired connection. Ethernet is by far the most widely used link layer mechanism in the Internet today.
+When we connect our computer to the network today, we’re usually using WiFi for
+wireless, or Ethernet for a wired connection. Ethernet is by far the most widely
+used link layer mechanism in the Internet today.
 
 The origins of Ethernet
-Ethernet started out as a means to connect multiple computers together on a single cable.
+Ethernet started out as a means to connect multiple computers together on a
+single cable.
 	•	That single cable was arranged as a long string or a bus, as shown here. 
 	  ◦	It was, in fact, a big, thick, yellow cable that snaked around, either in
       the walls, the ceiling, or under the floor. And computers would be
@@ -2192,7 +2195,8 @@ components
 	  ◦	There's also an optical fiber version called 10Base-F. 
 	    ▪	It was originally used mostly by the military because they're harder to
         tap. 
-	    ▪	There were two optical fibers and a single cable, one for each direction. 
+	    ▪	There were two optical fibers and a single cable, one for each
+        direction. 
 
 10Base-T (“Twisted pair Ethernet”)
 ￼* See Diagram *
