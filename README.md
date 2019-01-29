@@ -185,36 +185,35 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 ### Electronics
 1. Electric Current
 2. Voltage
-3. Resistance vs Resistivity
-4. Conductivity
-5. Heat vs. Power
-6. Grounds
-7. Current Divider
-8. Voltage Divider
-9. AC generation
-10. AC importance
-11. RMS vs. Peak-to-peak
-12. Capacitors
-13. Inductors
-14. Complex Resistance, Capacitive Reactance, Inductive Reactance
-15. Ohms Law's Law (AC/DC)
-16. Apparent Power vs. Reactive Power vs. Real Power
-17. Power Factor
-18. Resonant Circuits
-19. Two-port networks and filters
-20. Phasor Diagram
-21. Impedance (Resistors, Capacitors, Inductors)
-22. Maxwell's Equations
-23. Types of Motors
-24. Transistor Physics
-25. Transformer Types and Applications
-26. Electricity Distribution
-27. Oscillator Circuits (Harmonic)
+3. Resistance vs Resistivity vs Conductivity
+4. Heat vs. Power
+5. Ground vs Neutral
+6. Current Divider
+7. Voltage Divider
+8. AC generation
+9. AC vs DC for Power Transmission
+10. RMS and 3-Phase Power
+11. Capacitors
+12. Inductors
+13. Complex Resistance, Capacitive Reactance, Inductive Reactance
+14. Ohms Law's Law (AC/DC)
+15. Apparent Power vs. Reactive Power vs. Real Power
+16. Power Factor
+17. Resonant Circuits
+18. Two-port networks and filters
+19. Phasor Diagram
+20. Impedance (Resistors, Capacitors, Inductors)
+21. Maxwell's Equations
+22. Types of Motors
+23. Transistors
+24. Transformer Types and Applications
+25. Electricity Distribution
+26. Oscillator Circuits (Harmonic)
    * RC
    * LC
    * Crystal
-28. Sensors
-29. Electronic Switches
+27. Sensors
+28. Electronic Switches
    * Vacuum Tubes
    * Relays
    * Transistors

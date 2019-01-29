@@ -74,27 +74,117 @@ or lost, used, or stored energy (potential drop).
     },
     {
       id: 2,
-      name: "Resistance vs Resistivity",
+      name: "Resistance vs Resistivity vs Conductivity",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 3,
-      name: "Conductivity",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://files.mtstatic.com/site_4539/8191/0?Expires=1548700607&Signature=jZIpB874X2qGsidFmZBblMr87zFXmkSf0n5gq9INt9ANj-WfQTa28vqOOJ19mAtDd28vP4EWILoHF~k4N4GazyRmd1GTlKj9RVnN468i1NtXmMVtERCCwt7I3GUCAVVcUKS22Op1eIUNNIErkE3yyD07r9tQKMOehReY6SA-DT8_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
+
+The electrical resistance of an object is a measure of its opposition to the
+flow of electric current. The inverse quantity is electrical conductance, and is
+the ease with which an electric current passes. Electrical resistance shares
+some conceptual parallels with the notion of mechanical friction. The SI unit of
+electrical resistance is the ohm (Ω), while electrical conductance is measured
+in siemens (S).
+
+Source: https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
+
+Electrical resistivity (also known as specific electrical resistance, or volume
+resistivity) is a fundamental property of a material that quantifies how
+strongly that material opposes the flow of electric current. A low resistivity
+indicates a material that readily allows the flow of electric current.
+Resistivity is commonly represented by the Greek letter ρ (rho). The SI unit of
+electrical resistivity is the ohm-metre (Ω⋅m).[1][2][3] As an example, if a
+1 m × 1 m × 1 m solid cube of material has sheet contacts on two opposite faces,
+and the resistance between these contacts is 1 Ω, then the resistivity of the
+material is 1 Ω⋅m.
+
+Electrical conductivity or specific conductance is the reciprocal of electrical
+resistivity, and measures a material's ability to conduct an electric current.
+It is commonly represented by the Greek letter σ (sigma), but κ (kappa)
+(especially in electrical engineering) or γ (gamma) are also occasionally used.
+Its SI unit is siemens per metre (S/m).
+`
+        }
+      ]
     },
     {
       id: 4,
       name: "Heat vs. Power",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://images.slideplayer.com/25/7789578/slides/slide_6.jpg",
+          name: "Question",
+          data:
+`Source: http://hyperphysics.phy-astr.gsu.edu/hbase/electric/elepow.html
+The electric power in watts associated with a complete electric circuit or a
+circuit component represents the rate at which energy is converted from the
+electrical energy of the moving charges to some other form, e.g., heat,
+mechanical energy, or energy stored in electric fields or magnetic fields. For a
+resistor in a DC Circuit the power is given by the product of applied voltage
+and the electric current: P = VI
+`
+        }
+      ]
     },
     {
       id: 5,
-      name: "Grounds",
+      name: "Ground vs Neutral",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://cdn.differencebetween.net/wp-content/uploads/2018/03/Neutral-VERSUS-Ground-.jpg",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Ground_and_neutral
+
+As the neutral point of an electrical supply system is often connected to earth
+ground, ground and neutral are closely related. Under certain conditions, a
+conductor used to connect to a system neutral is also used for grounding
+(earthing) of equipment and structures. Current carried on a grounding conductor
+can result in objectionable or dangerous voltages appearing on equipment
+enclosures, so the installation of grounding conductors and neutral conductors
+is carefully defined in electrical regulations. Where a neutral conductor is
+used also to connect equipment enclosures to earth, care must be taken that the
+neutral conductor never rises to a high voltage with respect to local ground.
+
+
+Definitions:
+
+Ground or earth in a mains (AC power) electrical wiring system is a conductor
+that provides a low-impedance path to the earth to prevent hazardous voltages
+from appearing on equipment (high voltage spikes).[citation needed] The terms
+ground and earth are used synonymously in this section; ground is more common in
+North American English, and earth is more common in British English. Under
+normal conditions, a grounding conductor does not carry current. Grounding is an
+integral path for home wiring also because it causes circuit breakers to trip
+more quickly (ie, GFI), which is safer. Adding new grounds requires a qualified
+electrician with information particular to a power company distribution region.
+
+Neutral is a circuit conductor that normally carries current back to the source.
+Neutral is usually connected to ground (earth) at the main electrical panel,
+street drop, or meter, and also at the final step-down transformer of the
+supply. That is for simple single panel installations; for multiple panels the
+situation is more complex.
+
+In the electrical trade, the conductor of a 2-wire circuit connected to the
+supply neutral point and earth ground is referred to as the neutral. [1]
+
+In a polyphase (usually three-phase) AC system, the neutral conductor is
+intended to have similar voltages to each of the other circuit conductors, but
+may carry very little current if the phases are balanced.
+
+All neutral wires of the same earthed (grounded) electrical system should have
+the same electrical potential, because they are all connected through the system
+ground. Neutral conductors are usually insulated for the same voltage as the
+line conductors, with interesting exceptions.[2]
+`
+        }
+      ]
     },
     {
       id: 6,
@@ -124,19 +214,178 @@ or lost, used, or stored energy (potential drop).
       id: 8,
       name: "AC generation",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/imgmag/ACGEN.gif",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Alternating_current
+
+Alternating current (AC) is an electric current which periodically reverses
+direction, in contrast to direct current (DC) which flows only in one direction.
+
+The usual waveform of alternating current in most electric power circuits is a
+sine wave, whose positive half-period corresponds with positive direction of the
+current and vice versa. In certain applications, different waveforms are used,
+such as triangular or square waves. Audio and radio signals carried on
+electrical wires are also examples of alternating current. These types of
+alternating current carry information such as sound (audio) or images (video)
+sometimes carried by modulation of an AC carrier signal. These currents
+typically alternate at higher frequencies than those used in power transmission.
+
+Source: https://en.wikipedia.org/wiki/Electric_machine#AC_generator
+
+An AC generator converts mechanical energy into alternating current electricity.
+Because power transferred into the field circuit is much less than power
+transferred into the armature circuit, AC generators nearly always have the
+field winding on the rotor and the armature winding on the stator.
+AC generators are classified into several types.
+	•	In an induction generator, the stator magnetic flux induces currents in the
+    rotor. The prime mover then drives the rotor above the synchronous speed,
+    causing the opposing rotor flux to cut the stater coils producing active
+    current in the stater coils, thus sending power back to the electrical grid.
+    An induction generator draws reactive power from the connected system and so
+    cannot be an isolated source of power.
+	•	In a Synchronous generator (alternator), the current for the magnetic field
+    is provided by a separate DC current source.
+
+Source: https://www.quora.com/How-does-an-AC-generator-work-and-on-what-principle
+
+As a matter of fact, the principle of AC generator is the same to direct-current
+generator. The basic principle of a generator is to convert motion into
+electricity. Providing this motion requires that either a magnetic field is
+generated and a wire coil is rotated within it, or a magnetic field is rotated
+within a stationary coil. The turning of a coil in a magnetic field produces
+motional emfs in both sides of the coil which add. Since the component of the
+velocity perpendicular to the magnetic field changes sinusoidally with the
+rotation, the generated voltage is sinusoidal or AC.
+
+`
+        }
+      ]
     },
     {
       id: 9,
-      name: "AC importance",
+      name: "AC vs DC for Power Transmission",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/War_of_the_currents#Electric_power_transmission
+
+Transmission loss[edit]
+
+The advantage of AC for distributing power over a distance is due to the ease of
+changing voltages using a transformer. Available power is the product of current 
+× voltage at the load. For a given amount of power, a low voltage requires a
+higher current and a higher voltage requires a lower current. Since metal
+conducting wires have an almost fixed electrical resistance, some power will be
+wasted as heat in the wires. This power loss is given by Joule's laws and is
+proportional to the square of the current. Thus, if the overall transmitted
+power is the same, and given the constraints of practical conductor sizes,
+high-current, low-voltage transmissions will suffer a much greater power loss
+than low-current, high-voltage ones. This holds whether DC or AC is used.
+
+Converting DC power from one voltage to another required a large spinning rotary
+converter or motor-generator set, which was difficult, expensive, inefficient,
+and required maintenance, whereas with AC the voltage can be changed with simple
+and efficient transformers that have no moving parts and require very little
+maintenance. This was the key to the success of the AC system. Modern
+transmission grids regularly use AC voltages up to 765,000 volts.[121] Power
+electronic devices such as the mercury-arc valve and thyristor made high-voltage
+direct current transmission practical by improving the reliability and
+efficiency of conversion between alternating and direct current, but such
+technology only became possible on an industrial scale starting in the 1960s.
+
+Alternating-current transmission lines have losses that do not occur with direct
+current. Due to the skin effect, a conductor will have a higher resistance to
+alternating current than to direct current; the effect is measurable and of
+practical significance for large conductors carrying thousands of amperes. The
+increased resistance due to the skin effect can be offset by changing the shape
+of conductors from a solid core to a braid of many small (isolated) wires. Total
+losses in systems using high-voltage transmission and transformers to reduce
+(or increase) the voltage are very much lower than DC transmission at working
+voltage.
+
+
+`
+        }
+      ]
     },
     {
       id: 10,
-      name: "RMS vs. Peak-to-peak",
+      name: "RMS and 3-Phase Power",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://www.animations.physics.unsw.edu.au/jw/images/power_files/3phase.gif",
+          name: "Question",
+          data:
+`Source: http://www.animations.physics.unsw.edu.au/jw/power.html
+
+The power p converted in a resistor (ie the rate of conversion of electrical
+energy to heat) is: p(t) = iv = (v^2)/R = (i^2)R.
+
+We use lower case p(t) because this is the expression for the instantaneous
+power at time t. Usually, we are interested in the mean power delivered, which
+is normally written P. P is the total energy converted in one cycle, divided by
+the period T of the cycle.
+
+RMS = root-mean-square
+	•	V = Vm/√2 ~ 0.71*Vm is the RMS value of the voltage (Peak = Vm)
+	•	I = Im/√2 ~ 0.71*Im is the RMS value of the current (Peak = Im)
+
+When talking of AC, RMS values are so commonly used that, unless otherwise
+stated, you may assume that RMS values are intended*. For instance, normal
+domestic AC in Australia is 240 Volts AC with frequency 50 Hz. The RMS voltage
+is 240 volts, so the peak value Vm= V.√2 = 340 volts. So the active wire goes
+from +340 volts to -340 volts and back again 50 times per second.
+
+* An exception: manufacturers and sellers of HiFi equipment sometimes use peak
+values rather than RMS values, which makes the equipment seem more powerful than
+it is.
+
+Power in a resistor. In a resistor R, the peak power (achieved instantaneously
+100 times per second for 50 Hz AC) is (Vm^2)/R = (im^2)*R. As discussed above,
+the voltage, current and so the power pass through zero volts 100 times per
+second, so the average power is less than this. The average is exactly as shown
+above: P = (Vm^2)/2R = (V^2)/R.
+
+Power in inductors and capacitors. In ideal inductors and capacitors, a
+sinusoidal current produces voltages that are respecively 90° ahead and behind
+the phase of the current. So if i = Imsin wt, the voltages across the inductor
+and capacitor are Vmcos wt and -Vmcos wt respectively. Now the integral of
+cos*sin over a whole number of cycles is zero. Consequently, ideal inductors and
+capacitors do not, on average, take power from the circuit.
+
+Three phase AC
+
+Single phase AC has the advantage that it only requires 2 wires. Its
+disadvantage is seen in the graph at the top of this page: twice every cycle V
+goes to zero. If you connect a phototransistor circuit to an oscilloscope, you
+will see that fluorescent lights turn off 100 times per second (or 120, if you
+are on 60 Hz supply). What if you need a more even supply of electricity? One
+can store energy in capacitors, of course, but with high power circuits this
+would require big, expensive capacitors. What to do?
+
+An AC generator may have more than one coil. If it has three coils, mounted at
+relative angles of 120°, then it will produce three sinusoidal emfs with
+relative phases of 120°, as shown in the upper figure at right. The power
+delivered to a resistive load by each of these is proportional to V^2. The sum
+of the three V^2 terms is a constant. We saw above that the average of V^2 is
+half the peak value, so this constant is 1.5 times the peak amplitude for any
+one circuit, as is shown in the lower figure at right.
+
+Do you need four wires? In principle, no. The sum of the three V terms is zero
+so, provided that the loads on each phase are identical, the currents drawn from
+the three lines add to zero. In practice, the current in the neutral wire is
+usually not quite zero. Further, it should be the same guage as the other wires
+because, if one of the loads were to fail and form an open circuit, the neutral
+would carry a current similar to that in the remaining two loads.
+`
+        }
+      ]
     },
     {
       id: 11,
@@ -160,19 +409,114 @@ or lost, used, or stored energy (potential drop).
       id: 14,
       name: "Ohms Law's Law (AC/DC)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://www.electrical-formulas.com/wp-content/uploads/2018/03/ohms-law-formula-for-ac-circuits.jpg",
+          name: "Question",
+          data: " "
+        }
+      ]
     },
     {
       id: 15,
       name: "Apparent Power vs. Reactive Power vs. Real Power",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://qph.fs.quoracdn.net/main-qimg-78665340199ff07a8997527960f5f0eb",
+          name: "Question",
+          data:
+`Source: https://www.allaboutcircuits.com/textbook/alternating-current/chpt-11/true-reactive-and-apparent-power/
+
+Apparent Power:
+The combination of reactive power and true power is called apparent power, and
+it is the product of a circuit’s voltage and current, without reference to phase
+angle. Apparent power is measured in the unit of Volt-Amps (VA) and is
+symbolized by the capital letter S.
+
+Reactive Power:
+We know that reactive loads such as inductors and capacitors dissipate zero
+power, yet the fact that they drop voltage and draw current gives the deceptive
+impression that they actually do dissipate power. This “phantom power” is called
+reactive power, and it is measured in a unit called Volt-Amps-Reactive (VAR),
+rather than watts. The mathematical symbol for reactive power is (unfortunately)
+the capital letter Q.
+
+
+True Power (Real Power):
+The actual amount of power being used, or dissipated, in a circuit is called
+true power, and it is measured in watts (symbolized by the capital letter P, as
+always).
+
+Calculating for Reactive, True, or Apparent Power
+As a rule, true power is a function of a circuit’s dissipative elements, usually
+resistances (R). Reactive power is a function of a circuit’s reactance (X).
+Apparent power is a function of a circuit’s total impedance (Z). Since we’re
+dealing with scalar quantities for power calculation, any complex starting
+quantities such as voltage, current, and impedance must be represented by their
+polar magnitudes, not by real or imaginary rectangular components. For instance,
+if I’m calculating true power from current and resistance, I must use the polar
+magnitude for current, and not merely the “real” or “imaginary” portion of the
+current. If I’m calculating apparent power from voltage and impedance, both of
+these formerly complex quantities must be reduced to their polar magnitudes for
+the scalar arithmetic.
+
+Equations:
+
+P = True Power (Measured in Watts)
+P = (I^2)R
+P = (E^2)/R
+
+Q = Reactive Power (Measured in Volt-Amps-Reactive (VAR))
+Q = (I^2)X
+Q = (E^2)/X
+
+S = Apparent Power (Measured in Volt-Amps (VA))
+S = (I^2)Z
+S = (E^2)/Z
+S = IE
+
+`
+        }
+      ]
     },
     {
       id: 16,
       name: "Power Factor",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://www.marinerdesk.com/wp-content/uploads/2018/05/C8A48748-AFE0-4317-9B5C-32BCE5A25427.jpeg",
+          name: "Question",
+          data:
+`Source: https://www.laurenselectric.com/home/business/understanding-power-factor/
+
+Power factor is a measure of how effectively you are using electricity. Various
+types of power are at work to provide us with electrical energy. Here is what
+each one is doing.
+
+Working Power – the “true” or “real” power used in all electrical appliances to
+perform the work of heating, lighting, motion, etc. We express this as kW or
+kilowatts. Common types of resistive loads are electric heating and lighting.
+
+An inductive load, like a motor, compressor or ballast, also requires Reactive
+Power to generate and sustain a magnetic field in order to operate. We call this
+non-working power kVAR’s, or kilovolt-amperes-reactive.
+
+Every home and business has both resistive and inductive loads. The ratio
+between these two types of loads becomes important as you add more inductive
+equipment. Working power and reactive power make up Apparent Power, which is
+called kVA, kilovolt-amperes. We determine apparent power using the formula,
+kVA2 = kV*A.
+
+Going one step further, Power Factor (PF) is the ratio of working power to
+apparent power, or the formula PF = kW / kVA. A high PF benefits both the
+customer and utility, while a low PF indicates poor utilization of electrical
+power.
+
+`
+        }
+      ]
     },
     {
       id: 17,
@@ -213,7 +557,14 @@ directional relationship between two or more alternating quantities
       id: 21,
       name: "Maxwell's Equations",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://i.pinimg.com/474x/b1/9e/d0/b19ed0daaac29aff3c97f81ff163f344--physics-formulas-mathematics.jpg",
+          name: "Question",
+          data:
+` `
+        }
+      ]
     },
     {
       id: 22,
@@ -221,7 +572,7 @@ directional relationship between two or more alternating quantities
       language: "js",
       tabs: [
         {
-          image_url: "https://www.rs-online.com/designspark/rel-assets/ds-assets/uploads/images/57178c912bb04bf78f67613d0ab544b9Types%20of%20Motor.JPG",
+          image_src: "https://www.rs-online.com/designspark/rel-assets/ds-assets/uploads/images/57178c912bb04bf78f67613d0ab544b9Types%20of%20Motor.JPG",
           name: "Question",
           data:
 `Source: https://en.wikipedia.org/wiki/Electric_motor
@@ -262,11 +613,11 @@ respectively referred to as actuators and transducers.
     },
     {
       id: 23,
-      name: "Transistor Physics",
+      name: "Transistors",
       language: "js",
       tabs: [
         {
-          image_url: "https://www.electronics-tutorials.ws/transistor/tran22.gif",
+          image_src: "https://www.electronics-tutorials.ws/transistor/tran22.gif",
           name: "Question",
           data:
 `Source: https://en.wikipedia.org/wiki/Transistor
@@ -327,7 +678,7 @@ control a current between source and drain.
       language: "js",
       tabs: [
         {
-          image_url: "https://www.electronics-tutorials.ws/transformer/trans65.gif",
+          image_src: "https://www.electronics-tutorials.ws/transformer/trans65.gif",
           name: "Question",
           data:
 `Source: https://en.wikipedia.org/wiki/Transformer
