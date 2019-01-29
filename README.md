@@ -195,28 +195,28 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 10. RMS and 3-Phase Power
 11. Capacitors
 12. Inductors
-13. Complex Resistance, Capacitive Reactance, Inductive Reactance
-14. Ohms Law's Law (AC/DC)
-15. Apparent Power vs. Reactive Power vs. Real Power
-16. Power Factor
-17. Resonant Circuits
-18. Two-port networks and filters
-19. Phasor Diagram
-20. Impedance (Resistors, Capacitors, Inductors)
-21. Maxwell's Equations
-22. Types of Motors
-23. Transistors
-24. Transformer Types and Applications
-25. Electricity Distribution
-26. Oscillator Circuits (Harmonic)
+13. Ohms Law's Law (AC/DC)
+14. Apparent Power vs. Reactive Power vs. Real Power
+15. Power Factor
+16. Resonant Circuits
+17. Passive Filters
+18. Phasor Diagram
+19. Impedance (Resistors, Capacitors, Inductors)
+20. Maxwell's Equations
+21. Types of Motors
+22. Transistors
+23. Transformer Types and Applications
+24. Electricity Distribution
+25. Oscillator Circuits (Harmonic)
    * RC
    * LC
    * Crystal
-27. Sensors
-28. Electronic Switches
+26. Sensors
+27. Electronic Switches
    * Vacuum Tubes
    * Relays
    * Transistors
+28. Laplace vs. Fourier vs. Z transforms
 
 ### Design Patterns
 1. Module

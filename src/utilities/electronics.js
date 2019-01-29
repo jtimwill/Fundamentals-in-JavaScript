@@ -112,7 +112,7 @@ Its SI unit is siemens per metre (S/m).
       ]
     },
     {
-      id: 4,
+      id: 3,
       name: "Heat vs. Power",
       language: "js",
       tabs: [
@@ -132,7 +132,7 @@ and the electric current: P = VI
       ]
     },
     {
-      id: 5,
+      id: 4,
       name: "Ground vs Neutral",
       language: "js",
       tabs: [
@@ -187,7 +187,7 @@ line conductors, with interesting exceptions.[2]
       ]
     },
     {
-      id: 6,
+      id: 5,
       name: "Current Divider",
       language: "js",
       tabs: [
@@ -199,7 +199,7 @@ line conductors, with interesting exceptions.[2]
       ]
     },
     {
-      id: 7,
+      id: 6,
       name: "Voltage Divider",
       language: "js",
       tabs: [
@@ -211,7 +211,7 @@ line conductors, with interesting exceptions.[2]
       ]
     },
     {
-      id: 8,
+      id: 7,
       name: "AC generation",
       language: "js",
       tabs: [
@@ -265,7 +265,7 @@ rotation, the generated voltage is sinusoidal or AC.
       ]
     },
     {
-      id: 9,
+      id: 8,
       name: "AC vs DC for Power Transmission",
       language: "js",
       tabs: [
@@ -314,7 +314,7 @@ voltage.
       ]
     },
     {
-      id: 10,
+      id: 9,
       name: "RMS and 3-Phase Power",
       language: "js",
       tabs: [
@@ -388,25 +388,111 @@ would carry a current similar to that in the remaining two loads.
       ]
     },
     {
-      id: 11,
+      id: 10,
       name: "Capacitors",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/capchg.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Capacitor
+
+A capacitor is a passive two-terminal electronic component that stores
+electrical energy in an electric field. The effect of a capacitor is known as
+capacitance. While some capacitance exists between any two electrical conductors
+in proximity in a circuit, a capacitor is a component designed to add
+capacitance to a circuit.
+
+The physical form and construction of practical capacitors vary widely and many
+capacitor types are in common use. Most capacitors contain at least two
+electrical conductors often in the form of metallic plates or surfaces separated
+by a dielectric medium. A conductor may be a foil, thin film, sintered bead of
+metal, or an electrolyte. The nonconducting dielectric acts to increase the
+capacitor's charge capacity. Materials commonly used as dielectrics include
+glass, ceramic, plastic film, paper, mica, and oxide layers. Capacitors are
+widely used as parts of electrical circuits in many common electrical devices.
+Unlike a resistor, an ideal capacitor does not dissipate energy.
+
+When two conductors experience a potential difference, for example, when a
+capacitor is attached across a battery, an electric field develops across the
+dielectric, causing a net positive charge to collect on one plate and net
+negative charge to collect on the other plate. No current actually flows through
+the dielectric. However, there is a flow of charge through the source circuit.
+If the condition is maintained sufficiently long, the current through the source
+circuit ceases. If a time-varying voltage is applied across the leads of the
+capacitor, the source experiences an ongoing current due to the charging and
+discharging cycles of the capacitor.
+
+Capacitance is defined as the ratio of the electric charge on each conductor to
+the potential difference between them. The unit of capacitance in the
+International System of Units (SI) is the farad (F), defined as one coulomb per
+volt (1 C/V). Capacitance values of typical capacitors for use in general
+electronics range from about 1 picofarad (pF) (10^−12 F) to about 1 millifarad
+(mF) (10^−3 F).
+
+The capacitance of a capacitor is proportional to the surface area of the plates
+(conductors) and inversely related to the gap between them. In practice, the
+dielectric between the plates passes a small amount of leakage current. It has
+an electric field strength limit, known as the breakdown voltage. The conductors
+and leads introduce an undesired inductance and resistance.
+
+Capacitors are widely used in electronic circuits for blocking direct current
+while allowing alternating current to pass. In analog filter networks, they
+smooth the output of power supplies. In resonant circuits they tune radios to
+particular frequencies. In electric power transmission systems, they stabilize
+voltage and power flow.[2] The property of energy storage in capacitors was
+exploited as dynamic memory in early digital computers.[3]
+
+`
+        }
+      ]
+    },
+    {
+      id: 11,
+      name: "Inductors",
+      language: "js",
+      tabs: [
+        {
+          image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/indt.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Inductor
+
+An inductor, also called a coil, choke, or reactor, is a passive two-terminal
+electrical component that stores energy in a magnetic field when electric
+current flows through it.[1] An inductor typically consists of an insulated wire
+wound into a coil around a core.
+
+When the current flowing through an inductor changes, the time-varying magnetic
+field induces an electromotive force (e.m.f.) (voltage) in the conductor,
+described by Faraday's law of induction. According to Lenz's law, the induced
+voltage has a polarity (direction) which opposes the change in current that
+created it. As a result, inductors oppose any changes in current through them.
+
+An inductor is characterized by its inductance, which is the ratio of the
+voltage to the rate of change of current. In the International System of Units
+(SI), the unit of inductance is the henry (H) named for 19th century American
+scientist Joseph Henry. In the measurement of magnetic circuits, it is
+equivalent to weber/ampere. Inductors have values that typically range from 1 µH
+(10^−6 H) to 20 H. Many inductors have a magnetic core made of iron or ferrite
+inside the coil, which serves to increase the magnetic field and thus the
+inductance. Along with capacitors and resistors, inductors are one of the three
+passive linear circuit elements that make up electronic circuits.
+
+Inductors are widely used in alternating current (AC) electronic equipment,
+particularly in radio equipment. They are used to block AC while allowing DC to
+pass; inductors designed for this purpose are called chokes. They are also used
+in electronic filters to separate signals of different frequencies, and in
+combination with capacitors to make tuned circuits, used to tune radio and TV
+receivers.
+
+`
+        }
+      ]
     },
     {
       id: 12,
-      name: "Inductors",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 13,
-      name: "Complex Resistance, Capacitive Reactance, Inductive Reactance",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 14,
       name: "Ohms Law's Law (AC/DC)",
       language: "js",
       tabs: [
@@ -418,7 +504,7 @@ would carry a current similar to that in the remaining two loads.
       ]
     },
     {
-      id: 15,
+      id: 13,
       name: "Apparent Power vs. Reactive Power vs. Real Power",
       language: "js",
       tabs: [
@@ -481,7 +567,7 @@ S = IE
       ]
     },
     {
-      id: 16,
+      id: 14,
       name: "Power Factor",
       language: "js",
       tabs: [
@@ -519,19 +605,45 @@ power.
       ]
     },
     {
-      id: 17,
+      id: 15,
       name: "Resonant Circuits",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/acres.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Electrical_resonance
+
+Electrical resonance occurs in an electric circuit at a particular resonant
+frequency when the impedances or admittances of circuit elements cancel each
+other. In some circuits, this happens when the impedance between the input and
+output of the circuit is almost zero and the transfer function is close to one.
+[1]
+
+Resonant circuits exhibit ringing and can generate higher voltages and currents
+than are fed into them. They are widely used in wireless (radio) transmission
+for both transmission and reception.
+
+`
+        }
+      ]
     },
     {
-      id: 18,
-      name: "Two-port networks and filters",
+      id: 16,
+      name: "Passive Filters",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://sub.allaboutcircuits.com/images/quiz/02098x02.png",
+          name: "Question",
+          data:
+`Source: `
+        }
+      ]
     },
     {
-      id: 19,
+      id: 17,
       name: "Phasor Diagram",
       language: "js",
       tabs: [
@@ -548,13 +660,76 @@ directional relationship between two or more alternating quantities
       ]
     },
     {
-      id: 20,
+      id: 18,
       name: "Impedance (Resistors, Capacitors, Inductors)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "http://www.animations.physics.unsw.edu.au/jw/images/AC_files/AC5.gif",
+          name: "Question",
+          data:
+`Source: http://www.animations.physics.unsw.edu.au/jw/AC.html
+
+The ratio of voltage to current in a resistor is its
+resistance. Resistance does not depend on frequency, and in resistors the two
+are in phase.
+
+So impedance is the general name we give to the ratio of voltage to current. It
+has the symbol Z. Resistance is a special case of impedance. Another special
+case is that in which the voltage and current are out of phase by 90°: this is
+an important case because when this happens, no power is lost in the circuit. In
+this case where the voltage and current are out of phase by 90°, the ratio of
+voltage to current is called the reactance, and it has the symbol X.
+
+
+The impedance is the general term for the ratio of voltage to current.
+Resistance is the special case of impedance when φ = 0, reactance the special
+case when φ = ± 90°. It is easy to remember that the voltage on the capacitor is
+behind the current, because the charge doesn't build up until after the current
+has been flowing for a while.
+
+It is easy to remember the frequency dependence by thinking of the DC (zero
+frequency) behaviour: at DC, an inductance is a short circuit (a piece of wire)
+so its impedance is zero. At DC, a capacitor is an open circuit, as its circuit
+diagram shows, so its impedance goes to infinity.
+
+the capacitive reactance Xc as the ratio of the magnitude of the voltage to
+magnitude of the current in a capacitor. From the equation above, we see that
+Xc = 1/ωC. Now we can rewrite the equation above to make it look like Ohm's law.
+The voltage is proportional to the current, and the peak voltage and current are
+related by:
+
+Vm = Xc * Im
+
+For a capacitor, the ratio of voltage to current decreases with frequency.
+
+We define the inductive reactance Xl as the ratio of the magnitudes of the
+voltage and current, and from the equation above we see that Xl = ωL. Again we
+note the analogy to Ohm's law: the voltage is proportional to the current, and
+the peak voltage and currents are related by:
+
+Vm = Xl * Im
+
+For an inductor, the ratio of voltage to current increases with frequency
+
+(Note: Vm and Im are peak values)
+
+
+Complex impedance (use the complex plane)
+Xl  =  jωL
+Xc  =  -j*(1/ωC)  =  1/jωC (the capacitor has a negative imaginary impedance)
+
+The algebra is relatively simple. The magnitude of any complex quantity gives
+the magnitude of the quantity it represents, the phase angle its phase angle.
+Its real component is the component in phase with the reference phase, and the
+imaginary component is the component that is 90° ahead.
+
+`
+        }
+      ]
     },
     {
-      id: 21,
+      id: 19,
       name: "Maxwell's Equations",
       language: "js",
       tabs: [
@@ -567,7 +742,7 @@ directional relationship between two or more alternating quantities
       ]
     },
     {
-      id: 22,
+      id: 20,
       name: "Types of Motors",
       language: "js",
       tabs: [
@@ -612,7 +787,7 @@ respectively referred to as actuators and transducers.
       ]
     },
     {
-      id: 23,
+      id: 21,
       name: "Transistors",
       language: "js",
       tabs: [
@@ -673,7 +848,7 @@ control a current between source and drain.
       ]
     },
     {
-      id: 24,
+      id: 22,
       name: "Transformer Types and Applications",
       language: "js",
       tabs: [
@@ -708,7 +883,7 @@ the power grid.
       ]
     },
     {
-      id: 25,
+      id: 23,
       name: "Electricity Distribution",
       language: "js",
       tabs: [
@@ -722,7 +897,7 @@ the power grid.
       ]
     },
     {
-      id: 26,
+      id: 24,
       name: "Oscillator Circuits (Harmonic)",
       language: "js",
       tabs: [
@@ -760,7 +935,7 @@ Oscillators
       ]
     },
     {
-      id: 27,
+      id: 25,
       name: "Sensors",
       language: "js",
       tabs: [
@@ -803,7 +978,7 @@ and sensitivity compared with macroscopic approaches.[3][4]
       ]
     },
     {
-      id: 28,
+      id: 26,
       name: "Electronic Switches",
       language: "js",
       tabs: [
@@ -820,6 +995,46 @@ and sensitivity compared with macroscopic approaches.[3][4]
 	•	Transistors: Source: https://en.wikipedia.org/wiki/Transistor 
 	  ◦	A transistor is a semiconductor device used to amplify or switch
       electronic signals and electrical power.
+`
+        }
+      ]
+    },
+    {
+      id: 27,
+      name: "Laplace vs. Fourier vs. Z transforms",
+      language: "js",
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source:
+
+The Laplace and Fourier transforms are continuous (integral) transforms of
+continuous functions.
+
+The Laplace transform maps a function 𝑓(𝑡) to a function F(s)𝐹(𝑠) of the complex
+variable s, where 𝑠=σ+𝑗ω.
+
+Since the derivative 𝑓˙(𝑡)=𝑑𝑓(𝑡)/𝑑𝑡 maps to 𝑠𝐹(𝑠), the Laplace transform of a
+linear differential equation is an algebraic equation. Thus, the Laplace
+transform is useful for, among other things, solving linear differential
+equations.
+
+If we set the real part of the complex variable s to zero, σ=0, the result is
+the Fourier transform 𝐹(𝑗ω) which is essentially the frequency domain
+representation of 𝑓(𝑡) (note that this is true only if for that value of σσ the
+formula to obtain the Laplace transform of 𝑓(𝑡) exists, i.e., it does not go to
+infinity).
+
+The Z transform is essentially a discrete version of the Laplace transform and,
+thus, can be useful in solving difference equations, the discrete version of
+differential equations. The Z transform maps a sequence 𝑓[𝑛] to a continuous
+function 𝐹(𝑧) of the complex variable 𝑧=𝑟𝑒𝑗Ω.
+
+If we set the magnitude of z to unity, 𝑟=1, the result is the Discrete Time
+Fourier Transform (DTFT) 𝐹(𝑗Ω) which is essentially the frequency domain
+representation of 𝑓[𝑛].
+
 `
         }
       ]
