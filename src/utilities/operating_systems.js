@@ -717,31 +717,507 @@ asynchronous time-dependent hardware interface.[2]
       id: 28,
       name: "Single HDD vs. RAIDs",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://image.slidesharecdn.com/caissac10-2012-pub-121011023618-phpapp02/95/progress-and-outlook-of-hdd-technology-xiaodong-che-2-728.jpg?cb=1349923790",
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Hard disk drives: these drives have been the main form of persistent data
+storage in computer systems for decades and much of the development of file
+system technology (coming soon) is predicated on their behavior.
+
+The Interface: [applies to all modern disk drives]
+•	The drive consists of a large number of sectors (512-byte blocks), each of
+  which can be read or written. 
+•	The sectors are numbered from 0 to n − 1 on a disk with n sectors. 
+•	Thus the address space of the drive can be viewed as an array of sectors from
+  0 to n-1 
+•	Notes: 
+  ◦	Multi-sector operations are possible; indeed, many file systems will read or
+    write 4KB at a time (or more). However, when updating the disk, the only
+    guarantee drive manufactures make is that a single 512-byte write is atomic
+    (i.e., it will either complete in its entirety or it won’t complete at all);
+    thus, if an untimely power loss occurs, only a portion of a larger write may
+    complete (sometimes called a torn write). 
+  ◦	There are some assumptions most clients of disk drives make, but that are
+    not specified directly in the interface. Specifically, 
+    ▪	One can usually assume that accessing two blocks that are near one-another
+      within the drive’s address space will be faster than accessing two blocks
+      that are far apart. 
+    ▪	One can also usually assume that accessing blocks in a contiguous chunk
+      (i.e., a sequential read or write) is the fastest access mode, and usually
+      much faster than any more random access pattern. 
+
+Basic Components of a Modern Disk
+•	Platter: 
+  ◦	a circular hard surface on which data is stored persistently by inducing
+    magnetic changes to it. 
+  ◦	A disk may have one or more platters; each platter has 2 sides, each of
+    which is called a surface. 
+  ◦	These platters are usually made of some hard material (such as aluminum),
+    and then coated with a thin magnetic layer that enables the drive to
+    persistently store bits even when the drive is powered off. 
+•	Spindle: 
+  ◦	The platters are all bound together around the spindle, which is connected
+    to a motor that spins the platters around (while the drive is powered on) at
+    a constant (fixed) rate. 
+  ◦	The rate of rotation is often measured in rotations per minute (RPM), and
+    typical modern values are in the 7,200 RPM to 15,000 RPM range. 
+•	Track: 
+  ◦	Data is encoded on each surface in concentric circles of sectors; we call
+    one such concentric circle a track. 
+  ◦	A single surface contains many thousands and thousands of tracks, tightly
+    packed together, with hundreds of tracks fitting into the width of a human
+    hair. 
+•	Disk Head: 
+  ◦	To read and write from the surface, we need a mechanism that allows us to
+    either sense (i.e., read) the magnetic patterns on the disk or to induce a
+    change in (i.e., write) them. The is done by the disk head. 
+  ◦	There is one such head per surface of the drive. 
+•	Disk Arm: 
+  ◦	The disk head is attached to a single disk arm, which moves across the
+    surface to position the head over the desired track. 
+
+
+
+Redundant Arrays of Inexpensive Disks (RAIDs)
+CRUX: HOW TO MAKE A LARGE, FAST, RELIABLE DISK
+Redundant Array of Inexpensive Disks better known as RAID [P+88], a technique to
+use multiple disks in concert to build a faster, bigger, and more reliable disk
+system.
+•	Externally, a RAID looks like a disk: a group of blocks one can read or write. 
+•	Internally, the RAID is a complex beast, consisting of multiple disks, memory
+  (both volatile and non-), and one or more processors to manage the system. 
+  ◦	A hardware RAID is very much like a computer system, specialized for the
+    task of managing a group of disks. 
+•	RAID Advantages over a single disk 
+  ◦	Performance: Using multiple disks in parallel can greatly speed up I/O times 
+  ◦	Capacity: Large data sets demand large disks 
+  ◦	Reliability: with some form of redundancy, RAIDs can tolerate the loss of a
+    disk and keep operating as if nothing were wrong. 
+•	Transparency: 
+  ◦	Amazingly, RAIDs provide these advantages transparently to systems that use
+    them, i.e., a RAID just looks like a big disk to the host system. 
+  ◦	The beauty of transparency, of course, is that it enables one to simply
+    replace a disk with a RAID and not change a single line of software; the
+    operating system and client applications continue to operate without
+    modification. 
+  ◦	In this manner, transparency greatly improves the deployability of RAID,
+    enabling users and administrators to put a RAID to use without worries of
+    software compatibility 
+
+Tip: Transparency enables deployment
+•	When considering how to add new functionality to a system, one should always
+  consider whether such functionality can be added transparently, in a way that
+  demands no changes to the rest of the system. 
+•	RAID is a perfect example, and certainly its transparency contributed to its
+  success; administrators could install a SCSI-based RAID storage array instead
+  of a SCSI disk, and the rest of the system (host computer, OS, etc.) did not
+  have to change one bit to start using it. 
+
+Interface and RAID Internals
+•	To a file system above, a RAID looks like a big, (hopefully) fast, and
+  (hopefully) reliable disk. Just as with a single disk, it presents itself as a
+  linear array of blocks, each of which can be read or written by the file
+  system (or other client). 
+•	When a file system issues a logical I/O request to the RAID, 
+  ◦	the RAID internally must calculate which disk (or disks) to access in order
+    to complete the request, and then issue one or more physical I/Os to do so. 
+  ◦	The exact nature of these physical I/Os depends on the RAID level 
+•	Example: consider a RAID that keeps two copies of each block (each one on a
+  separate disk); when writing to such a mirrored RAID system, the RAID will
+  have to perform two physical I/Os for every one logical I/O it is issued. 
+•	Hardware: At a high level, a RAID is very much a specialized computer system:
+  it has a processor, memory, and disks; however, instead of running
+  applications, it runs specialized software designed to operate the RAID 
+  ◦	A RAID system is often built as a separate hardware box, with a standard
+    connection (e.g., SCSI, or SATA) to a host. 
+  ◦	Microcontroller that runs firmware to direct the operation of the RAID 
+  ◦	Volatile memory such as DRAM to buffer data blocks as they are read and
+    written 
+  ◦	In some cases, non-volatile memory to buffer writes safely 
+  ◦	Perhaps even specialized logic to perform parity calculations 
+
+Fault Model [RAIDs are designed to detect and recover from certain kinds of disk
+faults]
+
+Tim note: See RAID levels
+
+`
+        }
+      ]
     },
     {
       id: 29,
-      name: "What is the File System, Ideal file system, File System Mental Model",
+      name: "File System Mental Model",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+•	Two aspects of file systems: 
+  ◦	The data structures of the file system 
+    ▪	What types of on-disk structures are utilized by the file system to
+      organize its data and metadata? 
+    ▪	The first file systems we’ll see (including vsfs below) employ simple
+      structures, like arrays of blocks or other objects, whereas more
+      sophisticated file systems, like SGI’s XFS, use more complicated
+      tree-based structures 
+  ◦	The access methods of the file system 
+    ▪	How does it map the calls made by a process, such as open(), read(),
+      write(), etc., onto its structures? 
+    ▪	Which structures are read during the execution of a particular system
+      call? Which are written? 
+    ▪	How efficiently are all of these steps performed? 
+Aside: Mental Models of File Systems
+•	For file systems, your mental model should eventually include answers to
+  questions like: 
+  ◦	what on-disk structures store the file system’s data and metadata? 
+  ◦	What happens when a process opens a file? 
+  ◦	Which on-disk structures are accessed during a read or write? 
+
+Overall Organization (a simplified version of a typical UNIX file system )
+•	We now develop the overall on-disk organization of the data structures of the
+  vsfs file system 
+•	First, we divide the disk into blocks; simple file systems use just one block
+  size, and that is what we will do here. 
+  ◦	Thus, our view of the disk partition where we’re building our file system is
+    simple: 
+    ▪	A series of blocks, each of size 4 KB. 
+    ▪	The blocks are addressed from 0 to N −1, in a partition of size N 4-KB
+      blocks. 
+    ▪	Assume we have a really small disk, with just 64 blocks: 
+•	Most of the space in any file system is (and should be) user data. Let’s call
+  the region of the disk we use for user data the data region, and again for
+  simplicity, reserve a fixed portion of the disk for these blocks, say the last
+  56 of 64 blocks on the disk: 
+•	A file system has to track information about each file. To store this
+  metadata, file systems usually have a structure called an inode. We will
+  reserve 5 of our blocks for inodes. We will call this portion of the disk the
+  inode table. 
+  ◦	Note: inodes are typically not that big, for example 128 or 256 bytes. 
+  ◦	Assuming 256 bytes per inode, a 4KB block can hold 16 inodes, and our file
+    system above contains 80 total inodes. 
+  ◦	In our simple file system, built on a tiny 64-block partition, this number
+    represents the maximum number of files we can have in our file system;
+    however, do note that the same file system, built on a larger disk, could
+    simply allocate a larger inode table and thus accommodate more files. 
+•	We need an allocation structure to track whether inodes or data blocks are
+  free or allocated. Many allocation-tracking methods are possible. Example: 
+  ◦	We could use a free list that points to the first free block, which then
+    points to the next free block, and so forth 
+  ◦	We instead choose a simple and popular structure known as a bitmap, one for
+    the data region (the data bitmap), and one for the inode table (the inode
+    bitmap). 
+    ▪	Each bit in the bitmap will indicate whether the corresponding
+      object/block is free (0) or in-use (1). 
+  ◦	Note: 
+    ▪	A 4KB bitmap can track the allocation 32K objects, yet we only have 80
+      inodes and 56 data blocks. We are just using the entire 4KB block for each
+      bitmap for simplicity. 
+•	We reserve this for the superblock, denoted by an S in the diagram below. 
+  ◦	The superblock contains information about this particular file system,
+    including, for example: 
+    ▪	how many inodes and data blocks are in the file system (80 and 56,
+      respectively in this instance) 
+    ▪	where the inode table begins (block 3), and so forth 
+    ▪	It will likely also include a magic number of some kind to identify the
+      file system type (in this case, vsfs). 
+  ◦	Thus, when mounting a file system, the operating system will read the
+    superblock first, to initialize various parameters, and then attach the
+    volume to the file-system tree. When files within the volume are accessed,
+    the system will thus know exactly where to look for the needed on-disk
+    structures. 
+￼    * See Diagram *
+ 
+
+
+`
+        }
+      ]
     },
     {
       id: 30,
       name: "What is a File, Directory, Directory Tree",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Files and Directories
+•	Two key abstractions have developed over time in the virtualization of
+  storage. 
+  ◦	File: a linear array of bytes each of which you can read or write 
+    ▪	Each file has some kind of low-level name, usually a number of some kind;
+      often, the user is not aware of this name. This name is often called its
+      inode number. 
+    ▪	In most systems, the OS does not know much about the structure of the file
+      (e.g., whether it is a picture, or a text file, or C code); rather, the
+      responsibility of the file system is simply to store such data
+      persistently on disk and make sure that when you request the data again,
+      you get what you put there in the first place. 
+  ◦	Directory: 
+    ▪	A directory also has a low-level name (i.e., an inode number), but its
+      contents are quite specific: it contains a list of (user-readable name,
+      low-level name) pairs. 
+    ▪	For example, let’s say there is a file with the low-level name “10”, and
+      it is referred to by the user-readable name of “foo”. 
+      ▪	The directory that “foo” resides in thus would have an entry (“foo”,
+        “10”) that maps the user-readable name to the low-level name. 
+    ▪	Each entry in a directory refers to either files or other directories. 
+    ▪	By placing directories within other directories, users are able to build
+      an arbitrary directory tree (or directory hierarchy), under which all
+      files and directories are stored. 
+•	Directory trees: 
+  ◦	The directory hierarchy starts at a root directory (in UNIX-based systems,
+    the root directory is simply referred to as /) and uses some kind of
+    separator to name subsequent sub-directories until the desired file or
+    directory is named. 
+  ◦	Example:  * See Diagram *
+  ◦	Note: Directories and files can have the same name as long as they are in
+          different locations in the file-system tree 
+•	The parts of a file name: [separated by a period] 
+  ◦	The first part is an arbitrary name, whereas the second part of the file
+    name is usually used to indicate the type of the file 
+  ◦	However, this is usually just a convention: there is usually no enforcement
+    that the data contained in a file named main.c is indeed C source code. 
+•	Notes: 
+  ◦	Names are important in systems as the first step to accessing any resource
+    is being able to name it. 
+  ◦	In UNIX systems, virtually everything that you can think of is named through
+    the file system. Beyond just files, devices, pipes, and even processes [K84]
+    can be found in what looks like a plain old file system. 
+  ◦	In UNIX systems, the file system thus provides a unified way to access files
+    on disk, USB stick, CD-ROM, many other devices, and in fact many other
+    things, all located under the single directory tree. 
+
+
+`
+        }
+      ]
     },
     {
       id: 31,
-      name: "Hard link vs. Link",
+      name: "Hard link vs. Symbolic Link",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://miro.medium.com/max/826/1*0jTNXBcldvnA346Trvc7Pw.png",
+          name: "Question",
+          data:
+`Source: http://linuxcommand.org/tlcl.php
+
+•	Symbolic Links 
+  ◦	As we look around, we are likely to see a directory listing with an entry
+    like this: 
+    ▪	 lrwxrwxrwx 1 root root 11 2007-08-11 07:34 libc.so.6 -> libc-2.6.so 
+  ◦	Notice how the first letter of the listing is “l” and the entry seems to
+    have two filenames? This is a special kind of a file called a symbolic link
+    (also known as a soft link or symlink). In most Unix-like systems it is
+    possible to have a file referenced by multiple names. While the value of
+    this may not be obvious, it is really a useful feature. 
+    ▪	The directory listing above (from the /lib directory of a Fedora system)
+      shows a symbolic link called “libc.so.6” that points to a shared library
+      file called “libc-2.6.so.” This means that programs looking for
+      “libc.so.6” will actually get the file “libc-2.6.so.” 
+•	Hard Links 
+  ◦	There is a second type of link called a hard link. Hard links also allow
+    files to have multiple names, but they do it in a different way. 
+
+•	Hard Links 
+  ◦	Hard links are the original Unix way of creating links, compared to symbolic
+    links, which are more modern. By default, every file has a single hard link
+    that gives the file its name. When we create a hard link, we create an
+    additional directory entry for a file. Hard links have two important
+    limitations: 
+    1.	A hard link cannot reference a file outside its own file system. This
+        means a link cannot reference a file that is not on the same disk
+        partition as the link itself. 
+    2.	A hard link may not reference a directory. 
+  ◦	A hard link is indistinguishable from the file itself. Unlike a symbolic
+    link, when you list a directory containing a hard link you will see no
+    special indication of the link. When a hard link is deleted, the link is
+    removed but the contents of the file itself continue to exist (that is, its
+    space is not deallocated) until all links to the file are deleted. 
+  ◦	It is important to be aware of hard links because you might encounter them
+    from time to time, but modern practice prefers symbolic links, which we will
+    cover next. 
+•	Symbolic Links 
+  ◦	Symbolic links were created to overcome the limitations of hard links.
+    Symbolic links are a special type of file that contains a text pointer to
+    the target file or directory. In this regard, they operate in much the same
+    way as a Windows shortcut though of course, they predate the Windows feature
+    by many years ;-) 
+  ◦	A file pointed to by a symbolic link, and the symbolic link itself are
+    largely indistinguishable from one another. For example, if you write
+    something to the symbolic link, the referenced file is written to. However
+    when you delete a symbolic link, only the link is deleted, not the file
+    itself. If the file is deleted before the symbolic link, the link will
+    continue to exist, but will point to nothing. In this case, the link is said
+    to be broken. In many implementations, the ls command will display broken
+    links in a distinguishing color, such as red, to reveal their presence. 
+  ◦	The concept of links can seem very confusing, but hang in there. We're going
+    to try all this stuff and it will, hopefully, become clear. 
+•	Hard links and Inodes 
+  ◦	When thinking about hard links, it is helpful to imagine that files are made
+    up of two parts: the data part containing the file's contents and the name
+    part which holds the file's name. 
+  ◦	When we create hard links, we are actually creating additional name parts
+    that all refer to the same data part. The system assigns a chain of disk
+    blocks to what is called an inode, which is then associated with the name
+    part. Each hard link therefore refers to a specific inode containing the
+    file's contents. 
+  ◦	The ls command has a way to reveal this information. It is invoked with the
+    “-i” option (same inode number means same file): 
+    ▪	$ ls -li 
+•	Removing Files and Directories 
+  ◦	One thing to remember about symbolic links is that most file operations are
+    carried out on the link's target, not the link itself. rm is an exception.
+    When you delete a link, it is the link that is deleted, not the target. 
+
+Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+•	Hard links are somewhat limited: 
+  ◦	You can’t create one to a directory (for fear that you will create a cycle
+    in the directory tree); 
+  ◦	You can’t hard link to files in other disk partitions (because inode numbers
+    are only unique within a particular file system, not across file systems);
+    etc. 
+•	Symbolic links 
+  ◦	Symbolic links were created because to the limitations of hard links
+  ◦	They are sometimes called soft links
+`
+        }
+      ]
     },
     {
       id: 32,
       name: "Inode vs Inumber",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://cdn-images-1.medium.com/max/1600/1*dsoSz5SSHZsxtLNRhcFsHg.png",
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+File Organization: The Inode
+•	The inode is the generic name that is used in many file systems to describe
+  the structure that holds the metadata for a given file, such as its 
+  ◦	Length 
+  ◦	Permissions 
+  ◦	location of its constituent blocks. 
+•	The name goes back at least as far as UNIX (and probably further back to
+  Multics if not earlier systems); it is short for index node, as the inode
+  number is used to index into an array of on-disk inodes in order to find the
+  inode of that number. 
+•	As we’ll see, design of the inode is one key part of file system design. 
+•	Most modern systems have some kind of structure like this for every file they
+  track, but perhaps call them different things (such as dnodes, fnodes, etc.). 
+•	Inumber: 
+  ◦	Each inode is implicitly referred to by a number (called the inumber), which
+    we’ve earlier called the low-level name of the file. 
+  ◦	In vsfs (and other simple file systems), given an i-number, you should
+    directly be able to calculate where on the disk the corresponding inode is
+    located. 
+•	Example: vsfs inode layout (closeup of disk above) 
+￼* See diagram *
+  ◦	Inode table size: 20KB (5 4KB blocks); thus, 80 inodes (assuming each inode
+    is 256 bytes). The inode table ranges from 12KB to 32KB 
+  ◦	To read inode number 32 the file system would have to calculate: 
+    ▪	Offset in the inode region (32 * sizeof(inode) or 8192), and add it to the
+      starting address of the inode table (12KB). Thus, the byte address of the
+      desired block of inodes is 20KB 
+    ▪	Recall that disks are not byte addressable, but rather consist of a large
+      number of addressable sectors, usually 512 bytes. Thus, to fetch the block
+      of inodes that contains inode 32, the file system would have to issue a
+      read to sector 20KB/0.5KB or 40 to fetch the desired inode block. 
+    ▪	More generally the sector address iaddr of the inode can be calculated as
+      follows: 
+￼* See Diagram *
+•	What’s inside an inode: (example from an ext2 inode) 
+  ◦	Note: Type info is kept in the directory entry, and thus is not found in the
+    inode itself 
+￼* See diagram *
+  ◦	Inside each inode is virtually all of the information you need about a file: 
+    ▪	Its type (e.g., regular file, directory, etc.) 
+    ▪	Its size 
+    ▪	The number of blocks allocated to it 
+    ▪	Protection information (such as who owns the file, as well as who can
+      access it) 
+    ▪	Some time information, including when the file was created, modified, or
+      last accessed 
+    ▪	Information about where its data blocks reside on disk (e.g., pointers of
+      some kind) 
+  ◦	We refer to all such information about a file as metadata; in fact, any
+    information inside the file system that isn’t pure user data is often
+    referred to as such. 
+•	How should an inode refer to where data block are? 
+  ◦	One of the most important decisions in the design of the inode is how it
+    refers to where data blocks are. 
+  ◦	One simple approach would be to have one or more direct pointers (disk
+    addresses) inside the inode; each pointer refers to one disk block that
+    belongs to the file. 
+  ◦	Such an approach is limited: for example, if you want to have a file that is
+    really big (e.g., bigger than the size of a block multiplied by the number
+    of direct pointers), you are out of luck. 
+•	 The Multi-Level Index 
+  ◦	To support bigger files, file system designers have had to introduce
+    different structures within inodes. One common idea is to have a special
+    pointer known as an indirect pointer. 
+    ▪	Instead of pointing to a block that contains user data, it points to a
+      block that contains more pointers, each of which point to user data. 
+  ◦	Thus, an inode may have some fixed number of direct pointers (e.g., 12), and
+    a single indirect pointer. If a file grows large enough, an indirect block
+    is allocated (from the data-block region of the disk), and the inode’s slot
+    for an indirect pointer is set to point to it. 
+    ▪	Example: 
+      ▪	4-KB blocks and 4-byte disk addresses, that adds another 1024 pointers
+        (4KB/4B) 
+      ▪	Thus, the file can grow to be (12 + 1024) * 4KB or 4,144KB 
+        ▪	Originally, it was just 48KB max 
+  ◦	To support even larger files, you can add another pointer to the inode: The
+    double indirect pointer 
+    ▪	This pointer refers to a block that contains pointers to indirect blocks,
+      each of which contain pointers to data blocks. 
+    ▪	A double indirect block thus adds the possibility to grow files with an
+      additional 1024*1024 or 1-million 4KB blocks, in other words supporting
+      files that are over 4GB in size. 
+◦	To support even larger files, you can add another pointer to the inode: The
+  triple indirect pointer 
+◦	Overall, this imbalanced tree is referred to as the multi-level index approach
+  to pointing to file blocks 
+◦	Many file systems use a multi-level index, including commonly-used file
+  systems such as Linux ext2 [P09] and ext3, NetApp’s WAFL, as well as the
+  original UNIX file system. Other file systems, including SGI XFS and Linux
+  ext4, use extents instead of simple pointers 
+◦	Why use an imbalanced tree like this? 
+  ▪	Well, as it turns out, many researchers have studied file systems and how
+    they are used, and virtually every time they find certain “truths” that
+    hold across the decades. One such finding is that most files are small. This
+    imbalanced design reflects such a reality; 
+  ▪	if most files are indeed small, it makes sense to optimize for this case.
+    Thus, with a small number of direct pointers (12 is a typical number), an
+    inode can directly point to 48 KB of data, needing one (or more) indirect
+    blocks for larger files. 
+  ▪	See Agrawal et. al [A+07] for a recent study; Figure 40.2 summarizes those
+    results. 
+￼* See diagram *
+  ▪	Note: Of course, in the space of inode design, many other possibilities
+    exist; after all, the inode is just a data structure, and any data structure
+    that stores the relevant information, and can query it effectively, is
+    sufficient. As file system software is readily changed, you should be
+    willing to explore different designs should workloads or technologies
+    change. 
+
+`
+        }
+      ]
     }
   ]
 };

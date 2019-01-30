@@ -122,9 +122,9 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 27. What does a canonical device consist of?
 28. Device Driver
 29. Single HDD vs. RAIDs
-30. What is the File System, Ideal file system, File System Mental Model
+30. File System Mental Model
 31. What is a File, Directory, Directory Tree
-32. Hard link vs. Link
+32. Hard link vs. Symbolic Link
 33. Inode vs Inumber
 
 ### Unix Command Line
