@@ -886,26 +886,240 @@ TIP: use atomic operations
     },
     {
       id: 19,
-      name: "Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore",
+      name: "Multi-threading Data Structures, Locks, Condition Variables, Semaphores",
       language: "js",
       tabs: [
         {
+          image_src: "https://isocpp.org/files/img/semaphores_as_bouncers.png",
           name: "Question",
           data:
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
 Interlude: Thread API (see the POSIX pthread library)
+•	Thread Creation: pthread_create()
+•	Thread Completion: If you want to wait for a thread to complete, you must call
+  the pthread_join() routine
+•	Locks [provide mutual exclusion to a critical section]:
+  ⁃	pthread_mutex_lock() // acquire lock if available
+  ⁃	pthread_mutex_unlock() // release lock
+•	Condition Variables
+  ⁃	Condition variables are useful when some kind of signaling must take place
+    between threads, if one thread is waiting for another to do something before
+    it can continue.
+  ⁃	pthread_cond_wait() // puts the calling thread to sleep, and thus waits for
+    some other thread to signal it, usually when something in the program has
+    changed that the now-sleeping thread might care about. It also releases the
+    lock.
+  ⁃	pthread_cond_signal() //
+  ⁃	when signaling, we always make sure to have the lock held. This ensures that
+    we don’t accidentally introduce a race condition into our code.
+  ⁃	To use a condition variable, one has to in addition have a lock that is
+    associated with this condition. When calling either of the above routines,
+    this lock should be held. 
 
-Locks (mutex):
-Condition Variables:
-Semaphore:
+Aside: Thread API Guidelines [when using POSIX or any other thread library]
+•	Keep it simple: 
+  ◦	Above all else, any code to lock or signal between threads should be as
+    simple as possible. Tricky thread interactions lead to bugs. 
+•	Minimize thread interactions: 
+  ◦	Try to keep the number of ways in which threads interact to a minimum. 
+  ◦	Each interaction should be carefully thought out and constructed with tried
+    and true approaches (many of which we will learn about in the coming
+    chapters). 
+•	Initialize locks and condition variables: 
+  ◦	Failure to do so will lead to code that sometimes works and sometimes fails
+    in very strange ways. 
+•	Check your return codes: 
+  ◦	Failure to do so will lead to bizarre and hard to understand behavior 
+•	Be careful with how you pass arguments to, and return values from, threads: 
+  ◦	In particular, any time you are passing a reference to a variable allocated
+    on the stack, you are probably doing something wrong. 
+•	Each thread has its own stack: 
+  ◦	Thus, if you have a locally-allocated variable inside of some function a
+    thread is executing, it is essentially private to that thread; no other
+    thread can (easily) access it. 
+  ◦	To share data between threads, the values must be in the heap or otherwise
+    some locale that is globally accessible. 
+•	Always use condition variables to signal between threads: 
+  ◦	While it is often tempting to use a simple flag, don’t do it. 
+•	Use the manual pages: 
+  ◦	On Linux, in particular, the pthread man pages are highly informative and
+    discuss much of the nuances presented here, often in even more detail. Read
+    them carefully! 
 
-Lock-based concurrent data structures: Adding locks to a data structure to make
-it usable by threads makes the structure thread safe.
+Locks
+Locks: The Basic Idea
+•	What they do: Locks provide some minimal amount of control over scheduling to
+  programmers. 
+  ◦	In general, we view threads as entities created by the programmer but
+    scheduled by the OS, in any fashion that the OS chooses. 
+  ◦	Locks yield some of that control back to the programmer; by putting a lock
+    around a section of code, the programmer can guarantee that no more than a
+    single thread can ever be active within that code. 
+•	A lock is just a variable, and thus to use one, you must declare a lock
+  variable 
+  ◦	The lock variable holds the state of the lock at any instant in time. It is
+    either available (or unlocked or free) and thus no thread holds the lock, or
+    acquired (or locked or held) and presumably is in a critical section. 
+  ◦	We could store other information in the data type as well, such as which
+    thread holds the lock, or a queue for ordering lock acquisition, but
+    information like that is hidden from the user of the lock. 
+•	The semantics of the loc() and unlock() routines are simple 
+  ◦	lock(): 
+    ▪	Calling the routine lock() tries to acquire the lock 
+    ▪	If no other thread holds the lock (i.e., it is free), the thread will
+      acquire the lock and enter the critical section. This thread is sometimes
+      said to be the owner of the lock 
+    ▪	If another thread then calls lock() on the same lock variable (mutex in
+      this example), it will not return while the lock is held by another thread 
+    ▪	This way, other threads are prevented from entering the critical section
+      while the first thread that holds the lock is in there 
+  ◦	unlock() 
+    ▪	Once the owner of the lock calls unlock(), the lock is now available
+      (free) again 
+    ▪	If no other threads are waiting for the lock (i.e., no other thread has
+      called lock() and is stuck therein), the state of the lock is simply
+      changed to free. 
+    ▪	If there are waiting threads (stuck in lock()), one of them will
+      (eventually) notice (or be informed of) this change of the lock’s state,
+      acquire the lock, and enter the critical section. 
 
-1. Counters
-2. Linked-list
-3. Queues
-4. Hash Table
+Pthread Locks
+•	The name that the POSIX library uses for a lock is a mutex, as it is used to
+  provide mutual exclusion between threads, i.e., if one thread is in the
+  critical section, it excludes the others from entering until it has completed
+  the section. 
+Lock-based Concurrent Data Structures (Tim note: see notes for code)
+•	Adding locks to a data structure to make it usable by threads makes the
+  structure thread safe.
+  •	Counters
+  •	Linked Lists
+  •	Queues
+  •	Hash Table
+
+Condition Variables
+•	There are many cases where a thread wishes to check whether a condition is
+  true before continuing its execution. For example, a parent thread might wish
+  to check whether a child thread has completed before continuing (this is often
+  called a join()) 
+•	One way to do it is with a shared variable; however, this is hugely
+  inefficient as the parent spins and wastes CPU time. In some cases, it can be
+  incorrect as well. 
+
+The Crux: How to wait for a condition in a multi-threaded program
+Definition and Routines
+•	To wait for a condition to become true, a thread can make use of a condition
+  variable. 
+  ◦	A condition variable is an explicit queue that threads can put themselves on
+    when some state of execution (i.e., some condition) is not as desired (by
+    waiting on the condition); some other thread, when it changes said state,
+    can then wake one (or more) of those waiting threads (by signaling on the
+    condition) and thus allow them to continue . 
+•	The idea goes back to Dijkstra’s use of “private semaphores”; a similar idea
+  was later named a “condition variable” by Hoare in his work on monitors. 
+•	How to declare a condition variable: [note: proper initialization is also
+  required] 
+  ◦	Pthread_cond_t c; // this declares c as a condition variable 
+•	Operations: condition variables have two operations 
+  ◦	The wait() call: executed when a thread wishes to put itself to sleep 
+  ◦	The signal() call: executed when a thread has changed something in the
+    program and thus wants to wake a sleeping thread waiting on this condition
+  ◦	Example: POSIX calls: 
+  pthread_cond_wait(pthread_cond_t *c, pthread_mutex_t *m)
+	pthread_cond_signal(pthread_cond_t *c)
+    ▪	Note: the wait call also takes a mutex as a parameter 
+      ▪	It assumes that this mutex is locked when wait() is called 
+      ▪	The responsibility of wait() is to release the lock and put the calling
+        thread to sleep (atomically) 
+      ▪	When the thread wakes up (after some other thread has signaled it), it
+        must re-acquire the lock before returning to the caller. 
+      ▪	This complexity prevents certain race conditions when a thread is trying
+        to put itself to sleep 
+
+TIP: always hold the lock when calling signal or wait
+◦	Although it is strictly not necessary in all cases, it is likely simplest and
+  best to hold the lock while signaling when using condition variables. 
+◦	Holding the lock while calling wait is mandated by the semantics of wait
+  because it: 
+  ◦	Assumes the locks is held when you call it 
+  ◦	Releases the lock when putting the caller to sleep 
+  ◦	Re-acquires the lock just before returning 
+
+Mesa semantics: 
+◦	Signaling a thread only wakes them up; it is thus a hint that the state of the
+  world has changed, but there is no guarantee that when the woken thread runs,
+  the state will still be as desired. 
+◦	This interpretation of what a signal means is often referred to as Mesa
+  semantics, after the first research that built a condition variable in such a
+  manner [LR80]; the contrast, referred to as Hoare semantics, is harder to
+  build but provides a stronger guarantee that the woken thread will run
+  immediately upon being woken [H74]. 
+◦	Virtually every system ever built employs Mesa semantics. 
+◦	Bottom line: Thanks to Mesa semantics, a simple rule to remember with
+  condition variables is to always use while loops. 
+  •	Sometimes you don’t have to recheck the condition, but it is always safe to
+    do so.
+
+
+Tip: Use While (Not If) For Conditions
+  •	When checking for a condition in a multi-threaded program, using a while
+    loop is always correct; using an if statement only might be, depending on
+    the semantics of signaling. Thus, always use while and your code will behave
+    as expected. 
+  •	Using while loops around conditional checks also handles the case where
+    spurious wakeups occur. 
+    •	In some thread packages, due to details of the implementation, it is
+      possible that two threads get woken up though just a single signal has
+      taken place. Spurious wakeups are further reason to re-check the condition
+      a thread is waiting on. 
+
+Semaphores
+Dijkstra and colleagues invented the semaphore as a single primitive for all
+things related to synchronization; as you will see, one can use semaphores as
+both locks and condition variables.
+•	The Crux: How to use Semaphores
+•	Semaphores: A Definition
+•	Semaphore: an object with an integer value that we can manipulate with two
+  routines; in the POSIX standard, these routines are sem_wait() and sem_post() 
+•	Initialization: Because the initial value of the semaphore determines its
+  behavior, before calling any other routine to interact with the semaphore, we
+  must first initialize it to some value. 
+•	Functions: After a semaphore is initialized, we can call one of two functions
+  to interact with it, sem_wait() or sem_post(). 
+* See Diagram *
+  •	sem_wait(): 
+    •	will either return right away (because the value of the semaphore was one
+      or higher when we called sem_wait()), or it will cause the caller to
+      suspend execution waiting for a subsequent post. 
+    •	Of course, multiple calling threads may call into sem wait(), and thus all
+      be queued waiting to be woken. 
+  •	sem_post(): 
+    •	it simply increments the value of the semaphore and then, if there is a
+      thread waiting to be woken, wakes one of them up. 
+•	Semaphore value: 
+  •	When negative: it is equal to the number of waiting threads 
+  •	Note: though the value generally isn’t seen by users of the semaphores, this
+    invariant is worth knowing and perhaps can help you remember how a semaphore
+    functions. 
+
+•	Binary Semaphores (Locks)
+* See Diagram *
+•	We are able to use semaphores as locks. Because locks only have two states
+  (held and not held), we sometimes call a semaphore used as a lock a binary
+  semaphore. 
+  •	Note that if you are using a semaphore only in this binary fashion, it
+    could be implemented in a simpler manner than the generalized semaphores we
+    present here. 
+•	How to use a semaphore as a lock: 
+  •	Initialize the semaphore at 1 
+  •	Surround the critical section with a sem_wait()/sem_post() pair  
+•	Semaphores For Ordering
+  •	We can use the semaphore as an ordering primitive (similar to our use of
+    condition variables earlier). 
+  •	In this pattern of usage, we often find one thread waiting for something to
+    happen, and another thread making that something happen and then signaling
+    that it has happened, thus waking the waiting thread. 
+
 `
         }
       ]
@@ -920,8 +1134,97 @@ it usable by threads makes the structure thread safe.
           data:
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
 
+
+Common Concurrency Problems
 Non-Deadlock Bugs
+•	We now discuss the two major types of non-deadlock bugs found by Lu et al.:
+  atomicity violation bugs and order violation bugs. 
+•	Atomicity-Violation Bugs [Use locks] 
+  ◦	More formal definition: “The desired serializability among multiple memory
+    accesses is violated (i.e. a code region is intended to be atomic, but the
+    atomicity is not enforced during execution).” 
+•	Order-Violation Bugs [Use condition variables (or semaphores)] 
+  ◦	More formal definition: “The desired order between two (groups of) memory
+    accesses is flipped (i.e., A should always be executed before B, but the
+    order is not enforced during execution)” 
+  ◦	Note: When ordering matters between threads, condition variables
+    (or semaphores) can come to the rescue. 
+•	Non-Deadlock Bugs: Summary 
+  ◦	A large fraction (97%) of non-deadlock bugs studied by Lu et al. are either
+    atomicity or order violations. Thus, by carefully thinking about these types
+    of bug patterns, programmers can likely do a better job of avoiding them. 
+  ◦	Moreover, as more automated code-checking tools develop, they should likely
+    focus on these two types of bugs as they constitute such a large fraction of
+    non-deadlock bugs found in deployment. 
 Deadlock Bugs
+•	Beyond the concurrency bugs mentioned above, a classic problem that arises in
+  many concurrent systems with complex locking protocols is known as deadlock.
+•	Deadlock Example:
+// Thread 1:
+pthread_mutex_lock(L1);
+pthread_mutex_lock(L2);
+
+// Thread 2:
+pthread_mutex_lock(L2);
+pthread_mutex_lock(L1);
+  •	Note that if this code runs, deadlock does not necessarily occur; rather, it
+    may occur, if, for example, Thread 1 grabs lock L1 and then a context switch
+    occurs to Thread 2. At that point, Thread 2 grabs L2, and tries to acquire
+    L1. Thus we have a deadlock, as each thread is waiting for the other and
+    neither can run. 
+
+•	Why to deadlocks occur? 
+  ◦	As you may be thinking, simple deadlocks such as the one above seem readily
+    avoidable. For example, if Thread 1 and 2 both made sure to grab locks in
+    the same order, the deadlock would never arise. So why do deadlocks happen? 
+  ◦	One reason is that in large code bases, complex dependencies arise between
+    components. 
+  ◦	Another reason is due to the nature of encapsulation. As software
+    developers, we are taught to hide details of implementations and thus make
+    software easier to build in a modular way. Unfortunately, such modularity
+    does not mesh well with locking (it could hide important details). 
+•	Conditions for Deadlocks: all four conditions need to hold 
+  •	Mutual exclusion: threads claim exclusive control of resources that they
+    require (e.g., a thread grabs a lock). 
+  •	Hold-and-wait: Threads hold resources allocated to them (e.g., locks that
+    they have already acquired) while waiting for additional resources (e.g.,
+    locks that they wish to acquire). 
+  •	No preemption: Resources (e.g., locks) cannot be forcibly removed from
+    threads that are holding them. 
+  •	Circular wait: There exists a circular chain of threads such that each
+    thread holds one or more resources (e.g., locks) that are being requested by
+    the next thread in the chain. 
+•	Prevention: 
+  ◦	If any of these four conditions are not met, deadlock cannot occur. Thus, we
+    first explore techniques to prevent deadlock; each of these strategies seeks
+    to prevent one of the above conditions from arising and thus is one approach
+    to handling the deadlock problem. 
+  •	Tim Note: See main notes for prevention details and code samples.
+
+•	Deadlock Avoidance via Scheduling
+  •	Instead of deadlock prevention, in some scenarios deadlock avoidance is
+    preferable. Avoidance requires some global knowledge of which locks various
+    threads might grab during their execution, and subsequently schedules said
+    threads in a way as to guarantee no deadlock can occur. 
+  ◦	Tim Note: See main notes for details
+
+Suggestions:
+◦	Q: If concurrent code is so hard to think about, and so hard to get right, how
+    are we supposed to write correct concurrent code? 
+◦	A: 
+  ◦	First, keep it simple! Avoid complex interactions between threads, and use
+    well-known and tried-and-true ways to manage thread interactions. 
+  ◦	Second, only use concurrency when absolutely needed; avoid it if at all
+    possible. There is nothing worse than premature optimization of a program. 
+  ◦	Third, if you really need parallelism (multi-cores), seek it in other
+    simplified forms. For example, the Map-Reduce method for writing parallel
+    data analysis code is an excellent example of achieving parallelism without
+    having to handle any of the horrific complexities of locks, condition
+    variables, and the other nasty things we’ve talked about. 
+
+
+
+
 
 `
         }

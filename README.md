@@ -112,7 +112,7 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 17. Paging
 18. Two Types of Locality
 19. Concurrency Terms
-20. Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore
+20. Multi-threading Data Structures, Locks, Condition Variables, Semaphores
 21. Common problems with concurrency (Non-Deadlock, Deadlock)
 22. Event-Based Concurrency (e.g. Node.JS)
 23. Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)
