@@ -989,6 +989,7 @@ Pthread Locks
   provide mutual exclusion between threads, i.e., if one thread is in the
   critical section, it excludes the others from entering until it has completed
   the section. 
+
 Lock-based Concurrent Data Structures (Tim note: see notes for code)
 •	Adding locks to a data structure to make it usable by threads makes the
   structure thread safe.
@@ -1078,7 +1079,7 @@ Dijkstra and colleagues invented the semaphore as a single primitive for all
 things related to synchronization; as you will see, one can use semaphores as
 both locks and condition variables.
 •	The Crux: How to use Semaphores
-•	Semaphores: A Definition
+Semaphores: A Definition
 •	Semaphore: an object with an integer value that we can manipulate with two
   routines; in the POSIX standard, these routines are sem_wait() and sem_post() 
 •	Initialization: Because the initial value of the semaphore determines its
@@ -1113,6 +1114,7 @@ both locks and condition variables.
 •	How to use a semaphore as a lock: 
   •	Initialize the semaphore at 1 
   •	Surround the critical section with a sem_wait()/sem_post() pair  
+
 •	Semaphores For Ordering
   •	We can use the semaphore as an ordering primitive (similar to our use of
     condition variables earlier). 
