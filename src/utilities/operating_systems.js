@@ -215,6 +215,7 @@ The Components of a Process:
       language: "js",
       tabs: [
         {
+          image_src: "https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter4/4_01_ThreadDiagram.jpg",
           name: "Question",
           data:
 `Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
@@ -253,6 +254,35 @@ The Components of a Process:
     ▪	Note: having multiple stacks in the same address space is generally okay.
       Stacks aren’t very large, except in programs that make heavy use of
       recursion. 
+* See Diagram *
+Why Use Threads?
+•	First reason: Parallelism 
+  ◦	If you are executing a program (i.e., that performs operations on very large
+    arrays) on a system with multiple processors, you have the potential of
+    speeding the work up considerably by using the processors to each perform a
+    portion of the work 
+  ◦	The task of transforming your standard single-threaded program into one that
+    utilizes multiple CPUs is called parallelization 
+  ◦	Using a thread per CPU to do the work is a natural and typical way to make
+    programs run faster on modern hardware. 
+•	Second reason: to avoid blocking program progress due to slow I/O 
+  ◦	Using threads is a natural way to avoid getting stuck; while one thread in
+    your program waits (i.e., is blocked waiting for I/O), the CPU scheduler can
+    switch to other threads, which are ready to run and do something useful. 
+  ◦	Threading enables overlap of I/O with other activities within a single
+    program, much like multi-programming did for processes across programs; 
+    ▪	as a result, many modern server-based applications (web servers, database
+      management systems, and the like) make use of threads in their
+      implementations. 
+
+When to Use Threads
+•	Of course, in either of the cases mentioned above, you could use multiple
+  processes instead of threads. 
+•	However, threads share an address space and thus make it easy to share data,
+  and hence are a natural choice when constructing these types of programs. 
+•	Processes are a more sound choice for logically separate tasks where little
+  sharing of data structures in memory is needed. 
+
 `
         }
       ]
@@ -387,13 +417,147 @@ Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
       id: 11,
       name: "Context Switching",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Context_switch.png",
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/System_call
+
+A context switch is a time-sharing mechanism used by all modern OSes to stop
+running one program and start running another on a given CPU.
+
+Saving and Restoring Context 
+▪	When the OS has regained control, the scheduler must decide whether to
+  continue the currently-running process, or switch to a different one 
+▪	If the decision is made to switch, the OS executes a low-level piece of code
+  which we refer to as a context switch. A context switch is conceptually
+  simple: 
+  ▪	all the OS has to do is save a few register values for the
+    currently-executing process (onto its kernel stack, for example) and restore
+    a few for the soon-to-be-executing process (from its kernel stack). 
+  ▪	By doing so, the OS thus ensures that when the return-from-trap instruction
+    is finally executed, instead of returning to the process that was running,
+    the system resumes execution of another process 
+▪	Context switch details 
+  ▪	To save the context of the currently-running process, the OS will execute
+    some low-level assembly code to save the general purpose registers, PC, as
+    well as the kernel stack pointer of the currently-running process, and then
+    restore said registers, PC, and switch to the kernel stack for the
+    soon-to-be-executing process. 
+  ▪	By switching stacks, the kernel enters the call to the switch code in the
+    context of one process (the one that was interrupted) and returns in the
+    context of another (the soon-to-be-executing one). 
+  ▪	When the OS then finally executes a return-from-trap instruction, the
+    soon-to-be-executing process becomes the currently-running process. 
+
+Aside: How Long Context Switches Take
+•	There is a tool called $ lmbench that measures exactly those things, as well
+  as a few other performance measures that might be relevant 
+•	Results have improved quite a bit over time 
+  ◦	In 1996 running Linux 1.3.37 on a 200-MHz P6 CPU, system calls took roughly
+    4 microseconds, and a context switch roughly 6 microseconds 
+  ◦	Modern systems perform almost an order of magnitude better, with
+    sub-microsecond results on systems with 2- or 3-GHz processors 
+
+Sources of context switching cost: 
+◦	The cost of context switching does not arise solely from the OS actions of
+  saving and restoring a few registers 
+◦	When programs run, they build up a great deal of state in CPU caches, TLBs,
+  branch predictors, and other on-chip hardware. Switching to another job causes
+  this state to be flushed and new state relevant to the currently-running job
+  to be brought in, which may exact a noticeable performance cost 
+
+
+
+`
+        }
+      ]
     },
     {
       id: 12,
       name: "Caches (Single-CPU vs. Multi-CPU Hardware)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          image_src: "https://software.intel.com/sites/default/files/m/d/4/1/d/8/5-4-figure-1.gif",
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Single-CPU hardware 
+￼* See Diagram *
+◦	In a system with a single CPU, there are a hierarchy of hardware caches that
+  in general help the processor run programs faster. 
+  ▪	Caches are small, fast memories that (in general) hold copies of popular
+    data that is found in the main memory of the system. 
+  ▪	Main memory, in contrast, holds all of the data, but access to this larger
+    memory is slower. By keeping frequently accessed data in a cache, the system
+    can make the large, slow memory appear to be a fast one. 
+◦	Example: consider a program that issues an explicit load instruction to fetch
+  a value from memory, and a simple system with only a single CPU; the CPU has a
+  small cache (say 64 KB) and a large main memory. 
+  ▪	The first time a program issues this load, the data resides in main memory,
+    and thus takes a long time to fetch (perhaps tens of nanoseconds, or even
+    hundreds). 
+  ▪	The processor, anticipating that the data may be reused, puts a copy of the
+    loaded data into the CPU cache. 
+  ▪	If the program later fetches this same data item again, the CPU first checks
+    for it in the cache; if it finds it there, the data is fetched much more
+    quickly (say, just a few nanoseconds), and thus the program runs faster. 
+
+Multi-CPU hardware 
+￼* See Diagram *
+◦	Caching with multiple CPUs is much more complicated. 
+◦	Example: 
+  ▪	A program running on CPU 1 reads a data item (with value D) at address A;
+    because the data is not in the cache on CPU 1, the system fetches it from
+    main memory and puts it in the CPU 1 cache 
+  ▪	The program then modifies the value at address A, just updating its cache
+    with the new value D′; 
+    ▪	writing the data to main memory is slow, so the system will (usually) do
+      that later. 
+  ▪	The OS decides to stop running the program and move it to CPU 2. 
+  ▪	The program then re-reads the value at address A; there is no such data CPU
+    2’s cache, and thus the system fetches the value from main memory, and gets
+    the old value D instead of the correct value D′. 
+◦	General problem: This general problem is called the problem of cache
+  coherence, and there is a vast research literature that describes many
+  different subtleties involved with solving the problem [SHW11]. (take a
+  computer architecture class to learn more) 
+◦	Basic Solution: by monitoring memory accesses, hardware can ensure that
+  basically the “right thing” happens and that the view of a single shared
+  memory is preserved. 
+  ▪	One way to do this on a bus-based system (as described above) is to use an
+    old technique known as bus snooping [G83]; each cache pays attention to
+    memory updates by observing the bus that connects them to main memory. 
+  ▪	When a CPU then sees an update for a data item it holds in its cache, it
+    will notice the change and either invalidate its copy (i.e., remove it from
+    its own cache) or update it (i.e., put the new value into its cache too). 
+  ▪	Write-back caches, as hinted at above, make this more complicated (because
+    the write to main memory isn’t visible until later), but you can imagine how
+    the basic scheme might work. 
+
+Don’t Forget Synchronization
+•	Given that the caches do all of this work to provide coherence, do programs
+  (or the OS itself) have to worry about anything when they access shared data?
+  The answer, unfortunately, is yes (see the concurrency section). 
+One Final Issue: Cache Affinity
+•	This notion is simple: a process, when run on a particular CPU, builds up a
+  fair bit of state in the caches (and TLBs) of the CPU. 
+  ◦	The next time the process runs, it is often advantageous to run it on the
+    same CPU, as it will run faster if some of its state is already present in
+    the caches on that CPU. 
+  ◦	If, instead, one runs a process on a different CPU each time, the
+    performance of the process will be worse, as it will have to reload the
+    state each time it runs 
+•	Thus, a multiprocessor scheduler should consider cache affinity when making
+  its scheduling decisions, perhaps preferring to keep a process on the same CPU
+  if at all possible. 
+
+`
+        }
+      ]
     },
     {
       id: 13,
@@ -425,21 +589,230 @@ The Address Space
     },
     {
       id: 14,
-      name: "Memory Problems (Leak, Stack Overflow, Segmentation Fault, Page Fault etc.)",
+      name: "Memory Problems",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Interlude: Memory API
+Crux: How to Allocate and Manage Memory
+Types of Memory
+•	In running a C program, there are two types of memory that are allocated,
+  stack & heap 
+•	Stack memory 
+  ◦	Allocations and deallocations of it are managed implicitly by the compiler
+    for you, the programmer. For this reason, it is sometimes called automatic
+    memory 
+  ◦	How to declare memory on the stack in C  (See Example)
+
+•	Heap memory 
+  ◦	All allocations and deallocations are explicitly handled by you, the
+    programmer 
+  ◦	How to allocate an integer on the heap:  (See Example)
+￼
+
+Common Memory Management Errors:
+Common Errors (C Programs) <-- See code snippets for more details
+•	Correct memory management has been such a problem, in fact, that many newer
+  languages have support for automatic memory management. 
+  ◦	In such languages, while you call something akin to malloc() to allocate
+    memory (usually new or something similar to allocate a new object), you
+    never have to call something to free space; 
+  ◦	rather, a garbage collector runs and figures out what memory you no longer
+    have references to and frees it for you.
+•	Forgetting To Allocate Memory (segmentation fault)
+•	Not Allocating Enough Memory (buffer overflow)
+•	Forgetting to Initialize Allocated Memory
+•	Forgetting To Free Memory (memory leak)
+•	Freeing Memory Before You Are Done With It (dangling pointer)
+•	Freeing Memory Repeatedly (double free)
+•	Calling free() Incorrectly
+
+Aside: why no memory is leaked once your process exits
+•	There are two levels of memory management in the system 
+  ◦	The first level of memory management is performed by the OS, which hands out
+    memory to processes when they run, and takes it back when processes exit (or
+    otherwise die). 
+  ◦	The second level of management is within each process 
+    ▪	Example: within the heap when you call malloc() and free(). 
+    ▪	Even when you fail to call free() (and thus leak memory in the heap), the
+      operating system will reclaim all the memory of the process when the
+      program is finished running, thus ensuring that no memory is lost despite
+      the fact that you didn’t free it. 
+  ◦	Thus, for short-lived programs, leaking memory often does not cause any
+    operational problems (though it may be considered poor form). 
+  ◦	When you write a long-running server (such as a web server or database
+    management system, which never exit), leaked memory is a much bigger issue,
+    and will eventually lead to a crash when the application runs out of memory. 
+  ◦	And of course, leaking memory is an even larger issue inside one particular
+    program: the operating system itself. 
+
+
+
+
+Segmentation Fault:
+•	Segmentation Fault: memory access on a segmented machine to an illegal address 
+  ◦	Note: the term persists, even on machines which no support for segmentation 
+
+Page Fault:
+The act of accessing a page that is not in physical memory is called a page
+fault.
+  ▪	Upon a page fault, a page-fault handler, runs.
+
+Aside: it’s not really a “fault”
+•	A page fault more generally could refer to any reference to a page table that
+  generates a fault of some kind. This could refer to 
+  ◦	A page-not-present fault (the type of fault we are discussing) 
+  ◦	An illegal memory accesses 
+•	Indeed, it is odd that we call what is definitely a legal access a “fault” at
+  all; really, it should be called a page miss. But often, when people say a
+  program is “page faulting”, they mean that it is accessing parts of its
+  virtual address space that the OS has swapped out to disk. 
+•	We suspect the reason that this behavior became known as a “fault” relates to
+  the machinery in the operating system to handle it. When something unusual
+  happens, i.e., when something the hardware doesn’t know how to handle occurs,
+  the hardware simply transfers control to the OS, by raising an exception. 
+
+
+Thrashing:
+Thrashing: a situation where the system is constantly paging because memory is
+oversubscribed; the memory demands of the running processes exceed the available
+physical memory
+
+Source: https://en.wikipedia.org/wiki/Stack_overflow
+
+Stack Overflow:
+In software, a stack overflow occurs if the call stack pointer exceeds the stack
+bound. The call stack may consist of a limited amount of address space, often
+determined at the start of the program. The size of the call stack depends on
+many factors, including the programming language, machine architecture,
+multi-threading, and amount of available memory. When a program attempts to use
+more space than is available on the call stack (that is, when it attempts to
+access memory beyond the call stack's bounds, which is essentially a buffer
+overflow), the stack is said to overflow, typically resulting in a program
+crash.[1]
+
+Source: https://en.wikipedia.org/wiki/Memory_leak
+Memory Leak:
+In computer science, a memory leak is a type of resource leak that occurs when a
+computer program incorrectly manages memory allocations[1] in such a way that
+memory which is no longer needed is not released. A memory leak may also happen
+when an object is stored in memory but cannot be accessed by the running code.
+[2] A memory leak has symptoms similar to a number of other problems and
+generally can only be diagnosed by a programmer with access to the program's
+source code.
+
+A space leak occurs when a computer program uses more memory than necessary. In
+contrast to memory leaks, where the leaked memory is never released, the memory
+consumed by a space leak is released, but later than expected. [3]
+
+Because they can exhaust available system memory as an application runs, memory
+leaks are often the cause of or a contributing factor to software aging.
+`
+        }
+      ]
     },
     {
       id: 15,
       name: "Internal vs. External Fragmentation",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+•	External fragmentation: Because segments are variable sized, free memory gets
+  chopped up into odd-sized pieces, and thus satisfying a memory-allocation
+  request can be difficult. The general problem that arises is that physical
+  memory quickly becomes full of little holes of free space, making it difficult
+  to allocate new segments, or to grow existing ones. 
+•	We are primarily concerned with external fragmentation as described above 
+  ◦	Internal fragmentation: occurs when an allocator hands out chunks of memory
+    bigger than requested. Any unasked for (and thus unused) space in such a
+    chunk is internal fragmentation (waste occurs inside the allocated unit). 
+
+`
+        }
+      ]
     },
     {
       id: 16,
       name: "Paging",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: https://en.wikipedia.org/wiki/Paging
+
+In computer operating systems, paging is a memory management scheme by which a
+computer stores and retrieves data from secondary storage[a] for use in main
+memory.[1] In this scheme, the operating system retrieves data from secondary
+storage in same-size blocks called pages. Paging is an important part of virtual
+memory implementations in modern operating systems, using secondary storage to
+let programs exceed the size of available physical memory.
+
+For simplicity, main memory is called "RAM" (an acronym of "random-access
+memory") and secondary storage is called "disk" (a shorthand for "hard disk
+drive"), but the concepts do not depend on whether these terms apply literally
+to a specific computer system.
+
+Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Paging: Introduction [the extra memory reference to the page table is costly]
+The Crux: How to virtualize memory with pages
+•	Paging is an alternative approach to space-management 
+•	Instead of splitting up a process’s address space into some number of
+  variable-sized logical segments (e.g, code, heap, stack), we divide it into
+  fixed-sized units, each of which we call a page 
+•	Physical memory is viewed as an array of fixed-sized slots called page frames 
+  ◦	Each of these frames can contain a single virtual-memory page 
+•	Paging has many advantages over previous approaches (such as segmentation). 
+  ◦	First, it does not lead to external fragmentation, as paging (by design)
+    divides memory into fixed-sized units. 
+  ◦	Second, it is quite flexible, enabling the sparse use of virtual address
+    spaces. 
+•	However, implementing paging support without care will lead to 
+  ◦	A slower machine (with many extra memory accesses to access the page table) 
+  ◦	As well as memory waste (with memory filled with page tables instead of
+    useful application data). 
+
+Page Tables 
+  ◦	The OS usually keeps a per-process data structure called a page table to
+    record where each virtual page of the address space is placed in physical
+    memory 
+  ◦	The page table stores address translations for each of the virtual pages of
+    the address space so we know where in physical memory each page resides 
+
+
+Where Are Page Tables Stored?
+•	Page tables can get terribly large, much bigger than the small segment table
+  or base/bounds pair we have discussed previously. 
+•	Because page tables are so big,we don’t keep any special on-chip hardware in
+  the MMU to store the page table of the currently-running process. Instead, we
+  store the page table for each process in memory somewhere. 
+
+Let’s assume for now that the page tables live in physical memory that the OS
+manages; later we’ll see that much of OS memory itself can be virtualized, and
+thus page tables can be stored in OS virtual memory (and even swapped to disk) 
+* See Diagram *
+
+Swapping the Page Tables to Disk
+•	Thus far, we have assumed that page tables reside in kernel-owned physical
+  memory. 
+  ◦	Even with our many tricks to reduce the size of page tables, it is still
+    possible, however, that they may be too big to fit into memory all at once.
+•	Thus, some systems place such page tables in kernel virtual memory, thereby
+  allowing the system to swap some of these page tables to disk when memory
+  pressure gets a little tight.
+
+`
+        }
+      ]
     },
     {
       id: 17,
@@ -462,42 +835,100 @@ The Address Space
     },
     {
       id: 18,
-      name: "Single threaded process vs. Multi-threaded process",
+      name: "Concurrency Terms",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+race condition: the results depend on the timing execution of the code.
+
+Race Condition: arises if multiple threads of execution enter the critical
+                section at roughly the same time; both attempt to update the
+                shared data structure, leading to a surprising (and perhaps
+                undesirable) outcome.
+
+Critical Section: a piece of code that accesses a shared resource, usually a
+                  variable or data structure.
+
+Critical section: a piece of code that accesses a shared resource and must not
+                  be concurrently executed by more than one thread. 
+	▪	What we really want for this code is what we call mutual exclusion. This
+    property guarantees that if one thread is executing within the critical
+    section, the others will be prevented from doing so. 
+
+Atomicity:
+
+TIP: use atomic operations
+•	Atomic operations are one of the most powerful underlying techniques in
+  building computer systems, from the computer architecture, to concurrent code,
+  to file systems, database management systems, and even distributed systems 
+•	The idea behind making a series of actions atomic is simply expressed with the
+  phrase “all or nothing”; 
+  ◦	it should either appear as if all of the actions you wish to group together
+    occurred, or that none of them occurred, with no in-between state visible. 
+•	Sometimes, the grouping of many actions into a single atomic action is called
+  a transaction, an idea developed in great detail in the world of databases and
+  transaction processing 
+•	In our theme of exploring concurrency, 
+  ◦	we’ll be using synchronization primitives to turn short sequences of
+    instructions into atomic blocks of execution, but the idea of atomicity is
+    much bigger than that 
+  ◦	For example, file systems use techniques such as journaling or copy-on-write
+    in order to atomically transition their on-disk state, critical for
+    operating correctly in the face of system failures (see later chapters). 
+
+`
+        }
+      ]
     },
     {
       id: 19,
-      name: "Context Switching between threads",
+      name: "Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+Interlude: Thread API (see the POSIX pthread library)
+
+Locks (mutex):
+Condition Variables:
+Semaphore:
+
+Lock-based concurrent data structures: Adding locks to a data structure to make
+it usable by threads makes the structure thread safe.
+
+1. Counters
+2. Linked-list
+3. Queues
+4. Hash Table
+`
+        }
+      ]
     },
     {
       id: 20,
-      name: "Race condition, critical section, atomicity, transaction",
+      name: "Common problems with concurrency (Non-Deadlock, Deadlock)",
       language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Non-Deadlock Bugs
+Deadlock Bugs
+
+`
+        }
+      ]
     },
     {
       id: 21,
-      name: "Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 22,
-      name: "Famous Concurrency Problems: bounded buffer, dining philosophers, etc.",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 23,
-      name: "Common problems with concurrency (Non-Deadlock, Deadlock, Order-Violation)",
-      language: "js",
-      tabs: [{name: "Question", data: "Answer"}]
-    },
-    {
-      id: 24,
       name: "Event-Based Concurrency (e.g. Node.JS)",
       language: "js",
       tabs: [
@@ -555,7 +986,7 @@ The Basic Idea: An Event Loop
       ]
     },
     {
-      id: 25,
+      id: 22,
       name: "Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)",
       language: "js",
       tabs: [
@@ -604,7 +1035,7 @@ Asynchronous I/O
       ]
     },
     {
-      id: 26,
+      id: 23,
       name: "What does a canonical device consist of?",
       language: "js",
       tabs: [
@@ -686,7 +1117,7 @@ Lowering CPU Overhead With Interrupts
       ]
     },
     {
-      id: 27,
+      id: 24,
       name: "Device Driver",
       language: "js",
       tabs: [
@@ -714,7 +1145,7 @@ asynchronous time-dependent hardware interface.[2]
       ]
     },
     {
-      id: 28,
+      id: 25,
       name: "Single HDD vs. RAIDs",
       language: "js",
       tabs: [
@@ -850,7 +1281,7 @@ Tim note: See RAID levels
       ]
     },
     {
-      id: 29,
+      id: 26,
       name: "File System Mental Model",
       language: "js",
       tabs: [
@@ -941,7 +1372,7 @@ Overall Organization (a simplified version of a typical UNIX file system )
       ]
     },
     {
-      id: 30,
+      id: 27,
       name: "What is a File, Directory, Directory Tree",
       language: "js",
       tabs: [
@@ -1003,7 +1434,7 @@ Files and Directories
       ]
     },
     {
-      id: 31,
+      id: 28,
       name: "Hard link vs. Symbolic Link",
       language: "js",
       tabs: [
@@ -1096,7 +1527,7 @@ Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
       ]
     },
     {
-      id: 32,
+      id: 29,
       name: "Inode vs Inumber",
       language: "js",
       tabs: [
@@ -1218,6 +1649,43 @@ File Organization: The Inode
 `
         }
       ]
-    }
+    },
+    {
+      id: 30,
+      name: "TLBs",
+      language: "js",
+      tabs: [
+        {
+          name: "Question",
+          data:
+`Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
+
+Paging: Faster Translations (TLBs) [hardware cache for popular translations]
+•	The Crux: how can we speed up address translation, and generally avoid the
+  extra memory reference that paging seems to require? 
+  ◦	By chopping the address space into small, fixed-sized units (i.e., pages),
+    paging requires a large amount of mapping information. 
+  ◦	Because that mapping information is generally stored in physical memory,
+    paging logically requires an extra memory lookup for each virtual address
+    generated by the program. 
+  ◦	Going to memory for translation information before every instruction fetch
+    or explicit load or store is prohibitively slow. 
+•	The OS will need help from the hardware to speed up address translation 
+  ◦	He are going to add what is called (for historical reasons) a
+    translation-lookaside buffer, or TLB. 
+  ◦	A TLB is part of the chip’s memory-management unit (MMU), and is simply a
+    hardware cache of popular virtual-to-physical address translations; thus, a
+    better name would be an address-translation cache 
+  ◦	Upon each virtual memory reference, the hardware first checks the TLB to see
+    if the desired translation is held therein; if so, the translation is
+    performed (quickly) without having to consult the page table (which has all
+    translations). 
+  ◦	Because of their tremendous performance impact, TLBs in a real sense make
+    virtual memory possible
+
+`
+        }
+      ]
+    },
   ]
 };

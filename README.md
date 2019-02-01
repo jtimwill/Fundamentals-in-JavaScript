@@ -107,25 +107,23 @@ https://jtimwill.github.io/fundamentals-in-javascript/
 12. Context Switching
 13. Caches (Single-CPU vs. Multi-CPU Hardware)
 14. Address Space Components (Program Code, Stack, Heap)
-15. Memory Problems (Leak, Stack Overflow, Segmentation Fault, Page Fault etc.)
+15. Memory Problems
 16. Internal vs. External Fragmentation
 17. Paging
 18. Two Types of Locality
-19. Single threaded process vs. Multi-threaded process
-20. Context Switching between threads
-21. Race condition, critical section, atomicity, transaction
-22. Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore
-23. Famous Concurrency Problems: bounded buffer, dining philosophers, etc.
-24. Common problems with concurrency (Non-Deadlock, Deadlock, Order-Violation)
-25. Event-Based Concurrency (e.g. Node.JS)
-26. Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)
-27. What does a canonical device consist of?
-28. Device Driver
-29. Single HDD vs. RAIDs
-30. File System Mental Model
-31. What is a File, Directory, Directory Tree
-32. Hard link vs. Symbolic Link
-33. Inode vs Inumber
+19. Concurrency Terms
+20. Multi-threading Data Structures, Locks, Condition Variables, Mutexes, Semaphore
+21. Common problems with concurrency (Non-Deadlock, Deadlock)
+22. Event-Based Concurrency (e.g. Node.JS)
+23. Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)
+24. What does a canonical device consist of?
+25. Device Driver
+26. Single HDD vs. RAIDs
+27. File System Mental Model
+28. What is a File, Directory, Directory Tree
+29. Hard link vs. Symbolic Link
+30. Inode vs Inumber
+31. TLBs
 
 ### Unix Command Line
 1. What is the shell?
