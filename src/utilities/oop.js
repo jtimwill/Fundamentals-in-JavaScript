@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Inheritance (Object-based/Prototypal vs. Class-based)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -169,7 +169,7 @@ constructor(...args) {
     {
       id: 1,
       name: "Encapsulation",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -201,7 +201,7 @@ validation rules to ensure that your object always has a valid state.
     {
       id: 2,
       name: "Polymorphism",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -223,7 +223,7 @@ object-oriented programming language (OOPL).
     {
       id: 3,
       name: "Abstraction",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -241,7 +241,7 @@ hidden complexity.
     {
       id: 4,
       name: "Composition",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -257,7 +257,7 @@ data types into more complex ones.
     {
       id: 5,
       name: "Mixins",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -315,7 +315,7 @@ class DistributedEdit extends mix(Loggable, Serializable) {
     {
       id: 6,
       name: "Instance vs. Class Variables/Methods",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

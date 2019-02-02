@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Unit Tests",
-      language: "js",
+      language: "markdown",
       tabs: [{
         name: "Question",
         data:
@@ -16,7 +16,7 @@ In computer programming, unit testing is a software testing method by which indi
     {
       id: 1,
       name: "Integration Tests",
-      language: "js",
+      language: "markdown",
       tabs: [{
         name: "Question",
         data:
@@ -28,7 +28,7 @@ Integration testing (sometimes called integration and testing, abbreviated I&T) 
     {
       id: 2,
       name: "End-to-end Tests",
-      language: "js",
+      language: "markdown",
       tabs: [{
         name: "Question",
         data:
@@ -40,7 +40,7 @@ End-to-end testing is a Software testing methodology to test an application flow
     {
       id: 3,
       name: "TDD (RGR)",
-      language: "js",
+      language: "markdown",
       tabs: [{
         name: "Question",
         data:

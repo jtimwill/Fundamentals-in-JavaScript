@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Divide and Conquer (Recursion)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://acrocontext.files.wordpress.com/2014/01/master-method.png",
@@ -53,7 +53,7 @@ The Master Method
     {
       id: 1,
       name: "Randomized Algorithms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -84,7 +84,7 @@ Problems:
     {
       id: 2,
       name: "Greedy Algorithms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -121,7 +121,7 @@ Problems:
     {
       id: 3,
       name: "Dynamic Programming",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

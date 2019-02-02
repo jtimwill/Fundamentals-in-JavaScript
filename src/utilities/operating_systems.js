@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Operating System Definition",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -39,7 +39,7 @@ How does the operating system do that?
     {
       id: 1,
       name: "Kernel",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -76,7 +76,7 @@ runs most processes in user space,[2] for modularity.[3]
     {
       id: 2,
       name: "What happens when a program runs? (Von Neumann)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -95,7 +95,7 @@ runs most processes in user space,[2] for modularity.[3]
     {
       id: 3,
       name: "Virtualization",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -120,7 +120,7 @@ Virtualizing Memory
     {
       id: 4,
       name: "Concurrency",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -138,7 +138,7 @@ space as other functions, with more than one of them active at a time.
     {
       id: 5,
       name: "Persistence",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -163,7 +163,7 @@ Thus, we need hardware and software to be able to store data persistently;
     {
       id: 6,
       name: "Process",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -212,7 +212,7 @@ The Components of a Process:
     {
       id: 7,
       name: "Threads",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter4/4_01_ThreadDiagram.jpg",
@@ -290,7 +290,7 @@ When to Use Threads
     {
       id: 8,
       name: "Process Creation: how the OS gets a program up and running",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -339,7 +339,7 @@ When to Use Threads
     {
       id: 9,
       name: "3 OS Abstractions",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -372,7 +372,7 @@ Note: In tandem, these two abstractions allow a program to run as if it is in
     {
       id: 10,
       name: "System Call",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://notes.shichao.io/spec/figure_3.2.png",
@@ -416,7 +416,7 @@ Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
     {
       id: 11,
       name: "Context Switching",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Context_switch.png",
@@ -477,7 +477,7 @@ Sources of context switching cost: 
     {
       id: 12,
       name: "Caches (Single-CPU vs. Multi-CPU Hardware)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://software.intel.com/sites/default/files/m/d/4/1/d/8/5-4-figure-1.gif",
@@ -562,7 +562,7 @@ One Final Issue: Cache Affinity
     {
       id: 13,
       name: "Address Space Components (Program Code, Stack, Heap)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -590,7 +590,7 @@ The Address Space
     {
       id: 14,
       name: "Memory Problems",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -718,7 +718,7 @@ leaks are often the cause of or a contributing factor to software aging.
     {
       id: 15,
       name: "Internal vs. External Fragmentation",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -742,7 +742,7 @@ leaks are often the cause of or a contributing factor to software aging.
     {
       id: 16,
       name: "Paging",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -817,7 +817,7 @@ Swapping the Page Tables to Disk
     {
       id: 17,
       name: "Two Types of Locality",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -836,7 +836,7 @@ Swapping the Page Tables to Disk
     {
       id: 18,
       name: "Concurrency Terms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -887,7 +887,7 @@ TIP: use atomic operations
     {
       id: 19,
       name: "Multi-threading Data Structures, Locks, Condition Variables, Semaphores",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://isocpp.org/files/img/semaphores_as_bouncers.png",
@@ -1129,7 +1129,7 @@ Semaphores: A Definition
     {
       id: 20,
       name: "Common problems with concurrency (Non-Deadlock, Deadlock)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1235,7 +1235,7 @@ Suggestions:
     {
       id: 21,
       name: "Event-Based Concurrency (e.g. Node.JS)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1293,7 +1293,7 @@ The Basic Idea: An Event Loop
     {
       id: 22,
       name: "Blocking vs. Non-Blocking Interfaces (Event-based Concurrency)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1342,7 +1342,7 @@ Asynchronous I/O
     {
       id: 23,
       name: "What does a canonical device consist of?",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://slideplayer.com/slide/13081284/79/images/5/Hint%3A+remember%2C+devices+can+be+slow%21.jpg",
@@ -1424,7 +1424,7 @@ Lowering CPU Overhead With Interrupts
     {
       id: 24,
       name: "Device Driver",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.faceofit.com/wp-content/uploads/2016/06/Device-Drivers-1.png",
@@ -1452,7 +1452,7 @@ asynchronous time-dependent hardware interface.[2]
     {
       id: 25,
       name: "Single HDD vs. RAIDs",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://image.slidesharecdn.com/caissac10-2012-pub-121011023618-phpapp02/95/progress-and-outlook-of-hdd-technology-xiaodong-che-2-728.jpg?cb=1349923790",
@@ -1588,7 +1588,7 @@ Tim note: See RAID levels
     {
       id: 26,
       name: "File System Mental Model",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1679,7 +1679,7 @@ Overall Organization (a simplified version of a typical UNIX file system )
     {
       id: 27,
       name: "What is a File, Directory, Directory Tree",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1741,7 +1741,7 @@ Files and Directories
     {
       id: 28,
       name: "Hard link vs. Symbolic Link",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://miro.medium.com/max/826/1*0jTNXBcldvnA346Trvc7Pw.png",
@@ -1834,7 +1834,7 @@ Source: http://pages.cs.wisc.edu/~remzi/OSTEP/
     {
       id: 29,
       name: "Inode vs Inumber",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://cdn-images-1.medium.com/max/1600/1*dsoSz5SSHZsxtLNRhcFsHg.png",
@@ -1958,7 +1958,7 @@ File Organization: The Inode
     {
       id: 30,
       name: "TLBs",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

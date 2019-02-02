@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Logarithms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.cheatography.com/uploads/cddc_1456260419_clip_image001[3].png",
@@ -33,7 +33,7 @@ export default {
     {
       id: 1,
       name: "Complex Number Representation",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_source: "https://images.slideplayer.com/39/10873962/slides/slide_3.jpg",

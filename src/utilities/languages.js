@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Generations: Machine Code, Assembly Language, Procedural Languages",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -62,7 +62,7 @@ Object-oriented programming:
     {
       id: 1,
       name: "Dynamic vs. Static Languages",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -85,7 +85,7 @@ Dynamic Programming Languages:
     {
       id: 2,
       name: "Compiled Languages vs. Interpreted Languages",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -153,7 +153,7 @@ Speed:
     {
       id: 3,
       name: "C Integration",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -179,7 +179,7 @@ integration with C.
     {
       id: 4,
       name: "Garbage Collection",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -240,7 +240,7 @@ Generational Garbage Collection
     {
       id: 5,
       name: "Static vs. Dynamic Typing",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -265,7 +265,7 @@ Generational Garbage Collection
     {
       id: 6,
       name: "Higher Order Functions & Lexical Closures",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -302,7 +302,7 @@ Lexical closures
     {
       id: 7,
       name: "Pointer Arithmetic",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -325,7 +325,7 @@ Lexical closures
     {
       id: 8,
       name: "Interpreter vs. Compiler",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -441,7 +441,7 @@ What is the difference between an interpreter and a compiler?
     {
       id: 9,
       name: "Java vs. JavaScript",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Electric Current",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.12voltplanet.co.uk/user/Current_flow_diagram.png",
@@ -42,7 +42,7 @@ charge carriers in metal conductors.
     {
       id: 1,
       name: "Voltage",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -75,7 +75,7 @@ or lost, used, or stored energy (potential drop).
     {
       id: 2,
       name: "Resistance vs Resistivity vs Conductivity",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://files.mtstatic.com/site_4539/8191/0?Expires=1548700607&Signature=jZIpB874X2qGsidFmZBblMr87zFXmkSf0n5gq9INt9ANj-WfQTa28vqOOJ19mAtDd28vP4EWILoHF~k4N4GazyRmd1GTlKj9RVnN468i1NtXmMVtERCCwt7I3GUCAVVcUKS22Op1eIUNNIErkE3yyD07r9tQKMOehReY6SA-DT8_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA",
@@ -114,7 +114,7 @@ Its SI unit is siemens per metre (S/m).
     {
       id: 3,
       name: "Heat vs. Power",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://images.slideplayer.com/25/7789578/slides/slide_6.jpg",
@@ -134,7 +134,7 @@ and the electric current: P = VI
     {
       id: 4,
       name: "Ground vs Neutral",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://cdn.differencebetween.net/wp-content/uploads/2018/03/Neutral-VERSUS-Ground-.jpg",
@@ -189,7 +189,7 @@ line conductors, with interesting exceptions.[2]
     {
       id: 5,
       name: "Current Divider",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Current_division_example.svg",
@@ -201,7 +201,7 @@ line conductors, with interesting exceptions.[2]
     {
       id: 6,
       name: "Voltage Divider",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/acvd.png",
@@ -213,7 +213,7 @@ line conductors, with interesting exceptions.[2]
     {
       id: 7,
       name: "AC generation",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/imgmag/ACGEN.gif",
@@ -267,7 +267,7 @@ rotation, the generated voltage is sinusoidal or AC.
     {
       id: 8,
       name: "AC vs DC for Power Transmission",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -316,7 +316,7 @@ voltage.
     {
       id: 9,
       name: "RMS and 3-Phase Power",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://www.animations.physics.unsw.edu.au/jw/images/power_files/3phase.gif",
@@ -390,7 +390,7 @@ would carry a current similar to that in the remaining two loads.
     {
       id: 10,
       name: "Capacitors",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/capchg.png",
@@ -451,7 +451,7 @@ exploited as dynamic memory in early digital computers.[3]
     {
       id: 11,
       name: "Inductors",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/indt.png",
@@ -494,7 +494,7 @@ receivers.
     {
       id: 12,
       name: "Ohms Law's Law (AC/DC)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://www.electrical-formulas.com/wp-content/uploads/2018/03/ohms-law-formula-for-ac-circuits.jpg",
@@ -506,7 +506,7 @@ receivers.
     {
       id: 13,
       name: "Apparent Power vs. Reactive Power vs. Real Power",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://qph.fs.quoracdn.net/main-qimg-78665340199ff07a8997527960f5f0eb",
@@ -569,7 +569,7 @@ S = IE
     {
       id: 14,
       name: "Power Factor",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.marinerdesk.com/wp-content/uploads/2018/05/C8A48748-AFE0-4317-9B5C-32BCE5A25427.jpeg",
@@ -607,7 +607,7 @@ power.
     {
       id: 15,
       name: "Resonant Circuits",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imgele/acres.png",
@@ -632,7 +632,7 @@ for both transmission and reception.
     {
       id: 16,
       name: "Passive Filters",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://sub.allaboutcircuits.com/images/quiz/02098x02.png",
@@ -645,7 +645,7 @@ for both transmission and reception.
     {
       id: 17,
       name: "Phasor Diagram",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.electronics-tutorials.ws/accircuits/acp25.gif",
@@ -662,7 +662,7 @@ directional relationship between two or more alternating quantities
     {
       id: 18,
       name: "Impedance (Resistors, Capacitors, Inductors)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://www.animations.physics.unsw.edu.au/jw/images/AC_files/AC5.gif",
@@ -731,7 +731,7 @@ imaginary component is the component that is 90° ahead.
     {
       id: 19,
       name: "Maxwell's Equations",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://i.pinimg.com/474x/b1/9e/d0/b19ed0daaac29aff3c97f81ff163f344--physics-formulas-mathematics.jpg",
@@ -744,7 +744,7 @@ imaginary component is the component that is 90° ahead.
     {
       id: 20,
       name: "Types of Motors",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.rs-online.com/designspark/rel-assets/ds-assets/uploads/images/57178c912bb04bf78f67613d0ab544b9Types%20of%20Motor.JPG",
@@ -789,7 +789,7 @@ respectively referred to as actuators and transducers.
     {
       id: 21,
       name: "Transistors",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.electronics-tutorials.ws/transistor/tran22.gif",
@@ -850,7 +850,7 @@ control a current between source and drain.
     {
       id: 22,
       name: "Transformer Types and Applications",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.electronics-tutorials.ws/transformer/trans65.gif",
@@ -885,7 +885,7 @@ the power grid.
     {
       id: 23,
       name: "Electricity Distribution",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://waterheatertimer.org/images/Electricity-from-plant-to-distribution-transformer-to-business.jpg",
@@ -899,7 +899,7 @@ the power grid.
     {
       id: 24,
       name: "Oscillator Circuits (Harmonic)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -937,7 +937,7 @@ Oscillators
     {
       id: 25,
       name: "Sensors",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.azosensors.com/images/Article_Images/ImageForArticle_583(1).jpg",
@@ -980,7 +980,7 @@ and sensitivity compared with macroscopic approaches.[3][4]
     {
       id: 26,
       name: "Electronic Switches",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://micro.rohm.com/en/techweb/knowledge/si/s-si/03-s-si/4778",
@@ -1002,7 +1002,7 @@ and sensitivity compared with macroscopic approaches.[3][4]
     {
       id: 27,
       name: "Laplace vs. Fourier vs. Z transforms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

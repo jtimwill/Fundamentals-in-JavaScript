@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Parallelism vs. Concurrency",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -31,7 +31,7 @@ Quoting Sun's Multithreaded Programming Guide:
     {
       id: 1,
       name: "Amdahl's Law",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -60,7 +60,7 @@ Slatency(s) = 1 / ((1 - p) + p/s)
     {
       id: 2,
       name: "Gustafson's Law",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",

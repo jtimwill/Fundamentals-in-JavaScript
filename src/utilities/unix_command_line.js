@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "What is the shell?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -26,7 +26,7 @@ export default {
     {
       id: 1,
       name: "What are Terminal Emulators ",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -47,7 +47,7 @@ export default {
     {
       id: 2,
       name: "What is text?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -82,7 +82,7 @@ export default {
     {
       id: 3,
       name: "What is the typical directory structure on a linux system?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -172,7 +172,7 @@ Directories Found On Linux Systems
     {
       id: 4,
       name: "What Exactly Are Commands?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -198,7 +198,7 @@ Directories Found On Linux Systems
     {
       id: 5,
       name: "What is I/O redirection?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -234,7 +234,7 @@ Directories Found On Linux Systems
     {
       id: 6,
       name: "What are pipelines?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -263,7 +263,7 @@ command1 | command2: Using the pipe operator “|” (vertical bar), the standar
     {
       id: 7,
       name: "What are PIDs?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -292,7 +292,7 @@ How A Process Works
     {
       id: 8,
       name: "What is the environment?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -362,7 +362,7 @@ Startup Files For Non-Login Shell Sessions:
     {
       id: 9,
       name: "How can you modify the environment?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -411,7 +411,7 @@ Startup Files For Non-Login Shell Sessions:
     {
       id: 10,
       name: "What is FTP?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -444,7 +444,7 @@ Startup Files For Non-Login Shell Sessions:
     {
       id: 11,
       name: "What is SSH?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",
@@ -504,7 +504,7 @@ Secure Communication With Remote Hosts
     {
       id: 12,
       name: "What Are Shell Scripts?",
-      language: "js",
+      language: "markup",
       tabs: [
         {
           name: "Question",

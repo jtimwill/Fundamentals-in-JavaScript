@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "OSI vs TCP/IP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.inetdaemon.com/img/network_models.png",
@@ -36,7 +36,7 @@ The network layer is “special”
     {
       id: 1,
       name: "IP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2011/howtheintern.jpg",
@@ -80,7 +80,7 @@ The IP Service Model (Details)
     {
       id: 2,
       name: "TCP vs UDP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.pluralsight.com/content/dam/pluralsight/blog/2007/10/networking-basics-tcp-udp-tcpip-osi-models/wp/img/TCP7.jpg",
@@ -187,7 +187,7 @@ So why do we have UDP?
     {
       id: 3,
       name: "IPv4/IPv6 Address Assignment",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -328,7 +328,7 @@ will not collide.
     {
       id: 4,
       name: "ARP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -405,7 +405,7 @@ Address Resolution Protocol
     {
       id: 5,
       name: "ICMP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -468,7 +468,7 @@ Unreliable: Simple datagram service - no retries.
     {
       id: 6,
       name: "End-to-end Principle",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -517,7 +517,7 @@ comments number 1958, “The Architectural Principles of the Internet.”
     {
       id: 7,
       name: "Three Error Detection Algorithms",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -594,7 +594,7 @@ prepend it to the payload.
     {
       id: 8,
       name: "Packet",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -610,7 +610,7 @@ Packet: a self-contained unit of data that carries information necessary for it
     {
       id: 9,
       name: "Packet Switching",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -759,7 +759,7 @@ Why does the Internet use Packet Switching? [The three original reasons]
     {
       id: 10,
       name: "Forwarding Table",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -790,7 +790,7 @@ Longest Prefix Match
     {
       id: 11,
       name: "Ethernet Switch vs. Internet Router",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -884,7 +884,7 @@ Address Lookup: Internet Router (IP router) [longest prefix match]
     {
       id: 12,
       name: "NATs and the New Hourglass",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1003,7 +1003,7 @@ the past decade]
     {
       id: 13,
       name: "HTTP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1097,7 +1097,7 @@ One nice thing about HTTP is that it’s human readable text 
     {
       id: 14,
       name: "DNS Architecture",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.computerhope.com/jargon/d/dns.gif",
@@ -1235,7 +1235,7 @@ A DNS Query
     {
       id: 15,
       name: "DHCP",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1297,7 +1297,7 @@ DHCP
     {
       id: 16,
       name: "Internet Routing Protocols",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1453,7 +1453,7 @@ Another view of Dijkstra
     {
       id: 17,
       name: "Internet Structure",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.hierarchystructure.com/wp-content/uploads/2018/02/What-is-Internets-Hierarchical-Structure-1024x683.jpg",
@@ -1611,7 +1611,7 @@ Internet structure
     {
       id: 18,
       name: "Shannon Capacity, Shannon Limit",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1656,7 +1656,7 @@ Shannon Limit
     {
       id: 19,
       name: "Modulation",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.taitradioacademy.com/wp-content/uploads/2014/10/Image-8.png",
@@ -1791,7 +1791,7 @@ people have made things go faster.
     {
       id: 20,
       name: "Coding (list a few algorithms)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1907,7 +1907,7 @@ Reed-Solomon Basic Idea
     {
       id: 21,
       name: "Why is data transmitted using a clock? (Lower Layers)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1940,7 +1940,7 @@ Data is transmitted using a clock
     {
       id: 22,
       name: "What are Asynchronous communications? (computer networking)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -1966,7 +1966,7 @@ Asynchronous communication (works for short packets)
     {
       id: 23,
       name: "What are Synchronous communications? (computer networking)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2019,7 +2019,7 @@ Asynchronous communication (works for short packets)
     {
       id: 24,
       name: "How is the radio spectrum allocated in the US (that big map)?",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2054,7 +2054,7 @@ Source: https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPace
     {
       id: 25,
       name: "How does Signal Strength work with wireless?",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.isa.org/uploadedImages/Content/Standards_and_Publications/ISA_Publications/InTech_Magazine/2008/April/2008_04_53(1).gif",
@@ -2119,7 +2119,7 @@ Signal Strength
     {
       id: 26,
       name: "Ethernet, Ethernet most commonly used wired network",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2298,7 +2298,7 @@ Summary
     {
       id: 27,
       name: "Ethernet Hubs vs. Switches",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2474,7 +2474,7 @@ much every organization that has a wired network.
     {
       id: 28,
       name: "Three Ways Communication Can Be Compromised",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2506,7 +2506,7 @@ much every organization that has a wired network.
     {
       id: 29,
       name: "Three Security Principles",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2543,7 +2543,7 @@ Tools
     {
       id: 30,
       name: "The most important network security lesson",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -2565,7 +2565,7 @@ Most Important Lesson
     {
       id: 31,
       name: "Wireless Communication: Digital vs. Analog",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://image.slidesharecdn.com/atihighlevelwirelessdigitalcommunicationscoursesampler-120604124936-phpapp02/95/highlevel-wireless-digital-communications-for-program-and-engineering-managers-course-sampler-4-728.jpg?cb=1338814238",
@@ -2644,7 +2644,7 @@ Radio Receivers
     {
       id: 32,
       name: "Wired Communication: Sync Serial vs. Async Serial vs. Parallel",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://cdn.sparkfun.com/assets/e/5/4/2/a/50e1ccf1ce395f962b000000.png",
@@ -2786,7 +2786,7 @@ Trade offs 
     {
       id: 33,
       name: "UART",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://cdn.sparkfun.com/assets/d/1/f/5/b/50e1cf30ce395fb227000000.png",

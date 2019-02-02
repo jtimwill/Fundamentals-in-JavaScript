@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Boolean Logic (Nand Gate, Adder)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://cdncontribute.geeksforgeeks.org/wp-content/uploads/logic-gates.jpg",
@@ -51,7 +51,7 @@ Gate: a physical device that implements a Boolean function.
     {
       id: 1,
       name: "VHDL",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -91,7 +91,7 @@ Actual Hardware Construction
     {
       id: 2,
       name: "Sequential Logic (Flip-flop, Register, Counter)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -215,7 +215,7 @@ Time Matters
     {
       id: 3,
       name: "Memory (RAM, ROM, Firmware)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www.informationq.com/wp-content/uploads/2015/05/Computer-Memory-diagram-1024x664.jpg",
@@ -263,7 +263,7 @@ Typical secondary storage devices are hard disk drives and solid-state drives.
     {
       id: 4,
       name: "Fetch Execution Cycle",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://www-users.cs.york.ac.uk/~mjf/simple_cpu/Images/arch.jpg",
@@ -342,7 +342,7 @@ The cycle is then repeated.
     {
       id: 5,
       name: "The Stored Program Concept",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -383,7 +383,7 @@ The Stored Program Concept 
     {
       id: 6,
       name: "Computer System (Memory, CPU, I/O)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://computersciencementor.com/wp-content/uploads/2017/02/BLOCK-DIAGRAM-OF-COMPUTER.jpg",
@@ -550,7 +550,7 @@ The Stored Program Concept 
     {
       id: 7,
       name: "Instruction set architecture",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://i.stack.imgur.com/AvG0R.jpg",
@@ -603,7 +603,7 @@ are theoretically important types, but have not been commercialized.
     {
       id: 8,
       name: "Moore's Law",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "http://www.extremetech.com/wp-content/uploads/2015/04/MooresLaw2.png",
@@ -656,7 +656,7 @@ Moore's law".[23][24][25]
     {
       id: 9,
       name: "Locality (Memory Access Hierarchy)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://images.slideplayer.com/39/10873962/slides/slide_3.jpg",
@@ -679,7 +679,7 @@ Tape/Optical Robot: 10^9ns
     {
       id: 10,
       name: "Numbers Everyone Should Know (latency)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -706,7 +706,7 @@ Send packet CA->Netherlands->CA     150,000,000 ns
     {
       id: 11,
       name: "Micro-controller vs Microprocessor",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://electronicsforu.com/wp-contents/uploads/2016/05/Screen-Shot-2016-05-28-at-16.51.34.png",
@@ -736,7 +736,7 @@ the boundaries.
     {
       id: 12,
       name: "Multicore Processor vs. Single Core Processor",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           image_src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Dual_Core_Generic.svg",

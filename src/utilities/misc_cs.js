@@ -4,7 +4,7 @@ export default {
     {
       id: 0,
       name: "Asymptotic Analysis",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -28,7 +28,7 @@ a*n^b 
     {
       id: 1,
       name: "Operations/second",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -44,7 +44,7 @@ Source: https://www.coursera.org/learn/algorithms-part2
     {
       id: 2,
       name: "Words in Main Memory",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -62,7 +62,7 @@ Source: https://www.coursera.org/learn/algorithms-part2
     {
       id: 3,
       name: "Touch all words in 1 second",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -78,7 +78,7 @@ You can touch all words in ≈ 1 second (a truism (roughly) since 1950!)
     {
       id: 4,
       name: "Operation Nanoseconds",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -102,7 +102,7 @@ Estimated time of basic operations [OSX on MacBook Pro 2.2GHz with 2GB RAM]
     {
       id: 5,
       name: "Why 2s Comp is Used",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -155,7 +155,7 @@ Why We Use 2’s Comp  https://www.youtube.com/watch?v=lKTsv6iVxV4
     {
       id: 6,
       name: "P vs NP (Reductions)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -189,7 +189,7 @@ Source: http://www.timroughgarden.org/videos.html
     {
       id: 7,
       name: "P vs NP (Completeness)",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -213,7 +213,7 @@ Source: http://www.timroughgarden.org/videos.html
     {
       id: 9,
       name: "3 strategies for NP-complete problems",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -232,7 +232,7 @@ Source: http://www.timroughgarden.org/videos.html
     {
       id: 10,
       name: "Cryptography",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -248,7 +248,7 @@ communication in the presence of third parties called adversaries.[2]
     {
       id: 11,
       name: "Private/Public Key Cryptography",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -299,7 +299,7 @@ encryption (also known as asymmetric key encryption).[4][5]
     {
       id: 12,
       name: "Diffie-Hellman Key Exchange",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -341,7 +341,7 @@ encryption (also known as asymmetric key encryption).[4][5]
     {
       id: 13,
       name: "RSA Encryption",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
@@ -430,7 +430,7 @@ RSA facts:
     {
       id: 14,
       name: "Powers of 2",
-      language: "js",
+      language: "markdown",
       tabs: [
         {
           name: "Question",
