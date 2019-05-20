@@ -81,6 +81,19 @@ class Main extends Component {
               This is a collection of important concepts and useful resources.
             </p>
             <p>{this.calculateProgress(categories)}</p>
+            <p>
+              <ul>
+                <li>
+                  No highlight: missing answer
+                </li>
+                <li className="text-success font-weight-bold">
+                  Green highlight: this site only
+                </li>
+                <li className="text-primary font-weight-bold">
+                  Blue highlight: Ankized
+                </li>
+              </ul>
+            </p>
           </div>
         </div>
         {categories.map((category, index1) => (

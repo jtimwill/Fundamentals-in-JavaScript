@@ -39,9 +39,7 @@ export default {
           image_source: "https://images.slideplayer.com/39/10873962/slides/slide_3.jpg",
           name: "Question",
           data:
-`Source:
-
-`
+`Answer`
         }
       ]
     }

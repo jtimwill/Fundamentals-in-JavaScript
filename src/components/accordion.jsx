@@ -7,8 +7,18 @@ const Accordion = ({ item, current_item, index, onItemSelect, current_tab, onTab
   }
 
   function getHeaderCSS(item) {
+    let header_style;
     const base = "card-header custom-hover"
-    return item.tabs[0].data !== "Answer" ? `${base} bg-success` : `${base}`
+    if (item.tabs[0].data == "Answer") {
+      header_style = `${base}`;
+    }
+    else if (item.tabs[0].data == "Anki") {
+      header_style = `${base} bg-primary`;
+    }
+    else {
+      header_style =  `${base} bg-success`;
+    }
+    return header_style;
   }
   return (
     <div>
